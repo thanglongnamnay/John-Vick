@@ -1,8 +1,20 @@
+using System;
+using Controller;
 using Units;
 using UnityEngine;
 
 namespace PowerUps {
     public abstract class PowerUp : MonoBehaviour {
-        public abstract void affect(Player player);
+        private static Player _player;
+        protected abstract void affect(Player player);
+
+        private void Start() {
+            _player = GameController.instance.player;
+        }
+
+        private void OnTriggerEnter(Collider other) {
+            if (other.GetComponent<Player>() != _player) return;
+            affect(_player);
+        }
     }
 }

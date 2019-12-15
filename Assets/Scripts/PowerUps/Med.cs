@@ -12,7 +12,7 @@ namespace PowerUps {
             }
         }
 
-        public override void affect(Player player) {
+        protected override void affect(Player player) {
             player.heal(amount);
         }
     }

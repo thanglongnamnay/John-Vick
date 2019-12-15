@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Controller;
 using Units;
 using UnityEngine;
 
@@ -23,9 +24,11 @@ namespace Guns {
 		}
 
 		private void OnTriggerEnter2D(Collider2D other) {
-			if (!other.CompareTag("Unit") || other.gameObject.GetComponent<Unit>() == owner) return;
-			other.gameObject.GetComponent<Unit>().damage(damage);
-			if (!isPenetrable) Destroy(gameObject);
+			Debug.Log("Bullet triggered ");
+			if (other.CompareTag("UnitCollider") && other.gameObject.GetComponent<UnitCollider>().unit != owner) {
+				other.gameObject.GetComponent<UnitCollider>().unit.damage(damage);
+				if (!isPenetrable) Destroy(gameObject);
+			}
 		}
 	}
 }
