@@ -49,8 +49,8 @@ namespace Guns {
 			}
 		}
 
-		public void increaseMag() {
-			_magNum += 1;
+		public void increaseMag(int v) {
+			_magNum += v;
 		}
 
 		protected float shootAngle {
@@ -58,8 +58,9 @@ namespace Guns {
 		}
 
 		protected abstract void makeBullet();
+		protected abstract void playReloadAnimation();
 
-		protected virtual void reload() {
+		protected void reload() {
 			// todo: play anim
 			if (_magNum <= 0) {
 				//todo play some sound
@@ -69,6 +70,7 @@ namespace Guns {
 			_magNum -= 1;
 			_lastReloadTime = Time.time;
 			_mag = magSize;
+			playReloadAnimation();
 		}
 
 		protected override bool canAttack() {

@@ -33,19 +33,18 @@ namespace Guns {
             get { return 5; }
         }
 
-        protected override void playAnimation() {
-            Debug.Log("Shoot anim here");
+        protected override void playAttackAnimation() {
+            // todo anim
+        }
+
+        protected override void playReloadAnimation() {
+            //todo anim
         }
 
         protected override void makeBullet() {
             var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, shootAngle));
             bullet.GetComponent<Bullet>().damage = damage;
             bullet.GetComponent<Bullet>().owner = owner;
-        }
-        
-        protected override void reload() {
-            base.reload();
-            Debug.Log("Reload anim here");
         }
     }
 }

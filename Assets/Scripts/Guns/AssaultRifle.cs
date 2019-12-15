@@ -31,13 +31,12 @@ namespace Guns {
             get { return 3; }
         }
 
-        protected override void playAnimation() {
+        protected override void playAttackAnimation() {
             //todo shoot anim
         }
-        
-        protected override void reload() {
-            base.reload();
-            //todo reload anim
+
+        protected override void playReloadAnimation() {
+            // todo anim
         }
 
         protected override void makeBullet() {

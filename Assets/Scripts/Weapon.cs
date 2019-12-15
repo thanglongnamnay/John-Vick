@@ -10,9 +10,9 @@ public abstract class Weapon : MonoBehaviour {
 	public abstract float fireRate {get;}
 
 	public virtual void attack() {
-		if (canAttack()) playAnimation();
+		if (canAttack()) playAttackAnimation();
 	}
-	protected abstract void playAnimation();
+	protected abstract void playAttackAnimation();
 	protected abstract bool canAttack();
 
 	protected virtual void OnEnable() {

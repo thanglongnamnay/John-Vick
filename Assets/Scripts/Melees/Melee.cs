@@ -11,7 +11,7 @@ namespace Melees {
 
         public abstract int durable { get; }
 
-        protected override void playAnimation() {
+        protected override void playAttackAnimation() {
             Debug.Log("Play melee animation here");
             //todo: play anim
         }
