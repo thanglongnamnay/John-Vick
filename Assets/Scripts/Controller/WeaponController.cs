@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 
 namespace Controller {
     public class WeaponController : MonoBehaviour {
-        public Unit unit;
+        public Unit unit { get; set; }
         public Transform bulletPrefab;
         public MeleeCollider meleeCollider { get; private set; }
         public GameObject weaponGameObject;
@@ -20,6 +20,7 @@ namespace Controller {
             }
 
             weapon = weaponGameObject.AddComponent<T>();
+            weapon.owner = unit;
             var newGun = weapon as Gun;
             if (newGun != null) {
                 newGun.bulletPrefab = bulletPrefab;
@@ -32,12 +33,14 @@ namespace Controller {
         }
 
         private void Start() {
+            unit = GetComponentInParent<Unit>();
+            Assert.IsNotNull(unit);
             meleeCollider = GetComponentInChildren<MeleeCollider>();
             Assert.IsNotNull(meleeCollider);
             meleeCollider.unit = unit;
-            Debug.Log("meleeCollider.unit set");
             weapon = weaponGameObject.GetComponent<Weapon>();
             Assert.IsNotNull(weapon);
+            Debug.Log("weapon controller set");
         }
     }
 }

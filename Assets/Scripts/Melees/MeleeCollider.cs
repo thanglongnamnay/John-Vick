@@ -5,10 +5,15 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Melees {
-    [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(CircleCollider2D))]
     public class MeleeCollider : MonoBehaviour {
         public Unit unit;
         public bool enable = false;
+
+        public float colliderSize {
+            get { return GetComponent<CircleCollider2D>().radius; }
+        }
+
         private void OnTriggerStay2D(Collider2D other) {
             if (!enable || !Input.GetMouseButton(0) || !other.CompareTag("UnitCollider")) return;
             Debug.Log("Melee hit");

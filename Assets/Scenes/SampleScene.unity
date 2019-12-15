@@ -156,7 +156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dbac434d9f6455997afa44b12d75dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 0}
   bulletPrefab: {fileID: 4471625725200316, guid: edeb51c3dc4ad4127b4c4c380c47d077,
     type: 2}
   weaponGameObject: {fileID: 1578887333}
@@ -227,7 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 376394817}
   - component: {fileID: 376394820}
-  - component: {fileID: 376394819}
+  - component: {fileID: 376394818}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Unit
@@ -242,7 +241,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 376394816}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.17, y: -1.26, z: 0}
+  m_LocalPosition: {x: 32.31, y: -1.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 197493107}
@@ -250,7 +249,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &376394819
+--- !u!114 &376394818
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -258,7 +257,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 376394816}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccf305aa00e845618a5253db0b3d6da2, type: 3}
+  m_Script: {fileID: 11500000, guid: 079374a350a54e66a28879d0387dca6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &376394820
@@ -273,6 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  direction: {x: 0, y: 0}
 --- !u!1 &445787399
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dbac434d9f6455997afa44b12d75dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 1913862610}
   bulletPrefab: {fileID: 4471625725200316, guid: edeb51c3dc4ad4127b4c4c380c47d077,
     type: 2}
   weaponGameObject: {fileID: 1147051264}
@@ -753,7 +752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff2e00fc3c04035a843ae312910ee5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 376394819}
+  unit: {fileID: 0}
 --- !u!1 &1147051264
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,7 +764,7 @@ GameObject:
   - component: {fileID: 1147051266}
   - component: {fileID: 1147051267}
   m_Layer: 0
-  m_Name: gun
+  m_Name: weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -838,7 +837,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1147051264}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25843865b6cd477bb5a05d037a36a011, type: 3}
+  m_Script: {fileID: 11500000, guid: 5978cc4dc7e44cfba4f36d2b528c0de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 1913862610}
@@ -930,7 +929,7 @@ GameObject:
   - component: {fileID: 1578887336}
   - component: {fileID: 1578887335}
   m_Layer: 0
-  m_Name: gun
+  m_Name: weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -957,12 +956,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1578887333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25843865b6cd477bb5a05d037a36a011, type: 3}
+  m_Script: {fileID: 11500000, guid: 5140f436e38d4727a90d428b2300b743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 376394819}
-  bulletPrefab: {fileID: 4471625725200316, guid: edeb51c3dc4ad4127b4c4c380c47d077,
-    type: 2}
+  owner: {fileID: 376394818}
+  meleeCollider: {fileID: 744690022}
 --- !u!212 &1578887336
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1039,7 +1037,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af76c358093c4d858c9b73b2a86c0770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.75
+  direction: {x: 0, y: 0}
 --- !u!114 &1913862609
 MonoBehaviour:
   m_ObjectHideFlags: 0

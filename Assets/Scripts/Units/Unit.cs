@@ -22,7 +22,7 @@ namespace Units {
 		public abstract float evasion { get; protected set; }
 
 		private float _tempMoveSpeed;
-		private Movable _movable;
+		protected Movable _movable;
 		public Weapon weapon {
 			get { return weaponController.weapon; }
 		}

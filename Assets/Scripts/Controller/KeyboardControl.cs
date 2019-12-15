@@ -12,7 +12,7 @@ namespace Controller {
         {
             var moveHorizontal = Input.GetAxis("Horizontal");
             var moveVertical = Input.GetAxis("Vertical");
-            _movable.move(new Vector2(moveHorizontal, moveVertical));
+            _movable.direction = new Vector2(moveHorizontal, moveVertical);
         }
     }
 }

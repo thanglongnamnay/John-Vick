@@ -28,4 +28,8 @@ public abstract class Weapon : MonoBehaviour {
 			attack();
 		}
 	}
+
+	private void Start() {
+		if (owner == null) owner = GetComponentInParent<Unit>();
+	}
 }
