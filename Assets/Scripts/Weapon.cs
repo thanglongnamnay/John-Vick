@@ -1,6 +1,8 @@
 using System;
+using Controller;
 using Units;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public abstract class Weapon : MonoBehaviour {
@@ -16,10 +18,12 @@ public abstract class Weapon : MonoBehaviour {
 	protected abstract bool canAttack();
 
 	protected virtual void OnEnable() {
-		GetComponent<SpriteRenderer>().sprite = renderedSprite;
+		if (GameController.instance != null) {
+			GetComponent<SpriteRenderer>().sprite = renderedSprite;
+		}
 	}
 
-	protected virtual void Update () {
+	public virtual void onUpdate () {
 		if (Input.GetMouseButtonDown(0)) {
 			attack();
 		}

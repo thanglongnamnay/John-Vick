@@ -82,9 +82,9 @@ namespace Guns {
 		private void Start() {
 			_mag = magSize;
 		}
-		
-		protected override void Update () {
-			base.Update();
+
+		public override void onUpdate () {
+			base.onUpdate();
 			if (Input.GetKeyDown(KeyCode.R)) {
 				reload();
 			}

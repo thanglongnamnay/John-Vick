@@ -1,8 +1,12 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Melees {
     public abstract class Melee : Weapon {
         private float _lastAttackTime = 0;
+        public MeleeCollider meleeCollider;
 
         public float lastAttackTime {
             private get { return _lastAttackTime; }
@@ -10,6 +14,13 @@ namespace Melees {
         }
 
         public abstract int durable { get; }
+        public override void attack() {
+            base.attack();
+            if (canAttack()) {
+                meleeCollider.enable = true;
+                _lastAttackTime = Time.time;
+            }
+        }
 
         protected override void playAttackAnimation() {
             Debug.Log("Play melee animation here");
@@ -17,7 +28,7 @@ namespace Melees {
         }
 
         protected override bool canAttack() {
-            return Time.time - _lastAttackTime < fireRate;
+            return Time.time - _lastAttackTime >= fireRate;
         }
     }
 }

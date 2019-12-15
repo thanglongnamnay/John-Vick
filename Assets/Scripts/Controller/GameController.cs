@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Guns;
+using Melees;
 using Units;
 using Units.Enemies;
 using UnityEngine;
@@ -24,9 +25,9 @@ namespace Controller {
         }
 
         private IEnumerator Start() {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(1);
             Debug.Log("Weapon set");
-            player.setWeapon<AssaultRifle>();
+            player.setWeapon<Knife>();
         }
 
         private void Awake() {

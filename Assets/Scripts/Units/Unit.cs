@@ -4,11 +4,12 @@ using Controller;
 using Guns;
 using Melees;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Units {
 	[RequireComponent(typeof(Movable))]
 	public abstract class Unit : MonoBehaviour {
-		public WeaponController weaponController;
+		public WeaponController weaponController { get; protected set; }
 		public float hp { get; protected set; }
 		public abstract UnitType type { get; }
 		public float moveSpeed {
@@ -44,6 +45,10 @@ namespace Units {
 
 		protected virtual void Start() {
 			_movable = GetComponent<Movable>();
+			weaponController = GetComponentInChildren<WeaponController>();
+			Assert.IsNotNull(_movable);
+			Assert.IsNotNull(weaponController);
+			weaponController.unit = this;
 		}
 
 		public void increaseMoveSpeed(float v, float duration) {

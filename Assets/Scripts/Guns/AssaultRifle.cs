@@ -45,8 +45,8 @@ namespace Guns {
             bullet.GetComponent<Bullet>().owner = owner;
         }
 
-        protected override void Update() {
-            base.Update();
+        public override void onUpdate() {
+            base.onUpdate();
             if (Input.GetMouseButton(0)) {
                 attack();
             }
