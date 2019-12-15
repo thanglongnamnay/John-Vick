@@ -3,6 +3,7 @@ using System.Collections;
 using Controller;
 using Units;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Guns {
 	[RequireComponent(typeof(Collider2D))]
@@ -24,11 +25,13 @@ namespace Guns {
 		}
 
 		private void OnTriggerEnter2D(Collider2D other) {
-			Debug.Log("Bullet triggered ");
-			if (other.CompareTag("UnitCollider") && other.gameObject.GetComponent<UnitCollider>().unit != owner) {
-				other.gameObject.GetComponent<UnitCollider>().unit.damage(damage);
-				if (!isPenetrable) Destroy(gameObject);
-			}
+			var unit = other.gameObject.GetComponent<UnitCollider>().unit;
+			if (!other.CompareTag("UnitCollider") ||
+			    unit == owner ||
+			    Random.value <= unit.evasion) return;
+			
+			unit.damage(damage);
+			if (!isPenetrable) Destroy(gameObject);
 		}
 	}
 }

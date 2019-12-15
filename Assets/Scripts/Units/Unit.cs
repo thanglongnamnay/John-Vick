@@ -10,7 +10,7 @@ namespace Units {
 	public abstract class Unit : MonoBehaviour {
 		public WeaponController weaponController;
 		public float hp { get; protected set; }
-
+		public abstract UnitType type { get; }
 		public float moveSpeed {
 			get { return _movable.speed; }
 			protected set {
@@ -18,7 +18,7 @@ namespace Units {
 			}
 		}
 
-		public float evasion { get; protected set; }
+		public abstract float evasion { get; protected set; }
 
 		private float _tempMoveSpeed;
 		private Movable _movable;
