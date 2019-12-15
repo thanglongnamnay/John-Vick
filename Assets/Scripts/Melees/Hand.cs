@@ -1,7 +1,12 @@
 using System;
+using Controller;
+using UnityEngine;
 
 namespace Melees {
     public class Hand : Melee {
+        public override Sprite renderedSprite {
+            get { return GameController.instance.meleeSprites[0]; }
+        }
         public override float damage {
             get { return 5; }
         }

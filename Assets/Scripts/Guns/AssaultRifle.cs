@@ -1,14 +1,18 @@
 
+using Controller;
 using UnityEngine;
 
 namespace Guns {
     public class AssaultRifle : Gun {
+        public override Sprite renderedSprite {
+            get { return GameController.instance.gunSprites[1]; }
+        }
         public override float damage {
             get { return 8; }
         }
 
         public override float fireRate {
-            get { return .25f; }
+            get { return .1f; }
         }
 
         public override int magSize {
@@ -19,19 +23,34 @@ namespace Guns {
             get { return 1.25f; }
         }
 
+        public override float recoil {
+            get { return 3; }
+        }
+
+        public override float inaccuracy {
+            get { return 3; }
+        }
+
         protected override void playAnimation() {
-            Debug.Log("Shoot anim here");
+            //todo shoot anim
         }
         
         protected override void reload() {
             base.reload();
-            Debug.Log("Reload anim here");
+            //todo reload anim
         }
 
         protected override void makeBullet() {
-            var bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+            var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, shootAngle));
             bullet.GetComponent<Bullet>().damage = damage;
             bullet.GetComponent<Bullet>().owner = owner;
+        }
+
+        protected override void Update() {
+            base.Update();
+            if (Input.GetMouseButton(0)) {
+                attack();
+            }
         }
     }
 }

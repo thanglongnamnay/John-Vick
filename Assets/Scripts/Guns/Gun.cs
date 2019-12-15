@@ -1,17 +1,32 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Guns {
 	public abstract class Gun : Weapon {
+		private const int StabGain = 30;
 		public Transform bulletPrefab;
 
 		private int _mag = 0;
 		private float _lastShootTime = 0;
 		private int _magNum = 1;
+		private float _currentRecoil = 0;
+
+		public float currentRecoil {
+			get { return _currentRecoil; }
+			private set { _currentRecoil = value; }
+		}
+
+		protected int magNum {
+			get { return _magNum; }
+			set { _magNum = value; }
+		}
 
 		public abstract int magSize { get; }
 		public abstract float reloadTime { get; }
+		public abstract float recoil { get; }
+		public abstract float inaccuracy { get; }
 
 		public float lastShootTime {
 			private get { return _lastShootTime; }
@@ -28,6 +43,7 @@ namespace Guns {
 			base.attack();
 			if (canAttack()) {
 				makeBullet();
+				_currentRecoil += recoil;
 				_mag -= 1;
 				_lastShootTime = Time.time;
 			}
@@ -35,6 +51,10 @@ namespace Guns {
 
 		public void increaseMag() {
 			_magNum += 1;
+		}
+
+		protected float shootAngle {
+			get { return transform.rotation.eulerAngles.z + Random.Range(-inaccuracy, inaccuracy); }
 		}
 
 		protected abstract void makeBullet();
@@ -65,6 +85,12 @@ namespace Guns {
 			base.Update();
 			if (Input.GetKeyDown(KeyCode.R)) {
 				reload();
+			}
+
+			if (Time.time - _lastShootTime >= fireRate) {
+				var stabGain = StabGain * Time.deltaTime;
+				if (_currentRecoil > stabGain) _currentRecoil -= stabGain;
+				else _currentRecoil = 0;
 			}
 		}
 	}

@@ -8,11 +8,12 @@ using UnityEngine;
 namespace Units {
 	[RequireComponent(typeof(Movable))]
 	public abstract class Unit : MonoBehaviour {
+		public WeaponController weaponController;
 		public float hp { get; protected set; }
 
 		public float moveSpeed {
 			get { return _movable.speed; }
-			private set {
+			protected set {
 				_movable.speed = value;
 			}
 		}
@@ -21,27 +22,27 @@ namespace Units {
 
 		private float _tempMoveSpeed;
 		private Movable _movable;
-		public Weapon[] weaponList {
-			get { return GetComponentsInChildren<Weapon>(); }
+		public Weapon weapon {
+			get { return weaponController.weapon; }
 		}
 
-		public Gun[] gunList {
-			get { return GetComponentsInChildren<Gun>();  }
-		}
-
-		public Melee melee {
-			get { return GetComponentInChildren<Melee>(); }
+		public void setWeapon<T>() where T : Weapon {
+			weaponController.setWeapon<T>();
 		}
 
 		public void damage(float v) {
 			hp -= v;
+			if (hp <= 0) {
+				//todo: play dead animation
+				Destroy(gameObject);
+			}
 		}
 
 		public void heal(float v) {
 			hp += v;
 		}
 
-		private void Start() {
+		protected virtual void Start() {
 			_movable = GetComponent<Movable>();
 		}
 

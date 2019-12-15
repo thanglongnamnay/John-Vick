@@ -1,8 +1,11 @@
+using System;
 using Units;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public abstract class Weapon : MonoBehaviour {
 	public Unit owner;
+	public abstract Sprite renderedSprite { get; }
 	public abstract float damage {get;}
 	public abstract float fireRate {get;}
 
@@ -11,7 +14,11 @@ public abstract class Weapon : MonoBehaviour {
 	}
 	protected abstract void playAnimation();
 	protected abstract bool canAttack();
-	
+
+	protected virtual void OnEnable() {
+		GetComponent<SpriteRenderer>().sprite = renderedSprite;
+	}
+
 	protected virtual void Update () {
 		if (Input.GetMouseButtonDown(0)) {
 			attack();

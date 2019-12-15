@@ -1,5 +1,11 @@
+using Controller;
+using UnityEngine;
+
 namespace Melees {
     public class Pencil : Melee {
+        public override Sprite renderedSprite {
+            get { return GameController.instance.meleeSprites[2]; }
+        }
         private float _damage = 50;
         public override float damage {
             get {

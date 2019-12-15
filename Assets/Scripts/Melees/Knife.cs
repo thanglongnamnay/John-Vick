@@ -1,5 +1,11 @@
+using Controller;
+using UnityEngine;
+
 namespace Melees {
     public class Knife : Melee {
+        public override Sprite renderedSprite {
+            get { return GameController.instance.meleeSprites[1]; }
+        }
         public override float damage {
             get { return 18; }
         }
