@@ -1,6 +1,7 @@
 using System;
 using Controller;
 using Melees;
+using UnityEngine;
 
 namespace Units.Enemies {
     public class Creep : Enemy {
@@ -12,9 +13,14 @@ namespace Units.Enemies {
         }
 
         private void Update() {
+            if (GameController.instance.player == null) return;
+
             var distanceToPlayer = GameController.instance.player.transform.position - transform.position;
             if (distanceToPlayer.magnitude >= _minDistance) _movable.direction = distanceToPlayer;
-            else weapon.attack();
+            else {
+                _movable.direction = Vector2.zero;
+                weapon.attack();
+            }
         }
     }
 }

@@ -33,6 +33,7 @@ namespace Units {
 
 		public void damage(float v) {
 			hp -= v;
+			Debug.Log(hp);
 			if (hp <= 0) {
 				//todo: play dead animation
 				Destroy(gameObject);
