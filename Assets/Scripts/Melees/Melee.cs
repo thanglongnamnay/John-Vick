@@ -13,6 +13,10 @@ namespace Melees {
             set { _lastAttackTime = value; }
         }
 
+        public override WeaponType type {
+            get { return WeaponType.Melee; }
+        }
+
         public abstract int durable { get; }
         public override void attack() {
             base.attack();

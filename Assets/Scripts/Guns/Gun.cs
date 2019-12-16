@@ -23,6 +23,10 @@ namespace Guns {
 			set { _magNum = value; }
 		}
 
+		public override WeaponType type {
+			get { return WeaponType.Gun; }
+		}
+
 		public abstract int magSize { get; }
 		public abstract float reloadTime { get; }
 		public abstract float recoil { get; }

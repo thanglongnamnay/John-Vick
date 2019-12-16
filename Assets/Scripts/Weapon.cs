@@ -8,8 +8,9 @@ using UnityEngine.Assertions;
 public abstract class Weapon : MonoBehaviour {
 	public Unit owner;
 	public abstract Sprite renderedSprite { get; }
-	public abstract float damage {get;}
-	public abstract float fireRate {get;}
+	public abstract float damage { get; }
+	public abstract float fireRate { get; }
+	public abstract WeaponType type { get; }
 
 	public virtual void attack() {
 		if (canAttack()) playAttackAnimation();
