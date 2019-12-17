@@ -22,13 +22,26 @@ namespace Guns {
 
 		// Update is called once per frame
 		private void FixedUpdate () {
-			
-			transform.position += speed * Time.deltaTime * transform.right.normalized;
+			transform.position += speed * Time.deltaTime * transform.right;
+			if (_hit) return;
 			var hit = Physics2D.Raycast(transform.position, transform.right);
+			if (!hit) return;
+			Debug.Log("hit something: " + hit.transform.gameObject.name);
+			_hit = true;
 			var unit = hit.transform.GetComponentInParent<Unit>();
 			if (unit != null) {
-				
+				Debug.Log("hit a unit");
+				StartCoroutine(hurt(unit, hit.distance));
 			}
+		}
+
+		private IEnumerator hurt(Unit unit, float distance) {
+			yield return new WaitForSeconds(distance / speed);
+			if (unit) {
+				unit.damage(damage);
+			}
+
+			Destroy(gameObject);
 		}
 
 		private void OnTriggerEnter2D(Collider2D other) {
