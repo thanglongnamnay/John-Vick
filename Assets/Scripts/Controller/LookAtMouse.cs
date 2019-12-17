@@ -32,7 +32,7 @@ namespace Controller {
             }
 
             Transform transform1;
-            (transform1 = transform).rotation = Quaternion.Euler(0, 0, angle);
+            (transform1 = transform).Rotate(0, 0, angle - transform.rotation.eulerAngles.z);
             cursor.position = transform1.position + transform1.right * distance.magnitude;
         }
     }
