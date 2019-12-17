@@ -23,36 +23,40 @@ namespace Guns {
 		// Update is called once per frame
 		private void FixedUpdate () {
 			transform.position += speed * Time.deltaTime * transform.right;
+			
 			if (_hit) return;
 			var hit = Physics2D.Raycast(transform.position, transform.right);
-			if (!hit) return;
-			Debug.Log("hit something: " + hit.transform.gameObject.name);
-			_hit = true;
-			var unit = hit.transform.GetComponentInParent<Unit>();
-			if (unit != null) {
-				Debug.Log("hit a unit");
-				StartCoroutine(hurt(unit, hit.distance));
-			}
-		}
-
-		private IEnumerator hurt(Unit unit, float distance) {
-			yield return new WaitForSeconds(distance / speed);
-			if (unit) {
-				unit.damage(damage);
-			}
-
-			Destroy(gameObject);
-		}
-
-		private void OnTriggerEnter2D(Collider2D other) {
-			if (other.GetComponent<UnitCollider>() == null) return;
-			var unit = other.gameObject.GetComponent<UnitCollider>().unit;
-			if (!other.CompareTag("UnitCollider") ||
-			    unit == owner ||
-			    Random.value <= unit.evasion) return;
 			
-			unit.damage(damage);
-			if (!isPenetrable) Destroy(gameObject);
+			if (!hit) return;
+//			Debug.Log("Hit: " + hit.transform.gameObject.name);
+			var hitDistance = hit.distance / speed;
+			Destroy(gameObject, hitDistance + .1f);
+			_hit = true;
+			var unitCollider = hit.transform.GetComponent<UnitCollider>();
+			
+			if (!unitCollider) return;
+			StartCoroutine(hurt(unitCollider, hit));
 		}
+
+		private IEnumerator hurt(UnitCollider unitCollider, RaycastHit2D hit) {
+			yield return new WaitForSeconds(hit.distance / speed);
+//			Debug.Log("unitCollider: " + hit.transform.gameObject.name);
+			transform.position = hit.point;
+			if (unitCollider) {
+//				Debug.Log("Damage: " + damage * unitCollider.dmgMul);
+				unitCollider.unit.damage(damage * unitCollider.dmgMul);
+			}
+		}
+
+//		private void OnTriggerEnter2D(Collider2D other) {
+//			if (other.GetComponent<UnitCollider>() == null) return;
+//			var unit = other.gameObject.GetComponent<UnitCollider>().unit;
+//			if (!other.CompareTag("UnitCollider") ||
+//			    unit == owner ||
+//			    Random.value <= unit.evasion) return;
+//			
+//			unit.damage(damage);
+//			if (!isPenetrable) Destroy(gameObject);
+//		}
 	}
 }

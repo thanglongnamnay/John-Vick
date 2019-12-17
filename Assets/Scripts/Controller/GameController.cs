@@ -37,7 +37,7 @@ namespace Controller {
         private IEnumerator Start() {
             yield return new WaitForSeconds(5);
             Debug.Log("Weapon set");
-            player.setWeapon<Sniper>();
+            player.setWeapon<Shoty>();
         }
     }
 }

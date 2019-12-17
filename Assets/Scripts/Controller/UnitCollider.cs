@@ -8,6 +8,11 @@ namespace Controller {
     [RequireComponent(typeof(Rigidbody2D))]
     public class UnitCollider : MonoBehaviour {
         public Unit unit;
+        [SerializeField] private float _dmgMul = 1;
+
+        public float dmgMul {
+            get { return _dmgMul; }
+        }
 
         private void Start() {
             unit = GetComponentInParent<Unit>();
