@@ -34,10 +34,10 @@ namespace Controller {
             get { return GetComponentsInChildren<Enemy>(); }
         }
 
-//        private IEnumerator Start() {
-//            yield return new WaitForSeconds(5);
-//            Debug.Log("Weapon set");
-//            player.setWeapon<Knife>();
-//        }
+        private IEnumerator Start() {
+            yield return new WaitForSeconds(5);
+            Debug.Log("Weapon set");
+            player.setWeapon<Sniper>();
+        }
     }
 }

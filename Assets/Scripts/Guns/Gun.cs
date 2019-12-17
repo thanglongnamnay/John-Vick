@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace Guns {
 	public abstract class Gun : Weapon {
-		private const int StabGain = 30;
+		private const int StabGain = 60;
 		public Transform bulletPrefab;
 
 		private int _mag = 0;
@@ -15,7 +15,7 @@ namespace Guns {
 
 		public float currentRecoil {
 			get { return _currentRecoil; }
-			private set { _currentRecoil = value; }
+			set { _currentRecoil = value; }
 		}
 
 		protected int magNum {

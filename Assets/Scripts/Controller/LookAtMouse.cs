@@ -22,8 +22,8 @@ namespace Controller {
             if (delta.magnitude > 5) delta = Vector2.zero;
             var distance = (Vector2)cursor.position + delta - (Vector2)transform.position;
             var angle = Vector2.SignedAngle(Vector2.right, distance.normalized);
-            angle = Math.Max(angle, -45);
-            angle = Math.Min(angle, 45);
+            angle = Math.Max(angle, -40);
+            angle = Math.Min(angle, 90);
             //todo: use some setter
             var com = unit.weapon as Gun;
             if (!ReferenceEquals(com, null)) {

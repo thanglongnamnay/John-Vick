@@ -15,6 +15,9 @@ namespace Controller {
         public Weapon weapon { get; private set; }
 
         public void setWeapon<T>() where T : Weapon {
+            var gun = weapon as Gun;
+            float curRecoil = 0;
+            if (gun != null) curRecoil = gun.currentRecoil; 
             if (weapon != null) {
                 Destroy(weapon);
             }
@@ -24,6 +27,7 @@ namespace Controller {
             var newGun = weapon as Gun;
             if (newGun != null) {
                 newGun.bulletPrefab = bulletPrefab;
+                newGun.currentRecoil = curRecoil;
             }
 
             var newMelee = weapon as Melee;

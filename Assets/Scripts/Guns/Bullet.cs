@@ -14,17 +14,25 @@ namespace Guns {
 		public float timeToLive = 5;
 		public bool isPenetrable = false;
 
-		private IEnumerator Start() {
-			yield return new WaitForSeconds(timeToLive);
-			Destroy(gameObject);
+		private bool _hit = false;
+
+		private void Start() {
+			Destroy(gameObject, timeToLive);
 		}
 
 		// Update is called once per frame
 		private void FixedUpdate () {
+			
 			transform.position += speed * Time.deltaTime * transform.right.normalized;
+			var hit = Physics2D.Raycast(transform.position, transform.right);
+			var unit = hit.transform.GetComponentInParent<Unit>();
+			if (unit != null) {
+				
+			}
 		}
 
 		private void OnTriggerEnter2D(Collider2D other) {
+			if (other.GetComponent<UnitCollider>() == null) return;
 			var unit = other.gameObject.GetComponent<UnitCollider>().unit;
 			if (!other.CompareTag("UnitCollider") ||
 			    unit == owner ||
