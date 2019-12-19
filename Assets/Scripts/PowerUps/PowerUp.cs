@@ -8,7 +8,7 @@ namespace PowerUps {
         private static Player _player;
         protected abstract void affect(Player player);
 
-        private void Start() {
+        private void OnEnable() {
             _player = GameController.instance.player;
         }
 

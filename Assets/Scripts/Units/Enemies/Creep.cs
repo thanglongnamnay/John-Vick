@@ -12,7 +12,7 @@ namespace Units.Enemies {
             _minDistance = GetComponentInChildren<MeleeCollider>().colliderSize;
         }
 
-        private void Update() {
+        private virtual void Update() {
             if (GameController.instance.player == null) return;
 
             var distanceToPlayer = GameController.instance.player.transform.position - transform.position;
