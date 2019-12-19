@@ -12,7 +12,9 @@ namespace Units.Enemies {
             moveSpeed = 1;
         }
 
-        private void Update() {
+        private override void Update() {
+        	base.Update();
+
         }
     }
 }
