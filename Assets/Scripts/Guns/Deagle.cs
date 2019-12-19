@@ -14,7 +14,7 @@ namespace Guns {
         }
 
         public override float fireRate {
-            get { return .5f; }
+            get { return .3f; }
         }
 
         public override int magSize {

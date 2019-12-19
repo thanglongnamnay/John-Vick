@@ -38,9 +38,9 @@ namespace Controller {
         }
 
         private IEnumerator Start() {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0);
             Debug.Log("Weapon set");
-            player.setWeapon<Shoty>();
+            player.setWeapon<Deagle>();
         }
     }
 }

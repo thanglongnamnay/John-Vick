@@ -77,7 +77,14 @@ namespace Guns {
 
 			_magNum -= 1;
 			_lastReloadTime = Time.time;
-			mag = magSize;
+			if (mag == 0) {
+				_lastReloadTime += .5f;
+				mag = magSize;
+			}
+			else {
+				mag = magSize + 1;
+			}
+
 			playReloadAnimation();
 		}
 
