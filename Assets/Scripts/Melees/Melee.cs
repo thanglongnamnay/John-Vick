@@ -23,6 +23,7 @@ namespace Melees {
             if (canAttack()) {
                 meleeCollider.enable = true;
                 _lastAttackTime = Time.time;
+                durable -= 1;
             }
         }
 

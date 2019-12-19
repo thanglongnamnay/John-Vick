@@ -7,7 +7,7 @@ using Object = UnityEngine.Object;
 namespace Helper {
     [Serializable]
     public class ObjectPoolItem {
-        private GameObject[] _pool;
+        private List<GameObject> _pool;
 
         private int _currentGameObjectIndex;
 	
@@ -42,13 +42,8 @@ namespace Helper {
             return r;
         }
         private void extendPool() {
-            int newSize = (int) (_pool.Length * ExtendFactor);
             _currentGameObjectIndex = _pool.Length;
-            Array.Resize(ref _pool, newSize);
-            for (int i = _currentGameObjectIndex; i < newSize; ++i) {
-                _pool[i] = Object.Instantiate(poolObject);
-            }
-            Debug.Log(poolObject.name + " extended to: " + _pool.Length);
+            _pool.Add(Object.Instantiate(poolObject));
         }
 
 
