@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Controller;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -65,19 +66,24 @@ namespace Guns {
 			get { return transform.rotation.eulerAngles.z + Random.Range(-inaccuracy, inaccuracy); }
 		}
 
-		protected abstract void makeBullet();
+		protected virtual void makeBullet() {
+			if (audioSource != null) {
+				audioSource.Play();
+			}
+		}
 		protected abstract void playReloadAnimation();
 
 		public void reload() {
 			// todo: play anim
 			if (_magNum <= 0) {
-				//todo play some sound
 				return;
 			}
 
 			_magNum -= 1;
 			_lastReloadTime = Time.time;
+			AudioController.instance.play(AudioController.instance.reload, reloadTime);
 			if (mag == 0) {
+				//todo play cocking
 				_lastReloadTime += .5f;
 				mag = magSize;
 			}

@@ -40,6 +40,7 @@ namespace Guns {
         }
 
         protected override void makeBullet() {
+            base.makeBullet();
             var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, shootAngle));
             bullet.GetComponent<Bullet>().damage = damage;
             bullet.GetComponent<Bullet>().owner = owner;

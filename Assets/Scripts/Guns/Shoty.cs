@@ -43,6 +43,7 @@ namespace Guns {
         }
 
         protected override void makeBullet() {
+            base.makeBullet();
             var angles = shootAngle;
             var min = Duck / 2 * Spread;
             for (var i = 0; i < Duck; ++i) {

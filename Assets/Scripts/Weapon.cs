@@ -5,8 +5,10 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(AudioSource))]
 public abstract class Weapon : MonoBehaviour {
 	public Unit owner;
+	public AudioSource audioSource;
 	public abstract Sprite renderedSprite { get; }
 	public abstract float damage { get; }
 	public abstract float fireRate { get; }
@@ -22,15 +24,14 @@ public abstract class Weapon : MonoBehaviour {
 		if (GameController.instance != null) {
 			GetComponent<SpriteRenderer>().sprite = renderedSprite;
 		}
+		if (owner == null) owner = GetComponentInParent<Unit>();
+		audioSource = GetComponent<AudioSource>();
+		Assert.IsNotNull(audioSource);
 	}
 
 	public virtual void onUpdate () {
 		if (Input.GetMouseButtonDown(0)) {
 			attack();
 		}
-	}
-
-	private void Start() {
-		if (owner == null) owner = GetComponentInParent<Unit>();
 	}
 }
