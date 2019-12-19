@@ -8,15 +8,10 @@ namespace Guns {
 		private const int StabGain = 45;
 		public Transform bulletPrefab;
 
-		private int _mag = 0;
 		private float _lastShootTime = 0;
 		private int _magNum = 1;
-		private float _currentRecoil = 0;
 
-		public float currentRecoil {
-			get { return _currentRecoil; }
-			set { _currentRecoil = value; }
-		}
+		public float currentRecoil { get; set; }
 
 		protected int magNum {
 			get { return _magNum; }
@@ -32,23 +27,33 @@ namespace Guns {
 		public abstract float recoil { get; }
 		public abstract float inaccuracy { get; }
 
+		public int mag { get; private set; }
+
 		public float lastShootTime {
 			private get { return _lastShootTime; }
 			set { _lastShootTime = value; }
 		}
-
 		public float lastReloadTime {
 			private get { return _lastReloadTime; }
 			set { _lastReloadTime = value; }
 		}
+		public bool isReloading {
+			get { return Time.time - _lastReloadTime >= reloadTime; }
+		}
 
 		private float _lastReloadTime = 0;
+
+		public Gun() {
+			mag = 0;
+			currentRecoil = 0;
+		}
+
 		public override void attack() {
 			base.attack();
 			if (canAttack()) {
 				makeBullet();
-				_currentRecoil += recoil;
-				_mag -= 1;
+				currentRecoil += recoil;
+				mag -= 1;
 				_lastShootTime = Time.time;
 			}
 		}
@@ -64,7 +69,7 @@ namespace Guns {
 		protected abstract void makeBullet();
 		protected abstract void playReloadAnimation();
 
-		protected void reload() {
+		public void reload() {
 			// todo: play anim
 			if (_magNum <= 0) {
 				//todo play some sound
@@ -73,18 +78,18 @@ namespace Guns {
 
 			_magNum -= 1;
 			_lastReloadTime = Time.time;
-			_mag = magSize;
+			mag = magSize;
 			playReloadAnimation();
 		}
 
-		protected override bool canAttack() {
-			return _mag > 0
+		public override bool canAttack() {
+			return mag > 0
 			       && Time.time - _lastShootTime >= fireRate
 			       && Time.time - _lastReloadTime >= reloadTime;
 		}
 
 		private void Start() {
-			_mag = magSize;
+			mag = magSize;
 		}
 
 		public override void onUpdate () {
@@ -95,8 +100,8 @@ namespace Guns {
 
 			if (Time.time - _lastShootTime >= fireRate) {
 				var stabGain = StabGain * Time.deltaTime;
-				if (_currentRecoil > stabGain) _currentRecoil -= stabGain;
-				else _currentRecoil = 0;
+				if (currentRecoil > stabGain) currentRecoil -= stabGain;
+				else currentRecoil = 0;
 			}
 		}
 	}

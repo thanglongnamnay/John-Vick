@@ -21,9 +21,14 @@ namespace Melees {
         public override void attack() {
             base.attack();
             if (canAttack()) {
-                meleeCollider.enable = true;
                 _lastAttackTime = Time.time;
+                StartCoroutine(enableMeleeCollider());
             }
+        }
+
+        private IEnumerator enableMeleeCollider() {
+            yield return new WaitForSeconds(.5f);
+            meleeCollider.enable = true;
         }
 
         protected override void playAttackAnimation() {
@@ -31,7 +36,7 @@ namespace Melees {
             //todo: play anim
         }
 
-        protected override bool canAttack() {
+        public override bool canAttack() {
             return Time.time - _lastAttackTime >= fireRate;
         }
     }

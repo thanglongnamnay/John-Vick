@@ -44,7 +44,7 @@ namespace Controller {
             _lastAngle = angle;
             
             _line.SetPosition(0, position);
-            _line.SetPosition(1, position + (right * 100));
+            _line.SetPosition(1, position + (right * 20));
         }
     }
 }

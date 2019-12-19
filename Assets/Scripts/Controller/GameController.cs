@@ -18,6 +18,8 @@ namespace Controller {
 
         public static GameController instance { get; private set; }
 
+        public Vector2 moveConstrain;
+
         public Sprite[] gunSprites;
         public Sprite[] meleeSprites;
         public Vector2 screenSize = new Vector2(10, 10);
@@ -35,10 +37,10 @@ namespace Controller {
             get { return GetComponentsInChildren<Enemy>(); }
         }
 
-        private IEnumerator Start() {
-            yield return new WaitForSeconds(5);
-            Debug.Log("Weapon set");
-            player.setWeapon<Sniper>();
-        }
+//        private IEnumerator Start() {
+//            yield return new WaitForSeconds(1);
+//            Debug.Log("Weapon set");
+//            player.setWeapon<Sniper>();
+//        }
     }
 }

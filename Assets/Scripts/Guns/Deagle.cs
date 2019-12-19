@@ -6,10 +6,7 @@ using UnityEngine.Assertions;
 namespace Guns {
     public class Deagle : Gun {
         public override Sprite renderedSprite {
-            get {
-                bool s = GameController.instance == null;
-                Debug.Log("hello " + s); return GameController.instance.gunSprites[0];
-            }
+            get { return GameController.instance.gunSprites[0]; }
         }
 
         public override float damage {

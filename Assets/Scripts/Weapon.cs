@@ -16,7 +16,7 @@ public abstract class Weapon : MonoBehaviour {
 		if (canAttack()) playAttackAnimation();
 	}
 	protected abstract void playAttackAnimation();
-	protected abstract bool canAttack();
+	public abstract bool canAttack();
 
 	protected virtual void OnEnable() {
 		if (GameController.instance != null) {
