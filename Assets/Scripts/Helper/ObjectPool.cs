@@ -15,10 +15,9 @@ namespace Helper {
         public GameObject poolObject;
         public ObjectPool objectPool { get; set; }
 
-        private const float ExtendFactor = 2;
         public void setPoolObject(GameObject value) {
             poolObject = value;
-            _pool = new GameObject[initialPoolSize];
+            _pool = new List<GameObject>();
             for (int i = 0; i < initialPoolSize; ++i) {
                 _pool[i] = Object.Instantiate(poolObject);
             }
@@ -27,7 +26,7 @@ namespace Helper {
         public GameObject getGameObject(Vector3 position, Quaternion rotation) {
             GameObject r = _pool[_currentGameObjectIndex];
             if (r.activeSelf) {
-                for (int i = 0; i < _pool.Length; ++i) {
+                for (int i = 0; i < _pool.Count; ++i) {
                     if (!_pool[i].activeSelf) {
                         _currentGameObjectIndex = i;
                     }
@@ -38,11 +37,11 @@ namespace Helper {
             r.transform.position = position;
             r.transform.rotation = rotation;
             r.SetActive(true);
-            _currentGameObjectIndex = (_currentGameObjectIndex + 1) % _pool.Length;
+            _currentGameObjectIndex = (_currentGameObjectIndex + 1) % _pool.Count;
             return r;
         }
         private void extendPool() {
-            _currentGameObjectIndex = _pool.Length;
+            _currentGameObjectIndex = _pool.Count;
             _pool.Add(Object.Instantiate(poolObject));
         }
 

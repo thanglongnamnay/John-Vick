@@ -20,6 +20,7 @@ namespace Melees {
 
         public override int durable {
             get { return 3; }
+            set { throw new System.NotImplementedException(); }
         }
     }
 }

@@ -1,9 +1,11 @@
-using System;
-using UnityEngine;
+using Melees;
 
-public class BaseballBat : ActiveSkill {
-	public override float cooldown { get { return 5; } }
-	protected override void affect() {
-		(unit.weapon as Melee).meleeCollider.enable();
+namespace Skills {
+	public class BaseballBat : ActiveSkill {
+		public override float cooldown { get { return 5; } }
+		protected override void affect() {
+			var melee = unit.weapon as Melee;
+			if (melee != null) melee.meleeCollider.enable = true;
+		}
 	}
 }	

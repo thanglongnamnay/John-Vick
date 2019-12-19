@@ -10,7 +10,7 @@ namespace Units {
         }
 
         private float _tempEvasion;
-        public override float evasion { get; protected set; }
+        public override float evasion { get; set; }
 
         protected override void Start() {
             base.Start();

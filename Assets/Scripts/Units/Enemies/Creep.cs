@@ -1,4 +1,3 @@
-using System;
 using Controller;
 using Melees;
 using UnityEngine;
@@ -12,13 +11,13 @@ namespace Units.Enemies {
             _minDistance = GetComponentInChildren<MeleeCollider>().colliderSize;
         }
 
-        private virtual void Update() {
+        protected virtual void Update() {
             if (GameController.instance.player == null) return;
 
             var distanceToPlayer = GameController.instance.player.transform.position - transform.position;
-            if (distanceToPlayer.magnitude >= _minDistance) _movable.direction = distanceToPlayer;
+            if (distanceToPlayer.magnitude >= _minDistance) movable.direction = distanceToPlayer;
             else {
-                _movable.direction = Vector2.zero;
+                movable.direction = Vector2.zero;
                 weapon.attack();
             }
         }

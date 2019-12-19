@@ -1,4 +1,3 @@
-using System;
 using Controller;
 using Units;
 using UnityEngine;
@@ -15,6 +14,10 @@ public abstract class Weapon : MonoBehaviour {
 	public abstract WeaponType type { get; }
 
 	public virtual void attack() {
+		if (canAttack()) playAttackAnimation();
+	}
+
+	public virtual void burst() {
 		if (canAttack()) playAttackAnimation();
 	}
 	protected abstract void playAttackAnimation();

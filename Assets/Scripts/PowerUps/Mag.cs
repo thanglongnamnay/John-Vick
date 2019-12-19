@@ -1,10 +1,10 @@
-using System.Linq;
 using Guns;
 using Units;
+using UnityEngine;
 
 namespace PowerUps {
     public class Mag : PowerUp {
-        private static float amount {
+        private static int amount {
             get {
                 var r = Random.Range(0, 100);
                 if (r < 5) return 3;

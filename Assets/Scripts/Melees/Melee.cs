@@ -1,11 +1,9 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Melees {
     public abstract class Melee : Weapon {
-        private float _lastAttackTime = 0;
+        private float _lastAttackTime = -10;
         public MeleeCollider meleeCollider;
 
         public float lastAttackTime {

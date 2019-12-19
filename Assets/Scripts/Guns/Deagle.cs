@@ -1,7 +1,5 @@
-using System;
 using Controller;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Guns {
     public class Deagle : Gun {

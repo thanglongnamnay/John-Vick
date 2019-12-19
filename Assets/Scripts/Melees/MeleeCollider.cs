@@ -1,4 +1,3 @@
-using System;
 using Controller;
 using Units;
 using UnityEngine;
@@ -8,7 +7,7 @@ namespace Melees {
     [RequireComponent(typeof(CircleCollider2D))]
     public class MeleeCollider : MonoBehaviour {
         public Unit unit;
-        public bool enable = false;
+        public bool enable;
 
         public float colliderSize {
             get { return GetComponent<CircleCollider2D>().radius; }

@@ -15,7 +15,7 @@ namespace Controller {
         }
 
         private void Update() {
-            if (direction == Vector2.zero) return;;
+            if (direction == Vector2.zero) return;
             var distance = direction.normalized;
             if (distance.magnitude > direction.magnitude) distance = direction;
             var newPos = transform.position + new Vector3(

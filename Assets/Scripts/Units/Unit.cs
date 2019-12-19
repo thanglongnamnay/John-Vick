@@ -1,8 +1,7 @@
-using System;
 using System.Collections;
+using System.Linq;
 using Controller;
-using Guns;
-using Melees;
+using Skills;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -10,21 +9,21 @@ namespace Units {
 	[RequireComponent(typeof(Movable))]
 	public abstract class Unit : MonoBehaviour {
 		public WeaponController weaponController { get; protected set; }
-        private Skill[] skills;
+        public Skill[] skills;
 		public float hp { get; protected set; }
-		public float ammor { get; set; }
+		public float armor { get; set; }
 		public abstract UnitType type { get; }
 		public float moveSpeed {
-			get { return _movable.speed; }
+			get { return movable.speed; }
 			protected set {
-				_movable.speed = value;
+				movable.speed = value;
 			}
 		}
 
 		public abstract float evasion { get; set; }
 
 		private float _tempMoveSpeed;
-		protected Movable _movable;
+		protected Movable movable;
 		public Weapon weapon {
 			get { return weaponController.weapon; }
 		}
@@ -52,12 +51,12 @@ namespace Units {
 		}
 
 		protected virtual void Start() {
-			_movable = GetComponent<Movable>();
+			movable = GetComponent<Movable>();
 			weaponController = GetComponentInChildren<WeaponController>();
-			Assert.IsNotNull(_movable);
+			Assert.IsNotNull(movable);
 			Assert.IsNotNull(weaponController);
 			weaponController.unit = this;
-			foreach (var skill of skills) {
+			foreach (var skill in skills) {
 				skill.unit = this;
 			}
 		}
@@ -77,7 +76,7 @@ namespace Units {
 			skills[index].use();
 		}
 		public void useSkill<T>() where T : Skill {
-			skills.find(s => s is T).use();
+			skills.First(s => s is T).use();
 		}
 	}
 }

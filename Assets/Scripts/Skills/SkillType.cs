@@ -1,4 +1,4 @@
-namespace Units {
+namespace Skills {
     public enum SkillType {
         Active,
         Passive

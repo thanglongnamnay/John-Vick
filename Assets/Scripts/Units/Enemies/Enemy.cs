@@ -1,8 +1,6 @@
-using System;
 using Controller;
 using Guns;
 using Melees;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Units.Enemies {
@@ -13,7 +11,7 @@ namespace Units.Enemies {
 
         protected Player player;
 
-        public override float evasion { get; protected set; }
+        public override float evasion { get; set; }
 
         protected void randomWeapon(WeaponType weaponType) {
             if (weaponType == WeaponType.Gun) {

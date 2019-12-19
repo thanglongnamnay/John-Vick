@@ -1,4 +1,3 @@
-using System;
 using Guns;
 using Melees;
 using Units;

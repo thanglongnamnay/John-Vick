@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 
@@ -7,10 +6,11 @@ namespace Controller {
         public static MouseLock instance;
         public float slowFactor = .5f;
 
-        private bool _slowing = false;
-        private bool _locking = false;
+        private bool _slowing;
+        private bool _locking;
 
         public MouseLock() {
+            _locking = false;
             instance = this;
         }
 

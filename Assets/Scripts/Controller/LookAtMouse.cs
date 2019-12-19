@@ -21,14 +21,16 @@ namespace Controller {
         private void Update () {
             if (Cursor.lockState != CursorLockMode.Locked) return;
             var delta = Vector2.ClampMagnitude(new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")), 3 * MouseLock.instance.slowFactor);
-            var distance = (Vector2)cursor.position + delta - (Vector2)transform.position;
+            var position1 = cursor.position;
+            var distance = (Vector2)position1 + delta - (Vector2)transform.position;
             var angle = Vector2.SignedAngle(Vector2.right, distance.normalized) + _lastRecoil;
 
             var transform1 = transform;
             var position = transform1.position;
             var right = transform1.right;
             
-            cursor.position += (Vector3)delta;
+            position1 += (Vector3)delta;
+            cursor.position = position1;
             angle = Math.Max(angle, _lastAngle - maxDeltaAngle);
             angle = Math.Min(angle, _lastAngle + maxDeltaAngle);
             angle = Math.Max(angle, -40);
