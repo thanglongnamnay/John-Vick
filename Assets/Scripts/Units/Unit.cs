@@ -10,7 +10,9 @@ namespace Units {
 	[RequireComponent(typeof(Movable))]
 	public abstract class Unit : MonoBehaviour {
 		public WeaponController weaponController { get; protected set; }
+        private Skill[] skills;
 		public float hp { get; protected set; }
+		public float ammor { get; set; }
 		public abstract UnitType type { get; }
 		public float moveSpeed {
 			get { return _movable.speed; }
@@ -19,7 +21,7 @@ namespace Units {
 			}
 		}
 
-		public abstract float evasion { get; protected set; }
+		public abstract float evasion { get; set; }
 
 		private float _tempMoveSpeed;
 		protected Movable _movable;
@@ -50,6 +52,9 @@ namespace Units {
 			Assert.IsNotNull(_movable);
 			Assert.IsNotNull(weaponController);
 			weaponController.unit = this;
+			foreach (var skill of skills) {
+				skill.unit = this;
+			}
 		}
 
 		public void increaseMoveSpeed(float v, float duration) {
@@ -61,6 +66,13 @@ namespace Units {
 		private IEnumerator resetMoveSpeed(float after) {
 			yield return new WaitForSeconds(after);
 			moveSpeed = _tempMoveSpeed;
+		}
+
+		public void useSkill(int index) {
+			skills[index].use();
+		}
+		public void useSkill<T>() where T : Skill {
+			skills.find(s => s is T).use();
 		}
 	}
 }
