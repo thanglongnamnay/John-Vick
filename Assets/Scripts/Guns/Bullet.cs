@@ -24,7 +24,6 @@ namespace Guns {
 				if (_hits.Length == 0) return;
 				Debug.Log("len = " + _hits.Length);
 				foreach (var hit in _hits) {
-					StartCoroutine(handleHit(hit));
 					var unitCollider = hit.transform.GetComponent<UnitCollider>();
 					Debug.Log("hit: " + hit.transform.name);
 
@@ -65,7 +64,6 @@ namespace Guns {
 		}
 		
 		private IEnumerator handleHit(RaycastHit2D hit) {
-			if (isPenetrable) yield break;
 			Destroy(gameObject, hit.distance / speed + .1f);
 			yield return new WaitForSeconds(hit.distance / speed);
 			transform.position = hit.point;

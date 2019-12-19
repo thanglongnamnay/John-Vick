@@ -16,9 +16,10 @@ namespace Melees {
             get { return 1; }
         }
 
+        private int _durable = 40;
         public override int durable {
-            get { return 40; }
-            set { throw new System.NotImplementedException(); }
+            get { return _durable; }
+            set { _durable = value; }
         }
     }
 }

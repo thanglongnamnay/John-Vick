@@ -1,5 +1,6 @@
 using System.Collections;
 using Guns;
+using Melees;
 using Units;
 using Units.Enemies;
 using UnityEngine;
@@ -38,7 +39,7 @@ namespace Controller {
         private IEnumerator Start() {
             yield return new WaitForSeconds(0);
             Debug.Log("Weapon set");
-            player.setWeapon<Sniper>();
+            player.setWeapon<Pencil>();
         }
     }
 }

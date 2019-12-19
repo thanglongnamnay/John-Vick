@@ -17,7 +17,7 @@ namespace Melees {
 
         public override int durable {
             get { return int.MaxValue; }
-            set { throw new NotImplementedException(); }
+            set {}
         }
     }
 }
