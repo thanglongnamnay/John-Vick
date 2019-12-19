@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace Guns {
     public class Shoty : Gun {
-        private const int Spread = 7;
+        private const int Spread = 3;
+        private const int Duck = 5;
 
         public override Sprite renderedSprite {
             get { return GameController.instance.gunSprites[0]; }
@@ -43,8 +44,9 @@ namespace Guns {
 
         protected override void makeBullet() {
             var angles = shootAngle;
-            for (var i = 0; i < 3; ++i) {
-                var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, angles - Spread + Spread*i));
+            var min = Duck / 2 * Spread;
+            for (var i = 0; i < Duck; ++i) {
+                var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, angles - min + Spread*i));
                 bullet.GetComponent<Bullet>().damage = damage;
                 bullet.GetComponent<Bullet>().owner = owner;
             }

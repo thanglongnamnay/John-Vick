@@ -13,7 +13,7 @@ namespace Controller {
             Assert.IsNull(instance);
             instance = this;
             level = 1;
-            hardNess = 1;
+            hardLevel = 1;
         }
 
         public static GameController instance { get; private set; }
@@ -27,7 +27,7 @@ namespace Controller {
         private Player _player;
 
         public int level { get; private set; }
-        public int hardNess { get; private set; }
+        public int hardLevel { get; private set; }
         
         public Player player {
             get { return _player; }
@@ -37,10 +37,10 @@ namespace Controller {
             get { return GetComponentsInChildren<Enemy>(); }
         }
 
-//        private IEnumerator Start() {
-//            yield return new WaitForSeconds(1);
-//            Debug.Log("Weapon set");
-//            player.setWeapon<Sniper>();
-//        }
+        private IEnumerator Start() {
+            yield return new WaitForSeconds(1);
+            Debug.Log("Weapon set");
+            player.setWeapon<Shoty>();
+        }
     }
 }

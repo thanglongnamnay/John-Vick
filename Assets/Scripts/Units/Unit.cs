@@ -36,12 +36,17 @@ namespace Units {
 //			Debug.Log(gameObject.name + " hp: " + hp);
 			if (hp <= 0) {
 				//todo: play dead animation
-				Destroy(gameObject);
+				hp = 0;
+				onDead();
 			}
 		}
 
 		public void heal(float v) {
 			hp += v;
+		}
+
+		protected virtual void onDead() {
+			Destroy(gameObject);
 		}
 
 		protected virtual void Start() {

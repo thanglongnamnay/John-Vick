@@ -8,7 +8,8 @@ namespace Guns {
 		private const int StabGain = 45;
 		public Transform bulletPrefab;
 
-		private float _lastShootTime = 0;
+		private float _lastShootTime = -10;
+		private float _lastReloadTime = -10;
 		private int _magNum = 1;
 
 		public float currentRecoil { get; set; }
@@ -40,8 +41,6 @@ namespace Guns {
 		public bool isReloading {
 			get { return Time.time - _lastReloadTime >= reloadTime; }
 		}
-
-		private float _lastReloadTime = 0;
 
 		public Gun() {
 			mag = 0;
