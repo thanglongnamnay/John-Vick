@@ -20,6 +20,7 @@ namespace Controller {
 
         public Sprite[] gunSprites;
         public Sprite[] meleeSprites;
+        public Vector2 screenSize = new Vector2(10, 10);
         [SerializeField]
         private Player _player;
 
@@ -37,7 +38,7 @@ namespace Controller {
         private IEnumerator Start() {
             yield return new WaitForSeconds(5);
             Debug.Log("Weapon set");
-            player.setWeapon<Shoty>();
+            player.setWeapon<Sniper>();
         }
     }
 }
