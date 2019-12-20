@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Guns;
 using Melees;
@@ -7,6 +8,11 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Controller {
+    [Serializable]
+    public class WeaponConfig {
+        public Sprite texture;
+        public AudioClip shootSound;
+    }
     public class GameController : MonoBehaviour {
         public GameController() {
             Assert.IsNull(instance);
@@ -19,7 +25,7 @@ namespace Controller {
 
         public Vector2 moveConstrain;
 
-        public Sprite[] gunSprites;
+        public WeaponConfig[] gunConfig;
         public Sprite[] meleeSprites;
         public Vector2 screenSize = new Vector2(10, 10);
         [SerializeField]
@@ -39,7 +45,7 @@ namespace Controller {
         private IEnumerator Start() {
             yield return new WaitForSeconds(0);
             Debug.Log("Weapon set");
-            player.setWeapon<Pencil>();
+            player.setWeapon<Shoty>();
         }
     }
 }

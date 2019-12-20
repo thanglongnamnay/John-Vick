@@ -8,6 +8,7 @@ namespace Controller {
 
         private bool _slowing;
         private bool _locking;
+        private float _oldTimescale = 1;
 
         public MouseLock() {
             _locking = false;
@@ -35,9 +36,12 @@ namespace Controller {
             if (_locking) {
                 _locking = false;
                 Cursor.lockState = CursorLockMode.None;
+                _oldTimescale = Time.timeScale;
+                Time.timeScale = 0;
             } else {
                 _locking = true;
                 Cursor.lockState = CursorLockMode.Locked;
+                Time.timeScale = _oldTimescale;
             }
         }
     }

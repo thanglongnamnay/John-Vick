@@ -3,9 +3,6 @@ using UnityEngine;
 
 namespace Guns {
     public class Deagle : Gun {
-        public override Sprite renderedSprite {
-            get { return GameController.instance.gunSprites[0]; }
-        }
 
         public override float damage {
             get { return 13; }
@@ -31,6 +28,10 @@ namespace Guns {
             get { return 5; }
         }
 
+        public override int config {
+            get { return 0; }
+        }
+
         protected override void playAttackAnimation() {
             // todo anim
         }
@@ -41,7 +42,7 @@ namespace Guns {
 
         protected override void makeBullet() {
             base.makeBullet();
-            var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, shootAngle));
+            var bullet = Instantiate(bulletPrefab, barrelPosition, Quaternion.Euler(0, 0, shootAngle));
             bullet.GetComponent<Bullet>().damage = damage;
             bullet.GetComponent<Bullet>().owner = owner;
         }

@@ -4,9 +4,6 @@ using UnityEngine;
 
 namespace Guns {
     public class AssaultRifle : Gun {
-        public override Sprite renderedSprite {
-            get { return GameController.instance.gunSprites[1]; }
-        }
         public override float damage {
             get { return 8; }
         }
@@ -31,6 +28,10 @@ namespace Guns {
             get { return 3; }
         }
 
+        public override int config {
+            get { return 1; }
+        }
+
         protected override void playAttackAnimation() {
             //todo shoot anim
         }
@@ -41,7 +42,7 @@ namespace Guns {
 
         protected override void makeBullet() {
             base.makeBullet();
-            var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, shootAngle));
+            var bullet = Instantiate(bulletPrefab, barrelPosition, Quaternion.Euler(0, 0, shootAngle));
             bullet.GetComponent<Bullet>().damage = damage;
             bullet.GetComponent<Bullet>().owner = owner;
         }

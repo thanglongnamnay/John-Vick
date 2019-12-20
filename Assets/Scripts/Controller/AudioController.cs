@@ -23,7 +23,7 @@ namespace Controller {
 
         private IEnumerator startPlay(AudioClip clip, float after) {
             yield return new WaitForSeconds(after);
-            Debug.Log("Play reload");
+            _source.pitch = Time.timeScale;
             _source.PlayOneShot(clip);
         }
         private IEnumerator stopPlay(float after) {

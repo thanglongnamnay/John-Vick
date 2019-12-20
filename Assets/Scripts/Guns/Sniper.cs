@@ -3,10 +3,6 @@ using UnityEngine;
 
 namespace Guns {
     public class Sniper : Gun {
-        public override Sprite renderedSprite {
-            get { return GameController.instance.gunSprites[2]; }
-        }
-
         public override float damage {
             get { return 50; }
         }
@@ -31,13 +27,17 @@ namespace Guns {
             get { return 1; }
         }
 
+        public override int config {
+            get { return 3; }
+        }
+
         protected override void playAttackAnimation() {
             //todo anim
         }
 
         protected override void makeBullet() {
             base.makeBullet();
-            var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, shootAngle));
+            var bullet = Instantiate(bulletPrefab, barrelPosition, Quaternion.Euler(0, 0, shootAngle));
             var component = bullet.GetComponent<Bullet>();
             component.damage = damage;
             bullet.GetComponent<Bullet>().owner = owner;

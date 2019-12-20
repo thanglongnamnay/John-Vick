@@ -6,11 +6,18 @@ namespace Guns {
 	public abstract class Gun : Weapon {
 		private const int StabGain = 45;
 		public Transform bulletPrefab;
+		public float barrelOffset = 0;
 
 		private float _lastShootTime = -10;
 		private float _lastReloadTime = -10;
 		private int _magNum = 1;
 
+		public Vector3 barrelPosition {
+			get {
+				var transform1 = transform;
+				return transform1.position + transform1.right * barrelOffset;
+			}
+		}
 		public float currentRecoil { get; set; }
 
 		protected int magNum {
@@ -26,6 +33,7 @@ namespace Guns {
 		public abstract float reloadTime { get; }
 		public abstract float recoil { get; }
 		public abstract float inaccuracy { get; }
+		public abstract int config { get; }
 
 		public int mag { get; private set; }
 
@@ -40,8 +48,11 @@ namespace Guns {
 		public bool isReloading {
 			get { return Time.time - _lastReloadTime >= reloadTime; }
 		}
+		public override Sprite renderedSprite {
+			get { return GameController.instance.gunConfig[config].texture; }
+		}
 
-		public Gun() {
+		protected Gun() {
 			mag = 0;
 			currentRecoil = 0;
 		}
@@ -66,6 +77,7 @@ namespace Guns {
 
 		protected virtual void makeBullet() {
 			if (audioSource != null) {
+				audioSource.pitch = Time.timeScale;
 				audioSource.Play();
 			}
 		}
@@ -100,6 +112,7 @@ namespace Guns {
 
 		private void Start() {
 			mag = magSize;
+			audioSource.clip = GameController.instance.gunConfig[config].shootSound;
 		}
 
 		public override void onUpdate () {

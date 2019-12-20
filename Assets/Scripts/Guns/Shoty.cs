@@ -6,10 +6,6 @@ namespace Guns {
         private const int Spread = 3;
         private const int Duck = 5;
 
-        public override Sprite renderedSprite {
-            get { return GameController.instance.gunSprites[0]; }
-        }
-
         public override float damage {
             get { return 25; }
         }
@@ -34,6 +30,10 @@ namespace Guns {
             get { return 5; }
         }
 
+        public override int config {
+            get { return 2; }
+        }
+
         protected override void playAttackAnimation() {
             // todo anim
         }
@@ -47,7 +47,7 @@ namespace Guns {
             var angles = shootAngle;
             var min = Duck / 2 * Spread;
             for (var i = 0; i < Duck; ++i) {
-                var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, angles - min + Spread*i));
+                var bullet = Instantiate(bulletPrefab, barrelPosition, Quaternion.Euler(0, 0, angles - min + Spread*i));
                 bullet.GetComponent<Bullet>().damage = damage;
                 bullet.GetComponent<Bullet>().owner = owner;
             }

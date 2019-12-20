@@ -45,8 +45,6 @@ namespace Controller {
             } else {
                 _body.velocity = MoveScale * speed * direction.normalized;
             }
-
-//            _body.AddForce(MoveScale * speed * direction.normalized);
         }
     }
 }
