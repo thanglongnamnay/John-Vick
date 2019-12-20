@@ -113,6 +113,7 @@ namespace Guns {
 		private void Start() {
 			mag = magSize;
 			audioSource.clip = GameController.instance.gunConfig[config].shootSound;
+			if (!bulletPrefab) bulletPrefab = GameController.instance.bulletPrefab;
 		}
 
 		public override void onUpdate () {

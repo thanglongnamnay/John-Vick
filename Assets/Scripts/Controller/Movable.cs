@@ -32,12 +32,14 @@ namespace Controller {
 //            transform.position = newPos;
 //        }
 
-//        private void Update() {
-//            var transform1 = transform;
-//            var position = transform1.position;
-//            position.z = position.y;
-//            transform1.position = position;
-//        }
+        private void Update() {
+            var transform1 = transform;
+            var position = transform1.position;
+//            Debug.Log(position);
+            if (position.y < _moveConstrainX) position.y = _moveConstrainX;
+            if (position.y > _moveConstrainY) position.y = _moveConstrainY;
+            transform1.position = position;
+        }
 
         private void FixedUpdate() {
             if (direction == Vector2.zero) {

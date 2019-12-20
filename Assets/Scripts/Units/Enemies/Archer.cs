@@ -19,7 +19,7 @@ namespace Units.Enemies {
             }
         }
 
-        IEnumerator lookAtPlayer() {
+        private IEnumerator lookAtPlayer() {
             while (GameController.instance.player != null) {
                 var weaponControllerTransform = weaponController.transform;
                 var angle = Vector2.SignedAngle(player.transform.position - weaponControllerTransform.position,

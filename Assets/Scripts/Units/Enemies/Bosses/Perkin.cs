@@ -1,10 +1,19 @@
+using System.Collections;
+using Melees;
+using UnityEngine;
+
 namespace Units.Enemies.Bosses {
     public class Perkin : Creep {
-        private float _minDistance;
         protected override void Start() {
             base.Start();
             hp = 200;
             moveSpeed = 1.25f;
+            StartCoroutine(setKnife());
+        }
+
+        private IEnumerator setKnife() {
+            yield return new WaitForSeconds(.1f);
+            setWeapon<Knife>();
         }
     }
 }

@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Skills;
 using UnityEngine;
 
 namespace Units {
@@ -16,6 +18,11 @@ namespace Units {
             base.Start();
             hp = 100;
 //            moveSpeed = .75f;
+        }
+
+        private void OnEnable() {
+            var dodge = gameObject.AddComponent<Dodge>();
+            skills.Add(dodge);
         }
 
         public void dodge() {

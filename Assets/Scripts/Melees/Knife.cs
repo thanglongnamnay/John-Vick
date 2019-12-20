@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Melees {
     public class Knife : Melee {
-        public float damageMul { get; set; }
+        public float damageMul = 1;
 
         public override Sprite renderedSprite {
             get { return GameController.instance.meleeSprites[1]; }

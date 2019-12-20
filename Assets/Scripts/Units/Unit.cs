@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Controller;
 using Skills;
@@ -9,7 +10,7 @@ namespace Units {
 	[RequireComponent(typeof(Movable))]
 	public abstract class Unit : MonoBehaviour {
 		public WeaponController weaponController { get; protected set; }
-        public Skill[] skills;
+        public List<Skill> skills = new List<Skill>();
 		public float hp { get; protected set; }
 		public float armor { get; set; }
 		public abstract UnitType type { get; }

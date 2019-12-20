@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using Controller;
 using Units;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Guns {
 	[RequireComponent(typeof(Collider2D))]
@@ -27,7 +29,8 @@ namespace Guns {
 					var unitCollider = hit.transform.GetComponent<UnitCollider>();
 					Debug.Log("hit: " + hit.transform.name);
 
-					if (unitCollider) {
+					var hitChance = Random.value;
+					if (unitCollider && unitCollider.unit.evasion <= hitChance) {
 						StartCoroutine(hurt(unitCollider, hit));
 					}
 				}
@@ -37,9 +40,11 @@ namespace Guns {
 				_hits = new []{hit};
 				StartCoroutine(handleHit(hit));
 				var unitCollider = hit.transform.GetComponent<UnitCollider>();
-			
-				if (!unitCollider) return;
-				StartCoroutine(hurt(unitCollider, hit));
+
+				var hitChance = Random.value;
+				if (unitCollider && unitCollider.unit.evasion <= hitChance) {
+					StartCoroutine(hurt(unitCollider, hit));
+				}
 			}
 		}
 

@@ -19,6 +19,7 @@ namespace Controller {
             if (gun != null) curRecoil = gun.currentRecoil; 
             if (weapon != null) {
                 Destroy(weapon);
+                Debug.Log("weapon destroyed");
             }
 
             weapon = weaponGameObject.AddComponent<T>();
