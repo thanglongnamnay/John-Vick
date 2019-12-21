@@ -42,8 +42,9 @@ namespace Guns {
         protected override void makeBullet() {
             base.makeBullet();
             var bullet = pool.getGameObject("bullet", barrelPosition, Quaternion.Euler(0, 0, shootAngle));
-            bullet.GetComponent<Bullet>().damage = damage;
-            bullet.GetComponent<Bullet>().owner = owner;
+            var component = bullet.GetComponent<Bullet>();
+            component.damage = damage;
+            component.owner = owner;
         }
 
         public override void onUpdate() {

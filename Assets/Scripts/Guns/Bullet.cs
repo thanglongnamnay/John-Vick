@@ -27,11 +27,11 @@ namespace Guns {
 				_hits = Physics2D.RaycastAll(transform1.position,
 					transform1.right,
 					GameController.instance.screenSize.magnitude);
-				Debug.Log("len = " + _hits.Length);
+				//Debug.Log("len = " + _hits.Length);
 				if (_hits.Length == 0) return;
 				foreach (var hit in _hits) {
 					var unitCollider = hit.collider.GetComponent<UnitCollider>();
-					Debug.Log("hit: " + hit.collider.name);
+					//Debug.Log("hit: " + hit.collider.name);
 
 					var hitChance = Random.value;
 					if (unitCollider && unitCollider.unit.evasion <= hitChance) {
@@ -46,7 +46,7 @@ namespace Guns {
 				var unitCollider = hit.collider.GetComponent<UnitCollider>();
 				
 				var hitChance = Random.value;
-				Debug.Log("hit: " + hit.collider.name);
+				//Debug.Log("hit: " + hit.collider.name);
 				if (unitCollider && unitCollider.unit.evasion <= hitChance) {
 					StartCoroutine(hurt(unitCollider, hit));
 				}
@@ -66,7 +66,7 @@ namespace Guns {
 		}
 
 		private IEnumerator hurt(UnitCollider unitCollider, RaycastHit2D hit) {
-			Debug.Log("hurt: " + hit.collider.name + " with " + damage * unitCollider.dmgMul + " dmg");
+			//Debug.Log("hurt: " + hit.collider.name + " with " + (damage) + " dmg");
 			yield return new WaitForSeconds(hit.distance / speed);
 			if (unitCollider) {
 				unitCollider.unit.damage(damage * unitCollider.dmgMul);

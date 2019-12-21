@@ -47,8 +47,9 @@ namespace Guns {
             var min = Duck / 2 * Spread;
             for (var i = 0; i < Duck; ++i) {
                 var bullet = pool.getGameObject("bullet", barrelPosition, Quaternion.Euler(0, 0, angles - min + Spread*i));
-                bullet.GetComponent<Bullet>().damage = damage;
-                bullet.GetComponent<Bullet>().owner = owner;
+                var component = bullet.GetComponent<Bullet>();
+                component.damage = damage;
+                component.owner = owner;
             }
         }
     }
