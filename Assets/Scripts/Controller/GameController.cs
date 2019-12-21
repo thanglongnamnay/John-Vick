@@ -46,7 +46,8 @@ namespace Controller {
             while (true) {
                 yield return new WaitForSeconds(5);
                 Debug.Log("Weapon set");
-                player.randomWeapon(WeaponType.Gun);
+                player.setWeapon<Sniper>();
+//                player.randomWeapon(WeaponType.Gun);
             }
         }
     }
