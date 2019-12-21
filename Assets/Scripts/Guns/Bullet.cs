@@ -16,7 +16,7 @@ namespace Guns {
 		private RaycastHit2D[] _hits;
 
 		private void Start() {
-			Destroy(gameObject, timeToLive);
+			destroy(timeToLive);
 			var transform1 = transform;
 			if (isPenetrable) {
 				_hits = Physics2D.RaycastAll(transform1.position,
@@ -70,9 +70,18 @@ namespace Guns {
 		}
 		
 		private IEnumerator handleHit(RaycastHit2D hit) {
-			Destroy(gameObject, hit.distance / speed + .1f);
+			destroy(hit.distance / speed + .1f);
 			yield return new WaitForSeconds(hit.distance / speed);
 			transform.position = hit.point;
+		}
+
+		public void destroy(float after = 0) {
+			StartCoroutine(_destroy(after));
+		}
+
+		private IEnumerator _destroy(float after) {
+			yield return new WaitForSeconds(after);
+			gameObject.SetActive(false);
 		}
 
 //		private void OnTriggerEnter2D(Collider2D other) {
@@ -83,7 +92,7 @@ namespace Guns {
 //			    Random.value <= unit.evasion) return;
 //			
 //			unit.damage(damage);
-//			if (!isPenetrable) Destroy(gameObject);
+//			if (!isPenetrable) destroy(
 //		}
 	}
 }

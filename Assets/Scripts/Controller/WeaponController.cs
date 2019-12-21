@@ -26,7 +26,6 @@ namespace Controller {
             weapon.owner = unit;
             var newGun = weapon as Gun;
             if (newGun != null) {
-                newGun.bulletPrefab = bulletPrefab;
                 newGun.currentRecoil = curRecoil;
             }
 

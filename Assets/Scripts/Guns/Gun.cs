@@ -1,13 +1,15 @@
 using Controller;
+using Helper;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Guns {
 	public abstract class Gun : Weapon {
 		private const int StabGain = 45;
-		public Transform bulletPrefab;
 		public float barrelOffset;
 
+		protected ObjectPool pool;
+		
 		private float _lastShootTime = -10;
 		private float _lastReloadTime = -10;
 		private int _magNum = 1;
@@ -111,7 +113,7 @@ namespace Guns {
 		private void Start() {
 			mag = magSize;
 			audioSource.clip = GameController.instance.gunConfig[config].shootSound;
-			if (!bulletPrefab) bulletPrefab = GameController.instance.bulletPrefab;
+			pool = ObjectPool.instance;
 		}
 
 		public override void onUpdate () {
