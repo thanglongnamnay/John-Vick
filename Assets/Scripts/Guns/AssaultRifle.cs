@@ -1,3 +1,4 @@
+using Controller;
 using UnityEngine;
 
 namespace Guns {
@@ -48,7 +49,12 @@ namespace Guns {
         public override void onUpdate() {
             base.onUpdate();
             if (Input.GetMouseButton(0)) {
-                attack();
+                if (canAttack()) {
+                    attack();
+                } else if (mag == 0) {
+                    Debug.Log("Play empty sound");
+                    AudioController.instance.play(AudioController.instance.empty, 1, 0);
+                }
             }
         }
     }

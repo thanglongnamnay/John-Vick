@@ -31,7 +31,10 @@ namespace Units.Enemies {
         }
         
         private void Update() {
-            weapon.attack();
+            if (weapon.canAttack()) {
+                weapon.attack();
+            }
+
             var gun = weapon as Gun;
             if (gun != null && gun.mag == 0) {
                 gun.reload();

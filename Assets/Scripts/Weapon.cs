@@ -33,7 +33,7 @@ public abstract class Weapon : MonoBehaviour {
 	}
 
 	public virtual void onUpdate () {
-		if (Input.GetMouseButtonDown(0)) {
+		if (Input.GetMouseButtonDown(0) && canAttack()) {
 			attack();
 		}
 	}

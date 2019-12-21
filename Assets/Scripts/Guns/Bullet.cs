@@ -25,8 +25,8 @@ namespace Guns {
 				if (_hits.Length == 0) return;
 				Debug.Log("len = " + _hits.Length);
 				foreach (var hit in _hits) {
-					var unitCollider = hit.transform.GetComponent<UnitCollider>();
-					Debug.Log("hit: " + hit.transform.name);
+					var unitCollider = hit.collider.GetComponent<UnitCollider>();
+					Debug.Log("hit: " + hit.collider.name);
 
 					var hitChance = Random.value;
 					if (unitCollider && unitCollider.unit.evasion <= hitChance) {
@@ -38,9 +38,11 @@ namespace Guns {
 				if (!hit) return;
 				_hits = new []{hit};
 				StartCoroutine(handleHit(hit));
-				var unitCollider = hit.transform.GetComponent<UnitCollider>();
+				var unitCollider = hit.collider.GetComponent<UnitCollider>();
+				Debug.Log("uniCollider: " + (unitCollider != null));
 
 				var hitChance = Random.value;
+				Debug.Log("hit: " + hit.collider.name);
 				if (unitCollider && unitCollider.unit.evasion <= hitChance) {
 					StartCoroutine(hurt(unitCollider, hit));
 				}
@@ -60,7 +62,7 @@ namespace Guns {
 		}
 
 		private IEnumerator hurt(UnitCollider unitCollider, RaycastHit2D hit) {
-			Debug.Log("hurt: " + hit.transform.name);
+			Debug.Log("hurt: " + hit.collider.name);
 			yield return new WaitForSeconds(hit.distance / speed);
 			if (unitCollider) {
 				unitCollider.unit.damage(damage * unitCollider.dmgMul);

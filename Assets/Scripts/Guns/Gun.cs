@@ -116,6 +116,14 @@ namespace Guns {
 
 		public override void onUpdate () {
 			base.onUpdate();
+			if (Input.GetMouseButtonDown(0)) {
+				if (canAttack()) {
+					attack();
+				} else if (mag == 0) {
+					Debug.Log("Play empty sound");
+					AudioController.instance.play(AudioController.instance.empty, 1, 0);
+				}
+			}
 			if (Input.GetKeyDown(KeyCode.R)) {
 				reload();
 			}

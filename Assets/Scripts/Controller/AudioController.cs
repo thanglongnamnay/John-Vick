@@ -5,6 +5,7 @@ namespace Controller {
     public class AudioController : MonoBehaviour {
         public static AudioController instance;
         public AudioClip reload;
+        public AudioClip empty;
 
         private AudioSource _source;
 

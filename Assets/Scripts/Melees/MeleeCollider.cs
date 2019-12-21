@@ -32,6 +32,7 @@ namespace Melees {
         private void Update() {
             if (!enable) return;
             var hits = Physics2D.OverlapCircleAll(transform.position, colliderSize);
+            Debug.Log("hit " + hits.Length + " objs");
             foreach (var hit in hits) {
                 if (!hit.CompareTag("UnitCollider")) continue;
                 Debug.Log("Melee hit");

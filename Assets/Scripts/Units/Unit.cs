@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Controller;
+using Guns;
+using Melees;
 using Skills;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -11,8 +13,14 @@ namespace Units {
 	public abstract class Unit : MonoBehaviour {
 		public WeaponController weaponController { get; protected set; }
         public List<Skill> skills = new List<Skill>();
-		public float hp { get; protected set; }
-		public float armor { get; set; }
+        [SerializeField] private float _hp = 100;
+
+        public float hp {
+	        get { return _hp; }
+	        protected set { _hp = value; }
+        }
+
+        public float armor { get; set; }
 		public abstract UnitType type { get; }
 		public float moveSpeed {
 			get { return movable.speed; }
@@ -25,6 +33,7 @@ namespace Units {
 
 		private float _tempMoveSpeed;
 		protected Movable movable;
+
 		public Weapon weapon {
 			get { return weaponController.weapon; }
 		}
@@ -32,6 +41,38 @@ namespace Units {
 		public void setWeapon<T>() where T : Weapon {
 			weaponController.setWeapon<T>();
 		}
+
+		public void randomWeapon(WeaponType weaponType) {
+			if (weaponType == WeaponType.Gun) {
+				var index = Random.Range(0, 4);
+				switch (index) {
+					case 1:
+						setWeapon<Shoty>();
+						break;
+					case 2:
+						setWeapon<AssaultRifle>();
+						break;
+					case 3:
+						setWeapon<Sniper>();
+						break;
+					default:
+						setWeapon<Deagle>();
+						break;
+				}
+			}
+			else {
+				var index = Random.Range(0, 4);
+				switch (index) {
+					case 1:
+						setWeapon<Knife>();
+						break;
+					default:
+						setWeapon<Hand>();
+						break;
+				}
+			}
+		}
+
 
 		public void damage(float v) {
 			hp -= v;

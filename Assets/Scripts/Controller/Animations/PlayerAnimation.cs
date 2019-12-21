@@ -12,7 +12,7 @@ namespace Controller.Animations {
         }
 
         private void Update() {
-            animator.Play(movable.direction == Vector2.zero ? "idle" : "walk");
+            animator.Play(movable.direction == Vector2.zero ? "Idle" : "Walk");
 //            animator.SetInteger(State, movable.direction == Vector2.zero ? 1 : 2);
         }
     }
