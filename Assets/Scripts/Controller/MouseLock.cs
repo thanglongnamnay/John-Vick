@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Experimental.UIElements;
 
 namespace Controller {
     public class MouseLock : MonoBehaviour {
@@ -18,7 +17,7 @@ namespace Controller {
         private void Update() {
             if (Input.GetKeyDown(KeyCode.LeftControl)) {
                 handleSlow();
-            } else if (Input.GetKeyDown(KeyCode.P) || Input.GetMouseButtonDown((int) MouseButton.RightMouse)) {
+            } else if (Input.GetKeyDown(KeyCode.P) || Input.GetMouseButtonDown(1)) {
                 handleLock();
             }
         }

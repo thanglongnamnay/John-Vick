@@ -6,7 +6,7 @@ namespace Guns {
 	public abstract class Gun : Weapon {
 		private const int StabGain = 45;
 		public Transform bulletPrefab;
-		public float barrelOffset = 0;
+		public float barrelOffset;
 
 		private float _lastShootTime = -10;
 		private float _lastReloadTime = -10;
@@ -38,11 +38,9 @@ namespace Guns {
 		public int mag { get; private set; }
 
 		public float lastShootTime {
-			private get { return _lastShootTime; }
 			set { _lastShootTime = value; }
 		}
 		public float lastReloadTime {
-			private get { return _lastReloadTime; }
 			set { _lastReloadTime = value; }
 		}
 		public bool isReloading {

@@ -7,7 +7,6 @@ namespace Melees {
         public MeleeCollider meleeCollider;
 
         public float lastAttackTime {
-            private get { return _lastAttackTime; }
             set { _lastAttackTime = value; }
         }
 

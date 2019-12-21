@@ -1,4 +1,3 @@
-using Controller;
 using UnityEngine;
 
 namespace Guns {
