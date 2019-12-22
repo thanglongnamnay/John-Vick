@@ -46,7 +46,8 @@ namespace Melees {
         }
 
         public override bool canAttack() {
-            return Time.time - _lastAttackTime >= fireRate;
+            return owner.hp > 0 
+                   && Time.time - _lastAttackTime >= fireRate;
         }
 
         private void Start() {
@@ -55,6 +56,15 @@ namespace Melees {
             _audio.clip = AudioController.instance.swing;
             _slash = transform.Find("slash").gameObject;
             _slash.SetActive(false);
+        }
+        
+        public override void onUpdate() {
+            base.onUpdate();
+            if (Input.GetMouseButton(0)) {
+                if (canAttack()) {
+                    attack();
+                }
+            }
         }
     }
 }

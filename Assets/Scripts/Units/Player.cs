@@ -15,22 +15,19 @@ namespace Units {
 
         protected override void Start() {
             base.Start();
+            maxHp = 100;
             hp = 100;
 //            moveSpeed = .75f;
         }
 
-        private void OnEnable() {
-            var dodge = gameObject.AddComponent<Dodge>();
-            skills.Add(dodge);
-        }
+//        private void OnEnable() {
+//            var dodge = gameObject.AddComponent<Dodge>();
+//            skills.Add(dodge);
+//        }
 
-        public void dodge() {
-            if (Time.time - _lastDodgeTime >= DodgeCooldown) {
-                _tempEvasion = evasion;
-                evasion = 1;
-
-                StartCoroutine(resetEvasion());
-            }
+        protected override void onDead(float after = 0) {
+            GetComponentInChildren<Animator>().Play("Hurt");
+            base.onDead(after + 1);
         }
 
         IEnumerator resetEvasion() {

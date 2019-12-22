@@ -4,11 +4,13 @@ using Melees;
 using Units;
 using UnityEngine;
 
+[RequireComponent(typeof(Weapon))]
 public class DropItem : MonoBehaviour {
-    public Unit unit;
-    public Weapon weapon;
+    public Weapon weapon { get; set; }
 
-    public void changeWeapon() {
+    private SpriteRenderer _renderer;
+
+    public void changeWeapon(Unit unit) {
         switch (weapon.GetType().Name) {
             case "Deagle":
                 unit.setWeapon<Deagle>();
@@ -34,5 +36,10 @@ public class DropItem : MonoBehaviour {
             default:
                 throw new ArgumentOutOfRangeException("weapon", weapon.GetType().Name, null);
         }
+    }
+
+    private void Start() {
+        _renderer = GetComponent<SpriteRenderer>();
+        _renderer.sprite = weapon.renderedSprite;
     }
 }

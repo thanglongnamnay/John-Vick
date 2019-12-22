@@ -8,7 +8,8 @@ namespace Units.Enemies {
         private float _minDistance;
         protected override void Start() {
             base.Start();
-            hp = 30;
+            maxHp = 35;
+            hp = 35;
             _minDistance = GetComponentInChildren<MeleeCollider>().colliderSize;
             StartCoroutine(setMeleeWeapon());
             StartCoroutine(lookAtPlayer());
@@ -22,7 +23,7 @@ namespace Units.Enemies {
         }
 
         private IEnumerator lookAtPlayer() {
-            while (GameController.instance.player != null) {
+            while (player != null) {
                 var weaponControllerTransform = weaponController.transform;
                 var angle = Vector2.SignedAngle(player.transform.position - weaponControllerTransform.position,
                                 weaponControllerTransform.right);

@@ -1,3 +1,4 @@
+using System;
 using Controller;
 using Units;
 using UnityEngine;
@@ -8,6 +9,7 @@ using UnityEngine.Assertions;
 public abstract class Weapon : MonoBehaviour {
 	public Unit owner;
 	public AudioSource audioSource;
+	private float _lastPitch = 1;
 	public abstract Sprite renderedSprite { get; }
 	public abstract float damage { get; }
 	public abstract float fireRate { get; }
@@ -33,6 +35,11 @@ public abstract class Weapon : MonoBehaviour {
 	}
 
 	public virtual void onUpdate () {
+		var pitch = Time.timeScale;
+		if (Math.Abs(pitch - _lastPitch) > .1f) {
+			_lastPitch = pitch;
+			audioSource.pitch = pitch;
+		}
 		if (Input.GetMouseButtonDown(0) && canAttack()) {
 			attack();
 		}

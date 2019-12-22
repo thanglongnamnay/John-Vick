@@ -27,6 +27,8 @@ namespace Controller {
 
         public WeaponConfig[] gunConfig;
         public Sprite[] meleeSprites;
+        public GameObject gunDrop;
+        public GameObject creepPrefab;
         public Vector2 screenSize = new Vector2(10, 10);
         [SerializeField]
         private Player _player;
@@ -42,13 +44,14 @@ namespace Controller {
             get { return GetComponentsInChildren<Enemy>(); }
         }
 
-        private IEnumerator Start() {
-            while (true) {
-                yield return new WaitForSeconds(5);
-                Debug.Log("Weapon set");
-//                player.setWeapon<Sniper>();
-                player.randomWeapon(WeaponType.Gun);
-            }
-        }
+//        private IEnumerator Start() {
+//            while (player != null) {
+//                yield return new WaitForSeconds(5);
+//                if (!player) yield break;
+//                Debug.Log("Weapon set");
+////                player.setWeapon<Sniper>();
+//                player.randomWeapon(WeaponType.Gun);
+//            }
+//        }
     }
 }

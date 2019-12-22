@@ -35,6 +35,7 @@ namespace Units {
 
 		private float _tempMoveSpeed;
 		protected Movable movable;
+		public float maxHp;
 
 		public Weapon weapon {
 			get { return weaponController.weapon; }
@@ -118,8 +119,8 @@ namespace Units {
 			hp += v;
 		}
 
-		protected virtual void onDead() {
-			Destroy(gameObject);
+		protected virtual void onDead(float after = 0) {
+			Destroy(gameObject, after);
 		}
 
 		protected virtual void Start() {

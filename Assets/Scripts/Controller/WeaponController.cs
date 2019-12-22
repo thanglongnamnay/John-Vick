@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 
 namespace Controller {
     public class WeaponController : MonoBehaviour {
-        public Unit unit { get; set; }
+        public Unit unit;
         public Transform bulletPrefab;
         public MeleeCollider meleeCollider { get; private set; }
         public GameObject weaponGameObject;

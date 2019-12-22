@@ -1,3 +1,5 @@
+using Guns;
+using Melees;
 using Units;
 using UnityEngine;
 
@@ -11,8 +13,7 @@ namespace Controller {
             _movable = GetComponentInChildren<Movable>();
             _player = GetComponent<Player>();
         }
-        private void FixedUpdate ()
-        {
+        private void Update () {
             if (!_player) return;
             
             var moveHorizontal = Input.GetAxis("Horizontal");
@@ -21,6 +22,27 @@ namespace Controller {
 
             if (Input.GetKeyDown(KeyCode.F)) {
                 _player.useSkill(0);
+            }
+
+            if (Input.GetKeyDown(KeyCode.E)) {
+                var hits = Physics2D.OverlapCircleAll(transform.position, 1, 1 << 2);
+                Debug.Log("overlap:" + hits.Length);
+                foreach (var hit in hits) {
+                    Debug.Log("hit: " + hit.transform.name);
+                    var dropItem = hit.GetComponent<DropItem>();
+                    if (dropItem != null) {
+                        dropItem.changeWeapon(_player);
+                        Destroy(dropItem.gameObject);
+                    }
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q)) {
+                if (_player.weapon is Gun) {
+                    _player.setWeapon<Hand>();
+                } else {
+                    _player.setWeapon<Deagle>();
+                }
             }
         }
     }

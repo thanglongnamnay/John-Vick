@@ -6,6 +6,7 @@ namespace Units.Enemies.Bosses {
     public class Perkin : Creep {
         protected override void Start() {
             base.Start();
+            maxHp = 200;
             hp = 200;
             moveSpeed = 1.25f;
             StartCoroutine(setKnife());

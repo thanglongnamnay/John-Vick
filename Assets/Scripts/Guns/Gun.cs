@@ -12,7 +12,7 @@ namespace Guns {
 		
 		private float _lastShootTime = -10;
 		private float _lastReloadTime = -10;
-		private int _magNum = 1;
+		private int _magNum = 2;
 
 		public Vector3 barrelPosition {
 			get {
@@ -22,7 +22,7 @@ namespace Guns {
 		}
 		public float currentRecoil { get; set; }
 
-		protected int magNum {
+		public int magNum {
 			get { return _magNum; }
 			set { _magNum = value; }
 		}
@@ -77,7 +77,6 @@ namespace Guns {
 
 		protected virtual void makeBullet() {
 			if (audioSource != null) {
-				audioSource.pitch = Time.timeScale;
 				audioSource.Play();
 			}
 		}
@@ -105,7 +104,8 @@ namespace Guns {
 		}
 
 		public override bool canAttack() {
-			return mag > 0
+			return owner.hp > 0 
+			       && mag > 0
 			       && Time.time - _lastShootTime >= fireRate
 			       && Time.time - _lastReloadTime >= reloadTime;
 		}
