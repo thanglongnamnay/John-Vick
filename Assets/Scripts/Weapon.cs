@@ -25,13 +25,16 @@ public abstract class Weapon : MonoBehaviour {
 	protected abstract void playAttackAnimation();
 	public abstract bool canAttack();
 
+	protected virtual void Awake() {
+		audioSource = GetComponent<AudioSource>();
+		Assert.IsNotNull(audioSource);
+	}
+
 	protected virtual void OnEnable() {
 		if (GameController.instance != null) {
 			GetComponent<SpriteRenderer>().sprite = renderedSprite;
 		}
 		if (owner == null) owner = GetComponentInParent<Unit>();
-		audioSource = GetComponent<AudioSource>();
-		Assert.IsNotNull(audioSource);
 	}
 
 	public virtual void onUpdate () {

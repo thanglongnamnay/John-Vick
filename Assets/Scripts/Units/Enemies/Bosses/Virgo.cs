@@ -29,7 +29,6 @@ namespace Units.Enemies.Bosses {
 
         private IEnumerator lookAtPlayer() {
             while (GameController.instance.player != null) {
-                Debug.Log(weapon);
                 var weaponControllerTransform = weaponController.transform;
                 var angle = Vector2.SignedAngle(player.transform.position - weaponControllerTransform.position,
                                 weaponControllerTransform.right) +

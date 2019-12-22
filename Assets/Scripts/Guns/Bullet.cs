@@ -21,13 +21,19 @@ namespace Guns {
 
 		private void OnEnable() {
 			destroy(timeToLive);
+			StartCoroutine(handleEnable());
+		}
+
+		IEnumerator handleEnable() {
+			yield return new WaitForSeconds(0);
 			var transform1 = transform;
+			Debug.Log("isPenetrable: " + isPenetrable);
 			if (isPenetrable) {
 				_hits = Physics2D.RaycastAll(transform1.position,
 					transform1.right,
 					GameController.instance.screenSize.magnitude);
 				//Debug.Log("len = " + _hits.Length);
-				if (_hits.Length == 0) return;
+				if (_hits.Length == 0) yield break;
 				foreach (var hit in _hits) {
 					var unitCollider = hit.collider.GetComponent<UnitCollider>();
 					//Debug.Log("hit: " + hit.collider.name);
@@ -37,13 +43,15 @@ namespace Guns {
 						StartCoroutine(hurt(unitCollider, hit));
 					}
 				}
-			} else {
-				var hit = Physics2D.Raycast(transform1.position, transform1.right, GameController.instance.screenSize.magnitude);
-				if (!hit) return;
-				_hits = new []{hit};
+			}
+			else {
+				var hit = Physics2D.Raycast(transform1.position, transform1.right,
+					GameController.instance.screenSize.magnitude);
+				if (!hit) yield break;
+				_hits = new[] {hit};
 				StartCoroutine(handleHit(hit));
 				var unitCollider = hit.collider.GetComponent<UnitCollider>();
-				
+
 				var hitChance = Random.value;
 				//Debug.Log("hit: " + hit.collider.name);
 				if (unitCollider && unitCollider.unit.evasion <= hitChance) {
@@ -81,13 +89,15 @@ namespace Guns {
 		}
 
 		public void destroy(float after = 0) {
+			Debug.Log("destroy");
 			StartCoroutine(_destroy(after));
 		}
 
 		private IEnumerator _destroy(float after) {
 			yield return new WaitForSeconds(after);
-			isPenetrable = false;
+			Debug.Log("_destroy");
 			gameObject.SetActive(false);
+			isPenetrable = false;
 		}
 
 //		private void OnTriggerEnter2D(Collider2D other) {
