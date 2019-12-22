@@ -47,7 +47,9 @@ namespace Controller {
             if (direction == Vector2.zero || unit.hp <= 0) {
                 _body.velocity = Vector2.zero;
             } else {
-                _body.velocity = MoveScale * speed * direction.normalized;
+                var velocity = MoveScale * speed * direction.normalized;
+                velocity.y /= 2;
+                _body.velocity = velocity;
             }
         }
     }
