@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Units.Enemies.Bosses {
     public class Perkin : Creep {
-        protected override void Start() {
-            base.Start();
+        protected override void Awake() {
+            base.Awake();
             maxHp = 200;
             hp = 200;
             moveSpeed = 1.25f;
@@ -13,7 +13,7 @@ namespace Units.Enemies.Bosses {
         }
 
         private IEnumerator setKnife() {
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(0);
             setWeapon<Knife>();
         }
     }

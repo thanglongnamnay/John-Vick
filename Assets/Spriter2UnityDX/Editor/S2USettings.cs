@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using System.Collections;
 
 //Customizable settings for the importer
 namespace Spriter2UnityDX {

@@ -5,7 +5,6 @@
 //-Dengar/Dharengo
 
 using UnityEngine;
-using System;
 using System.Xml.Serialization;
 
 //All of these classes are containers for the data that is read from the .scml file

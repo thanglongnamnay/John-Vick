@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using Guns;
 using Units;
 using Units.Enemies;
 using UnityEngine;
@@ -29,6 +27,7 @@ namespace Controller {
         public Sprite[] meleeSprites;
         public GameObject gunDrop;
         public GameObject creepPrefab;
+        public GameObject virgoCreepPrefab;
         public Vector2 screenSize = new Vector2(10, 10);
         [SerializeField]
         private Player _player;

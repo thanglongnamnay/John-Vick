@@ -10,6 +10,7 @@ namespace Melees {
         public Unit unit;
 
         private bool _enable;
+        private Collider2D[] _hits = new Collider2D[15];
         public bool enable {
             get { return _enable; }
             set {
@@ -31,9 +32,10 @@ namespace Melees {
 
         private void Update() {
             if (!enable) return;
-            var hits = Physics2D.OverlapCircleAll(transform.position, colliderSize);
-            Debug.Log("hit " + hits.Length + " objs");
-            foreach (var hit in hits) {
+            var size = Physics2D.OverlapCircleNonAlloc(transform.position, colliderSize, _hits);
+            Debug.Log("hit " + size + " objs");
+            for (var i = 0; i < size; ++i) {
+                var hit = _hits[i];
                 if (!hit.CompareTag("UnitCollider")) continue;
                 Debug.Log("Melee hit");
                 var unitCollider = hit.GetComponent<UnitCollider>();

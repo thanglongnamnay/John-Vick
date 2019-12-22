@@ -1,13 +1,12 @@
 using System.Collections;
-using Controller;
 using Melees;
 using UnityEngine;
 
 namespace Units.Enemies {
     public class Creep : Enemy {
         private float _minDistance;
-        protected override void Start() {
-            base.Start();
+        protected override void Awake() {
+            base.Awake();
             maxHp = 35;
             hp = 35;
             _minDistance = GetComponentInChildren<MeleeCollider>().colliderSize;
@@ -33,9 +32,9 @@ namespace Units.Enemies {
         }
 
         protected virtual void Update() {
-            if (GameController.instance.player == null) return;
+            if (player == null) return;
 
-            var distanceToPlayer = GameController.instance.player.transform.position - transform.position;
+            var distanceToPlayer = player.transform.position - transform.position;
             if (((Vector2)distanceToPlayer).magnitude >= _minDistance) movable.direction = distanceToPlayer;
             else {
                 movable.direction = Vector2.zero;

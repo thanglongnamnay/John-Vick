@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Controller;
 using Units;
@@ -74,6 +73,8 @@ namespace Guns {
 		}
 		
 		private IEnumerator handleHit(RaycastHit2D hit) {
+			var unitCollider = hit.collider.GetComponent<UnitCollider>();
+			if (unitCollider != null && unitCollider.unit.evasion >= Random.value) yield break;
 			destroy(hit.distance / speed + .1f);
 			yield return new WaitForSeconds(hit.distance / speed);
 			transform.position = hit.point;

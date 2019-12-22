@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Controller {
@@ -15,14 +14,14 @@ namespace Controller {
             var position = transform.position;
 
             var camPosition = ctx.transform.position;
-            width += camPosition.x;
-            height += camPosition.y;
+            var x = camPosition.x;
+            var y = camPosition.y;
 
-            if (position.x > width) position.x = width;
-            if (position.x < -width) position.x = -width;
+            if (position.x > x + width) position.x = x + width;
+            if (position.x < x - width) position.x = x - width;
 
-            if (position.y > height) position.y = height;
-            if (position.y < -height) position.y = -height;
+            if (position.y > y + height) position.y = y + height;
+            if (position.y < y - height) position.y = y - height;
 
             transform.position = position;
         }

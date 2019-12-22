@@ -17,7 +17,7 @@ namespace Controller.Animations {
         private void Update() {
             if (unit.hp <= 0) return;
 
-            animator.Play(movable.direction == Vector2.zero ? "Idle" : "Walk");
+            animator.Play(movable.direction == Vector2.zero ? "Idle" : "Run");
 //            animator.SetInteger(State, movable.direction == Vector2.zero ? 1 : 2);
         }
     }

@@ -1,4 +1,3 @@
-using System;
 using Units;
 using UnityEngine;
 
@@ -9,7 +8,7 @@ namespace Skills {
 		public abstract void use();
 		protected abstract void affect();
 
-		private void OnEnable() {
+		protected virtual void OnEnable() {
 			if (!unit) unit = GetComponent<Unit>();
 		}
 	}

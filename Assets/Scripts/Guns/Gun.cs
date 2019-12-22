@@ -24,7 +24,10 @@ namespace Guns {
 
 		public int magNum {
 			get { return _magNum; }
-			set { _magNum = value; }
+			set {
+				Debug.Log("magNum changed: " + value);
+				_magNum = value;
+			}
 		}
 
 		public override WeaponType type {
@@ -37,7 +40,7 @@ namespace Guns {
 		public abstract float inaccuracy { get; }
 		public abstract int config { get; }
 
-		public int mag { get; private set; }
+		public int mag { get; set; }
 
 		public float lastShootTime {
 			set { _lastShootTime = value; }
@@ -54,6 +57,7 @@ namespace Guns {
 
 		protected Gun() {
 			mag = 0;
+			magNum = 0;
 			currentRecoil = 0;
 		}
 
@@ -111,7 +115,6 @@ namespace Guns {
 		}
 
 		private void Start() {
-			mag = magSize;
 			audioSource.clip = GameController.instance.gunConfig[config].shootSound;
 			pool = ObjectPool.instance;
 		}

@@ -13,13 +13,13 @@ using Random = UnityEngine.Random;
 namespace Units {
 	[RequireComponent(typeof(Movable))]
 	public abstract class Unit : MonoBehaviour {
-		public WeaponController weaponController { get; protected set; }
+		protected WeaponController weaponController { get; private set; }
         public List<Skill> skills = new List<Skill>();
         [SerializeField] private float _hp = 100;
 
         public float hp {
 	        get { return _hp; }
-	        protected set { _hp = value; }
+	        set { _hp = value; }
         }
 
         public float armor { get; set; }
@@ -41,8 +41,15 @@ namespace Units {
 			get { return weaponController.weapon; }
 		}
 
-		public void setWeapon<T>() where T : Weapon {
-			weaponController.setWeapon<T>();
+		public Weapon setWeapon<T>() where T : Weapon {
+			var weapon = weaponController.setWeapon<T>();
+			var gun = weapon as Gun;
+			if (gun != null) {
+				gun.magNum = 2;
+				gun.mag = gun.magSize;
+			}
+			Debug.Log("unit.setWeapon: " + weapon.type);
+			return weapon;
 		}
 
 		public void setWeapon(WeaponName weaponName) {
@@ -75,21 +82,15 @@ namespace Units {
 
 		public void randomWeapon(WeaponType weaponType) {
 			if (weaponType == WeaponType.Gun) {
-				var index = Random.Range(0, 4);
-				switch (index) {
-					case 1:
-						setWeapon<Shoty>();
-						break;
-					case 2:
-						setWeapon<AssaultRifle>();
-						break;
-					case 3:
-						setWeapon<Sniper>();
-						break;
-					default:
-						setWeapon<Deagle>();
-						break;
-				}
+				var index = Random.Range(0, 99);
+				if (index <= 5)
+					setWeapon<Sniper>();
+				else if (index <= 20)
+					setWeapon<Shoty>();
+				else if (index == 35)
+					setWeapon<AssaultRifle>();
+				else
+					setWeapon<Deagle>();
 			}
 			else {
 				var index = Random.Range(0, 4);
@@ -123,7 +124,7 @@ namespace Units {
 			Destroy(gameObject, after);
 		}
 
-		protected virtual void Start() {
+		protected virtual void Awake() {
 			movable = GetComponent<Movable>();
 			weaponController = GetComponentInChildren<WeaponController>();
 			Assert.IsNotNull(movable);
@@ -150,6 +151,9 @@ namespace Units {
 		}
 		public void useSkill<T>() where T : Skill {
 			skills.First(s => s is T).use();
+		}
+		public void useAllSkills() {
+			skills.ForEach(s => s.use());
 		}
 	}
 }

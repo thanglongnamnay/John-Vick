@@ -9,5 +9,10 @@ namespace Skills {
 				affect();
 			}
 		}
+
+		protected override void OnEnable() {
+			base.OnEnable();
+			use();
+		}
 	}
 }	

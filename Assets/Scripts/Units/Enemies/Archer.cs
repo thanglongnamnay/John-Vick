@@ -8,24 +8,18 @@ namespace Units.Enemies {
         private Transform _box;
         private float _minDistance = 15;
 
-        protected override void Start() {
-            base.Start();
+        protected override void Awake() {
+            base.Awake();
             maxHp = 20;
             hp = 20;
             _box = transform.Find("box");
-            StartCoroutine(setRangedWeapon());
+            randomWeapon(WeaponType.Gun);
             StartCoroutine(lookAtPlayer());
-        }
-
-        IEnumerator setRangedWeapon() {
-            yield return new WaitForSeconds(0);
-            if (weapon.type == WeaponType.Melee) {
-                randomWeapon(WeaponType.Gun);
-            }
         }
 
         private IEnumerator lookAtPlayer() {
             while (GameController.instance.player != null) {
+                Debug.Log(weapon);
                 var weaponControllerTransform = weaponController.transform;
                 var angle = Vector2.SignedAngle(player.transform.position - weaponControllerTransform.position,
                                 weaponControllerTransform.right) +
@@ -56,7 +50,8 @@ namespace Units.Enemies {
                 }
 
                 if (gun.magNum <= 0) {
-                    Instantiate(GameController.instance.creepPrefab, transform.position, transform.rotation);
+                    var instantiate = Instantiate(GameController.instance.creepPrefab, transform.position, transform.rotation);
+                    instantiate.GetComponent<Unit>().hp = hp;
                     onDead(-1);
                 }
             }

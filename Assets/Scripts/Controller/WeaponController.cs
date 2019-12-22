@@ -11,15 +11,17 @@ namespace Controller {
         public MeleeCollider meleeCollider { get; private set; }
         public GameObject weaponGameObject;
 
-        public Weapon weapon { get; private set; }
+        public Weapon weapon;
 
-        public void setWeapon<T>() where T : Weapon {
+        public Weapon setWeapon<T>() where T : Weapon {
+            if (!weapon) weapon = weaponGameObject.GetComponent<Weapon>();
             var gun = weapon as Gun;
             float curRecoil = 0;
             if (gun != null) curRecoil = gun.currentRecoil; 
+            Assert.IsNotNull(weapon);
             if (weapon != null) {
                 Destroy(weapon);
-                Debug.Log("weapon destroyed");
+                Debug.Log("weapon replaced");
             }
 
             weapon = weaponGameObject.AddComponent<T>();
@@ -33,17 +35,21 @@ namespace Controller {
             if (newMelee != null) {
                 newMelee.meleeCollider = meleeCollider;
             }
+
+            Assert.IsNotNull(weapon);
+            return weapon;
         }
 
-        private void Start() {
+        private void Awake() {
             unit = GetComponentInParent<Unit>();
             Assert.IsNotNull(unit);
             meleeCollider = GetComponentInChildren<MeleeCollider>();
             Assert.IsNotNull(meleeCollider);
             meleeCollider.unit = unit;
             weapon = weaponGameObject.GetComponent<Weapon>();
+            Debug.Log("weapon controller awake: " + unit);
+            Debug.Log("weapon controller awake: " + weapon);
             Assert.IsNotNull(weapon);
-            Debug.Log("weapon controller set");
         }
     }
 }

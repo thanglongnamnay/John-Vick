@@ -1,5 +1,3 @@
-using Guns;
-using Melees;
 using Units;
 using UnityEngine;
 
@@ -38,11 +36,7 @@ namespace Controller {
             }
 
             if (Input.GetKeyDown(KeyCode.Q)) {
-                if (_player.weapon is Gun) {
-                    _player.setWeapon<Hand>();
-                } else {
-                    _player.setWeapon<Deagle>();
-                }
+                _player.swichWeapon();
             }
         }
     }

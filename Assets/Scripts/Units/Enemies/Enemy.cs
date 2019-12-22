@@ -1,8 +1,6 @@
 using Controller;
-using Guns;
 using Melees;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Units.Enemies {
     public abstract class Enemy : Unit {
@@ -16,8 +14,8 @@ namespace Units.Enemies {
 
         public override float evasion { get; set; }
 
-        protected override void Start() {
-            base.Start();
+        protected override void Awake() {
+            base.Awake();
             player = GameController.instance.player;
         }
 

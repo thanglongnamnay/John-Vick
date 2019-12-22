@@ -5,7 +5,6 @@
 //-Dengar/Dharengo
 
 using UnityEngine;
-using System.Collections;
 
 namespace Spriter2UnityDX {
 	//This component is automatically added to sprite parts that have multiple possible

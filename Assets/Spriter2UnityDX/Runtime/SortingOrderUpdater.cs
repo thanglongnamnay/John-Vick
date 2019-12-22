@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System;
-using System.Collections;
 
 namespace Spriter2UnityDX {
 	[RequireComponent (typeof(SpriteRenderer)), ExecuteInEditMode, DisallowMultipleComponent, AddComponentMenu("")]
