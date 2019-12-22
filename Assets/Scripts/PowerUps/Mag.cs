@@ -12,8 +12,8 @@ namespace PowerUps {
                 return 1;
             }
         }
-        protected override void affect(Player player) {
-            var gun = player.weapon as Gun;
+        protected override void affect(Unit unit) {
+            var gun = unit.weapon as Gun;
             if (gun != null) gun.increaseMag(amount);
         }
     }

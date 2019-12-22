@@ -24,10 +24,7 @@ namespace Guns {
 
 		public int magNum {
 			get { return _magNum; }
-			set {
-				Debug.Log("magNum changed: " + value);
-				_magNum = value;
-			}
+			set { _magNum = value; }
 		}
 
 		public override WeaponType type {
@@ -38,6 +35,7 @@ namespace Guns {
 		public abstract float reloadTime { get; }
 		public abstract float recoil { get; }
 		public abstract float inaccuracy { get; }
+		public abstract float bulletSpeed { get; }
 		public abstract int config { get; }
 
 		public int mag { get; set; }

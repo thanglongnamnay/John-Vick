@@ -13,8 +13,9 @@ namespace Controller {
         private Rigidbody2D _body;
 
         private void Start() {
-            _moveConstrainY = GameController.instance.moveConstrain.y;
-            _moveConstrainX = GameController.instance.moveConstrain.x;
+            var height = Camera.main.orthographicSize;
+            _moveConstrainY = GameController.instance.moveConstrain.y * height;
+            _moveConstrainX = GameController.instance.moveConstrain.x * height;
             _body = GetComponent<Rigidbody2D>();
             if (!unit) unit = GetComponent<Unit>();
         }

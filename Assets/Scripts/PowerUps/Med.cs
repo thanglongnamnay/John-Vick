@@ -12,8 +12,8 @@ namespace PowerUps {
             }
         }
 
-        protected override void affect(Player player) {
-            player.heal(amount);
+        protected override void affect(Unit unit) {
+            unit.heal(amount);
         }
     }
 }

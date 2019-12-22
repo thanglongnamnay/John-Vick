@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Guns {
     public class Deagle : Gun {
-
         public override float damage {
             get { return 13; }
         }
@@ -24,7 +23,11 @@ namespace Guns {
         }
 
         public override float inaccuracy {
-            get { return 5; }
+            get { return 4; }
+        }
+
+        public override float bulletSpeed {
+            get { return 40; }
         }
 
         public override int config {
@@ -43,6 +46,7 @@ namespace Guns {
             base.makeBullet();
             var bullet = pool.getGameObject("bullet", barrelPosition, Quaternion.Euler(0, 0, shootAngle));
             var component = bullet.GetComponent<Bullet>();
+            component.speed = bulletSpeed;
             component.damage = damage;
             component.owner = owner;
         }

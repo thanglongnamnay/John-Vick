@@ -23,7 +23,6 @@ namespace Units.Enemies.Bosses {
             var gun = weapon as Gun;
             gun.mag = int.MaxValue;
             gun.magNum = 10;
-            Debug.Log("virgo's gun: " + gun.mag + ", " + gun.magNum);
             StartCoroutine(lookAtPlayer());
         }
 
@@ -32,7 +31,7 @@ namespace Units.Enemies.Bosses {
                 var weaponControllerTransform = weaponController.transform;
                 var angle = Vector2.SignedAngle(player.transform.position - weaponControllerTransform.position,
                                 weaponControllerTransform.right) +
-                            Random.value * (8f / GameController.instance.hardLevel);
+                            Random.value * (24f / GameController.instance.hardLevel);
                 weaponControllerTransform.Rotate(0, 0, -angle);
                 yield return new WaitForSeconds(.5f);
             }

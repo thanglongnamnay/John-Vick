@@ -11,8 +11,8 @@ namespace PowerUps {
                 return 1.3f;
             }
         }
-        protected override void affect(Player player) {
-            player.increaseMoveSpeed(player.moveSpeed * amount, 30);
+        protected override void affect(Unit unit) {
+            unit.increaseMoveSpeed(unit.moveSpeed * amount, 30);
         }
     }
 }

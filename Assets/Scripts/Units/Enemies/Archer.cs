@@ -13,6 +13,9 @@ namespace Units.Enemies {
             maxHp = 20;
             hp = 20;
             _box = transform.Find("box");
+        }
+
+        private void Start() {
             randomWeapon(WeaponType.Gun);
             StartCoroutine(lookAtPlayer());
         }
@@ -24,7 +27,7 @@ namespace Units.Enemies {
                 var angle = Vector2.SignedAngle(player.transform.position - weaponControllerTransform.position,
                                 weaponControllerTransform.right) +
                             ((Gun)weapon).currentRecoil / 10 +
-                            Random.value * (8f / GameController.instance.hardLevel);
+                            Random.value * (24f / GameController.instance.hardLevel);
                 weaponControllerTransform.Rotate(0, 0, -angle);
                 yield return new WaitForSeconds(.5f);
             }

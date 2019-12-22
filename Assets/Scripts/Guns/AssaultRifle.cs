@@ -24,7 +24,11 @@ namespace Guns {
         }
 
         public override float inaccuracy {
-            get { return 3; }
+            get { return 2; }
+        }
+
+        public override float bulletSpeed {
+            get { return 25; }
         }
 
         public override int config {
@@ -43,6 +47,7 @@ namespace Guns {
             base.makeBullet();
             var bullet = pool.getGameObject("bullet", barrelPosition, Quaternion.Euler(0, 0, shootAngle));
             var component = bullet.GetComponent<Bullet>();
+            component.speed = bulletSpeed;
             component.damage = damage;
             component.owner = owner;
         }

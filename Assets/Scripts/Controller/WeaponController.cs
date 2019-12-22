@@ -11,7 +11,15 @@ namespace Controller {
         public MeleeCollider meleeCollider { get; private set; }
         public GameObject weaponGameObject;
 
-        public Weapon weapon;
+        [SerializeField] private Weapon _weapon;
+
+        public Weapon weapon {
+            get { return _weapon; }
+            private set {
+                Debug.Log("weapon set: " + value);
+                _weapon = value;
+            }
+        }
 
         public Weapon setWeapon<T>() where T : Weapon {
             if (!weapon) weapon = weaponGameObject.GetComponent<Weapon>();
@@ -47,8 +55,6 @@ namespace Controller {
             Assert.IsNotNull(meleeCollider);
             meleeCollider.unit = unit;
             weapon = weaponGameObject.GetComponent<Weapon>();
-            Debug.Log("weapon controller awake: " + unit);
-            Debug.Log("weapon controller awake: " + weapon);
             Assert.IsNotNull(weapon);
         }
     }
