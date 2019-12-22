@@ -21,7 +21,8 @@ namespace Controller {
         public static GameController instance { get; private set; }
 
         public Vector2 moveConstrain;
-        public Transform bulletPrefab;
+        public GameObject bulletPrefab;
+        public GameObject powerUpPrefab;
 
         public WeaponConfig[] gunConfig;
         public Sprite[] meleeSprites;

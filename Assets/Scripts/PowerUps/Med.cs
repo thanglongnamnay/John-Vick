@@ -3,12 +3,14 @@ using UnityEngine;
 
 namespace PowerUps {
     public class Med : PowerUp {
+        private const int Amount = 20;
+
         private static float amount {
             get {
                 var r = Random.Range(0, 100);
-                if (r < 5) return 10 * 3;
-                if (r < 20) return 10 * 2;
-                return 10 * 1;
+                if (r < 5) return Amount * 3;
+                if (r < 20) return Amount * 2;
+                return Amount * 1;
             }
         }
 

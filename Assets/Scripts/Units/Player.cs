@@ -18,7 +18,7 @@ namespace Units {
             base.Awake();
             maxHp = 100;
             hp = 100;
-            setWeapon<Shoty>();
+            setWeapon<Deagle>();
 //            moveSpeed = .75f;
         }
 

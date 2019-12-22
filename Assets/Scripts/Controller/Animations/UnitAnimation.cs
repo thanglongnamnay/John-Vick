@@ -17,6 +17,7 @@ namespace Controller.Animations {
         private void Update() {
             if (unit.hp <= 0) return;
 
+            animator.speed = movable.speed / .75f;
             animator.Play(movable.direction == Vector2.zero ? "Idle" : "Run");
 //            animator.SetInteger(State, movable.direction == Vector2.zero ? 1 : 2);
         }
