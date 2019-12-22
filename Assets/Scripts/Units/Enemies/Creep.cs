@@ -10,7 +10,15 @@ namespace Units.Enemies {
             base.Start();
             hp = 30;
             _minDistance = GetComponentInChildren<MeleeCollider>().colliderSize;
+            StartCoroutine(setMeleeWeapon());
             StartCoroutine(lookAtPlayer());
+        }
+
+        private IEnumerator setMeleeWeapon() {
+            yield return new WaitForSeconds(0);
+            if (weapon.type == WeaponType.Gun) {
+                randomWeapon(WeaponType.Melee);
+            }
         }
 
         private IEnumerator lookAtPlayer() {
@@ -27,10 +35,12 @@ namespace Units.Enemies {
             if (GameController.instance.player == null) return;
 
             var distanceToPlayer = GameController.instance.player.transform.position - transform.position;
-            if (distanceToPlayer.magnitude >= _minDistance) movable.direction = distanceToPlayer;
+            if (((Vector2)distanceToPlayer).magnitude >= _minDistance) movable.direction = distanceToPlayer;
             else {
                 movable.direction = Vector2.zero;
-                weapon.attack();
+                if (weapon.canAttack()) {
+                    weapon.attack();
+                }
             }
         }
     }

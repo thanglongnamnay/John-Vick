@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using Melees;
 using Skills;
 using UnityEngine;
 using UnityEngine.Assertions;
+using Random = UnityEngine.Random;
 
 namespace Units {
 	[RequireComponent(typeof(Movable))]
@@ -40,6 +42,34 @@ namespace Units {
 
 		public void setWeapon<T>() where T : Weapon {
 			weaponController.setWeapon<T>();
+		}
+
+		public void setWeapon(WeaponName weaponName) {
+			switch (weaponName) {
+				case WeaponName.Deagle:
+					setWeapon<Deagle>();
+					break;
+				case WeaponName.AssaultRifle:
+					setWeapon<AssaultRifle>();
+					break;
+				case WeaponName.Shoty:
+					setWeapon<Shoty>();
+					break;
+				case WeaponName.Sniper:
+					setWeapon<Sniper>();
+					break;
+				case WeaponName.Hand:
+					setWeapon<Hand>();
+					break;
+				case WeaponName.Knife:
+					setWeapon<Knife>();
+					break;
+				case WeaponName.Pencil:
+					setWeapon<Pencil>();
+					break;
+				default:
+					throw new ArgumentOutOfRangeException("weaponName", weaponName, null);
+			}
 		}
 
 		public void randomWeapon(WeaponType weaponType) {

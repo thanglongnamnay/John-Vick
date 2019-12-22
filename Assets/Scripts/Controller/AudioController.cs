@@ -6,6 +6,7 @@ namespace Controller {
         public static AudioController instance;
         public AudioClip reload;
         public AudioClip empty;
+        public AudioClip swing;
 
         private AudioSource _source;
 

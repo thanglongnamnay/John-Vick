@@ -1,10 +1,16 @@
+using System;
 using System.Collections;
+using Controller;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Melees {
     public abstract class Melee : Weapon {
-        private float _lastAttackTime = -10;
         public MeleeCollider meleeCollider;
+        
+        private float _lastAttackTime = -10;
+        private AudioSource _audio;
+        private GameObject _slash;
 
         public float lastAttackTime {
             set { _lastAttackTime = value; }
@@ -25,7 +31,12 @@ namespace Melees {
         }
 
         private IEnumerator enableMeleeCollider() {
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.1f);
+            _audio.Play();
+            _slash.SetActive(true);
+            Debug.Log("swing sound played");
+            yield return new WaitForSeconds(.45f);
+            _slash.SetActive(false);
             meleeCollider.enable = true;
         }
 
@@ -36,6 +47,14 @@ namespace Melees {
 
         public override bool canAttack() {
             return Time.time - _lastAttackTime >= fireRate;
+        }
+
+        private void Start() {
+            _audio = GetComponent<AudioSource>();
+            Assert.IsNotNull(_audio);
+            _audio.clip = AudioController.instance.swing;
+            _slash = transform.Find("slash").gameObject;
+            _slash.SetActive(false);
         }
     }
 }
