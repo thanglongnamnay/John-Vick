@@ -15,7 +15,7 @@ namespace Controller.UI {
 
         private void Update() {
             var gun = player.weapon as Gun;
-            if (gun == null) {
+            if (!gun) {
                 _text.text = "";
             }
             else {

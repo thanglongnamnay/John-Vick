@@ -11,7 +11,7 @@ namespace Controller {
         public MeleeCollider meleeCollider { get; private set; }
         public GameObject weaponGameObject;
 
-        private Weapon _weapon;
+        [SerializeField] private Weapon _weapon;
 
         public Weapon weapon {
             get { return _weapon; }
@@ -21,7 +21,7 @@ namespace Controller {
             }
         }
 
-        public T setWeapon<T>() where T : Weapon {
+        public Weapon setWeapon<T>() where T : Weapon {
             if (!weapon) weapon = weaponGameObject.GetComponent<Weapon>();
             var gun = weapon as Gun;
             float curRecoil = 0;
@@ -32,20 +32,20 @@ namespace Controller {
                 Debug.Log("weapon replaced");
             }
 
-            var weapon1 = weaponGameObject.AddComponent<T>();
-            weapon1.owner = unit;
-            var newGun = weapon1 as Gun;
+            weapon = weaponGameObject.AddComponent<T>();
+            weapon.owner = unit;
+            var newGun = weapon as Gun;
             if (newGun != null) {
                 newGun.currentRecoil = curRecoil;
             }
 
-            var newMelee = weapon1 as Melee;
+            var newMelee = weapon as Melee;
             if (newMelee != null) {
                 newMelee.meleeCollider = meleeCollider;
             }
 
-            Assert.IsNotNull(weapon1);
-            return weapon1;
+            Assert.IsNotNull(weapon);
+            return weapon;
         }
 
         private void Awake() {

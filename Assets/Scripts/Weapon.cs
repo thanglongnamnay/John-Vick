@@ -1,19 +1,21 @@
+using System;
 using Controller;
 using Units;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Experimental.PlayerLoop;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(AudioSource))]
 public abstract class Weapon : MonoBehaviour {
 	public Unit owner;
 	public AudioSource audioSource;
+	private float _lastPitch = 1;
 	private Camera _camera;
 	public abstract Sprite renderedSprite { get; }
 	public abstract float damage { get; }
 	public abstract float fireRate { get; }
 	public abstract WeaponType type { get; }
-	public abstract WeaponName wName { get; }
 	public abstract string weaponName { get; }
 
 	public virtual void attack() {

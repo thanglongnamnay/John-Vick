@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -5,7 +6,7 @@ namespace Controller {
     public class BackgroundMove : MonoBehaviour {
         public Transform[] backgrounds = new Transform[3];
         
-        private float _sizeX;
+        [SerializeField] private float _sizeX;
 
         private void Start() {
             Assert.IsNotNull(backgrounds[0]);

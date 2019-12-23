@@ -22,10 +22,6 @@ namespace Melees {
             get { return "Pencil"; }
         }
 
-        public override WeaponName wName {
-            get { return WeaponName.Pencil; }
-        }
-
         private int _durable = 3;
         public override int durable {
             get { return _durable; }

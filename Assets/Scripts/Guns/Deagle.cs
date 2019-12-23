@@ -34,10 +34,6 @@ namespace Guns {
             get { return 0; }
         }
 
-        public override WeaponName wName {
-            get { return WeaponName.Deagle; }
-        }
-
         protected override void playAttackAnimation() {
             // todo anim
         }
