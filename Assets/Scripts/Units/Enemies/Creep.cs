@@ -9,6 +9,7 @@ namespace Units.Enemies {
             base.Awake();
             maxHp = 35;
             hp = 35;
+            moveSpeed = 1.25f;
             _minDistance = GetComponentInChildren<MeleeCollider>().colliderSize;
             StartCoroutine(setMeleeWeapon());
             StartCoroutine(lookAtPlayer());

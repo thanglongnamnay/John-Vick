@@ -23,7 +23,7 @@ namespace Guns {
         }
 
         public override float inaccuracy {
-            get { return 4; }
+            get { return 2; }
         }
 
         public override float bulletSpeed {

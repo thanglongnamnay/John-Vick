@@ -4,7 +4,7 @@ namespace Units.Enemies.Bosses {
             base.Awake();
             maxHp = 150;
             hp = 150;
-            moveSpeed = 1;
+            moveSpeed = 1.5f;
         }
     }
 }

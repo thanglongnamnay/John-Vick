@@ -469,7 +469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 124307004}
   - component: {fileID: 124307005}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: light-pole 1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,7 +544,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 125897039}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -564,6 +564,7 @@ Transform:
   - {fileID: 245915069}
   - {fileID: 991991948}
   - {fileID: 940609195}
+  - {fileID: 871800729}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 7.34, y: 0, z: 0}
@@ -694,7 +695,7 @@ GameObject:
   m_Component:
   - component: {fileID: 245915069}
   - component: {fileID: 245915068}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -893,7 +894,7 @@ GameObject:
   m_Component:
   - component: {fileID: 274632037}
   - component: {fileID: 274632038}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1235,7 +1236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 408726422}
   - component: {fileID: 408726423}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: light-pole 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1780,6 +1781,7 @@ GameObject:
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
   - component: {fileID: 519420036}
+  - component: {fileID: 519420037}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1843,7 +1845,7 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -1914,6 +1916,65 @@ MonoBehaviour:
   boss: {fileID: 0}
   spawnInterval: 7
   maxSpawn: 50
+--- !u!114 &519420037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 519420032}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 1
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 1
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &524370989
 GameObject:
   m_ObjectHideFlags: 0
@@ -2076,7 +2137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 602287036}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LightPoles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2373,7 +2434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 647513247}
   - component: {fileID: 647513248}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: light-pole 1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3268,6 +3329,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1913862610}
+--- !u!1 &871800728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 871800729}
+  - component: {fileID: 871800730}
+  m_Layer: 8
+  m_Name: Post-process Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &871800729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 871800728}
+  m_LocalRotation: {x: -0.06400983, y: -0, z: -0, w: 0.9979493}
+  m_LocalPosition: {x: 0.3499999, y: 1.899999, z: -0.30249935}
+  m_LocalScale: {x: 2.5244899, y: 2.5244925, z: 2.5244925}
+  m_Children: []
+  m_Father: {fileID: 125897039}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &871800730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 871800728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: a148e5cdfdd86496d9f5451199564b8d, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
 --- !u!1 &877211854
 GameObject:
   m_ObjectHideFlags: 0
@@ -3418,7 +3524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 913825244}
   - component: {fileID: 913825245}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3624,7 +3730,7 @@ GameObject:
   m_Component:
   - component: {fileID: 940609195}
   - component: {fileID: 940609196}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3842,7 +3948,7 @@ GameObject:
   m_Component:
   - component: {fileID: 991991948}
   - component: {fileID: 991991949}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4384,7 +4490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1065991011}
   - component: {fileID: 1065991012}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5353,7 +5459,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1272779684}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LightPoles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5655,7 +5761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1362098141}
   - component: {fileID: 1362098142}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5799,7 +5905,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1371981899}
   - component: {fileID: 1371981900}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: light-pole 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5952,7 +6058,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1381712409}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LightPoles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6385,7 +6491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1506301106}
   - component: {fileID: 1506301107}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: light-pole 1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6461,7 +6567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1522107609}
   - component: {fileID: 1522107608}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: light-pole 1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6646,7 +6752,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1603854620}
   - component: {fileID: 1603854621}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: light-pole 1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6928,7 +7034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1694509124}
   - component: {fileID: 1694509125}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6994,7 +7100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1700960709}
   - component: {fileID: 1700960710}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: light-pole 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7102,7 +7208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1717443132}
   - component: {fileID: 1717443133}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7586,7 +7692,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1777603954}
   - component: {fileID: 1777603955}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7750,7 +7856,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1802727389}
   - component: {fileID: 1802727390}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: light-pole 1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7904,7 +8010,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1817778245}
   - component: {fileID: 1817778246}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9413,7 +9519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2104110924}
   - component: {fileID: 2104110925}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

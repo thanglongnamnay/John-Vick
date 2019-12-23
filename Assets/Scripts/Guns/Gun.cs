@@ -92,19 +92,21 @@ namespace Guns {
 				return;
 			}
 
-			_magNum -= 1;
-			_lastReloadTime = Time.time;
-			audioController.play(audioController.reload, reloadTime);
-			if (mag == 0) {
-				//todo play cocking
-				_lastReloadTime += .5f;
-				mag = magSize;
-			}
-			else {
-				mag = magSize + 1;
-			}
+			if (Time.time - _lastReloadTime >= reloadTime && mag <= magSize) {
+				_magNum -= 1;
+				_lastReloadTime = Time.time;
+				audioController.play(audioController.reload, reloadTime);
+				if (mag == 0) {
+					//todo play cocking
+					_lastReloadTime += .5f;
+					mag = magSize;
+				}
+				else {
+					mag = magSize + 1;
+				}
 
-			playReloadAnimation();
+				playReloadAnimation();
+			}
 		}
 
 		public override bool canAttack() {
