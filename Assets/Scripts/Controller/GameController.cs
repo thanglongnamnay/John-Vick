@@ -1,8 +1,10 @@
 using System;
+using Controller.UI;
 using Units;
 using Units.Enemies;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 
 namespace Controller {
     [Serializable]
@@ -12,7 +14,6 @@ namespace Controller {
     }
     public class GameController : MonoBehaviour {
         public GameController() {
-            Assert.IsNull(instance);
             instance = this;
             level = 1;
             hardLevel = 1;
@@ -27,6 +28,8 @@ namespace Controller {
         public Sprite[] meleeSprites;
         public GameObject gunDrop;
         public GameObject creepPrefab;
+        public FlyIn lostObject;
+        public EnemySpawner enemySpawner;
         [SerializeField]
         private Player _player;
         public int hardLevel;
@@ -39,6 +42,21 @@ namespace Controller {
 
         public Enemy[] enemyList {
             get { return GetComponentsInChildren<Enemy>(); }
+        }
+
+        public static void replay() {
+            SceneManager.LoadScene("level1");
+        }
+
+        public static void backToMain() {
+            SceneManager.LoadScene("Intro");
+        }
+
+        private void Update() {
+            if (player.hp <= 0) {
+                lostObject.flyIn();
+                enemySpawner.stop();
+            }
         }
 
 //        private IEnumerator Start() {

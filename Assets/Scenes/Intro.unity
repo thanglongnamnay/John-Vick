@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 27306187}
   - component: {fileID: 27306188}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instruction2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 31437513}
   - component: {fileID: 31437512}
   - component: {fileID: 31437511}
+  - component: {fileID: 31437514}
   m_Layer: 8
   m_Name: instruction
   m_TagString: Untagged
@@ -277,8 +278,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b880e2eded240b2ba32dabdb8c1d0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuItem: 1
-  instructionFlyIn: {fileID: 2007361957}
 --- !u!82 &31437512
 AudioSource:
   m_ObjectHideFlags: 0
@@ -288,7 +287,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e9a1e461780f04a70b326356e1f24836, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d1b5e5beca95f42389702f4ed23cb26d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -399,6 +398,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.84, y: 1.5}
   m_EdgeRadius: 0
+--- !u!114 &31437514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 31437508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceae51dd4fca4dc4838a5db8c94193b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instructionFlyIn: {fileID: 2007361957}
+  item: 1
 --- !u!1 &44742356
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,6 +498,7 @@ GameObject:
   - component: {fileID: 295966947}
   - component: {fileID: 295966950}
   - component: {fileID: 295966948}
+  - component: {fileID: 295966949}
   m_Layer: 8
   m_Name: play
   m_TagString: Untagged
@@ -588,8 +601,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b880e2eded240b2ba32dabdb8c1d0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuItem: 0
+--- !u!114 &295966949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 295966944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceae51dd4fca4dc4838a5db8c94193b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   instructionFlyIn: {fileID: 0}
+  item: 0
 --- !u!82 &295966950
 AudioSource:
   m_ObjectHideFlags: 0
@@ -599,7 +623,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e9a1e461780f04a70b326356e1f24836, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d1b5e5beca95f42389702f4ed23cb26d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.419
   m_Pitch: 1
@@ -1139,6 +1163,7 @@ GameObject:
   - component: {fileID: 1790870509}
   - component: {fileID: 1790870508}
   - component: {fileID: 1790870507}
+  - component: {fileID: 1790870510}
   m_Layer: 8
   m_Name: exit
   m_TagString: Untagged
@@ -1216,8 +1241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b880e2eded240b2ba32dabdb8c1d0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuItem: 2
-  instructionFlyIn: {fileID: 0}
 --- !u!82 &1790870508
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1227,7 +1250,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e9a1e461780f04a70b326356e1f24836, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d1b5e5beca95f42389702f4ed23cb26d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1338,6 +1361,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.43, y: 1.29}
   m_EdgeRadius: 0
+--- !u!114 &1790870510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1790870504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceae51dd4fca4dc4838a5db8c94193b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instructionFlyIn: {fileID: 0}
+  item: 2
 --- !u!1 &1838017731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,7 +1446,7 @@ GameObject:
   - component: {fileID: 2007361957}
   - component: {fileID: 2007361959}
   - component: {fileID: 2007361958}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instruction
   m_TagString: Untagged
   m_Icon: {fileID: 0}

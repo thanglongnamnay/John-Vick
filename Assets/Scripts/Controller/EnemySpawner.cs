@@ -11,9 +11,10 @@ namespace Controller {
 
         private bool _bossSpawned;
         private float _lastSpawnTime = -10;
+        private bool _stop;
 
         private void Update() {
-            if (Time.time - _lastSpawnTime < spawnInterval - GameController.instance.level) return;
+            if (_stop || Time.time - _lastSpawnTime < spawnInterval - GameController.instance.level) return;
             _lastSpawnTime = Time.time;
             var instanceHardLevel = GameController.instance.hardLevel / 20f;
             if (_bossSpawned && maxSpawn <= 0) {
@@ -45,6 +46,10 @@ namespace Controller {
                 transform.position + new Vector3(Random.Range(7f, 12f), Random.Range(-5f, .5f)),
                 Quaternion.identity);
             maxSpawn -= 1;
+        }
+
+        public void stop() {
+            _stop = true;
         }
     }
 }

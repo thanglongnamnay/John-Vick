@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Controller.UI {
     public class FlyIn : MonoBehaviour {
-        public GameObject menu;
         public Vector2 positions;
         public bool isFlyIn;
 
@@ -20,12 +19,22 @@ namespace Controller.UI {
 
         private void Update() {
             if (isFlyIn && Math.Abs(transform.position.x - positions.x) > .1f) {
-                var position = transform.position;
-                position = Vector3.Lerp(position, _flyInPos, .1f);
+                var transform1 = transform;
+                var position = transform1.position;
+                var delta = new Vector3();
+                if (transform1.parent) {
+                    delta = transform1.parent.position + Vector3.forward;
+                }
+                position = Vector3.Lerp(position, delta + _flyInPos, .1f);
                 transform.position = position;
             } else if (!isFlyIn && Math.Abs(transform.position.x - positions.y) > .1f) {
-                var position = transform.position;
-                position = Vector3.Lerp(position, _flyOutPos, .1f);
+                var transform1 = transform;
+                var position = transform1.position;
+                var delta = new Vector3();
+                if (transform1.parent) {
+                    delta = transform1.parent.position + Vector3.forward;
+                }
+                position = Vector3.Lerp(position, delta + _flyOutPos, .1f);
                 transform.position = position;
             }
         }
@@ -33,12 +42,10 @@ namespace Controller.UI {
         public void flyOut() {
             Debug.Log("fly out");
             isFlyIn = false;
-            menu.SetActive(true);
         }
 
         public void flyIn() {
             isFlyIn = true;
-            menu.SetActive(false);
         }
     }
 }

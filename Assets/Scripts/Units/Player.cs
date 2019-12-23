@@ -1,23 +1,24 @@
+using Controller;
 using Guns;
 using Melees;
 using UnityEngine;
 
 namespace Units {
     public class Player : Unit {
-        private float _lastDodgeTime = 0;
-        private const float DodgeCooldown = 3;
         public override UnitType type {
             get { return UnitType.Player; }
         }
 
         private float _tempEvasion;
+        private float _lastDodgeTime = 0;
+        private const float DodgeCooldown = 3;
         public int deagleMag = 14;
         public override float evasion { get; set; }
 
         protected override void Awake() {
             base.Awake();
-            maxHp = 100;
-            hp = 100;
+            maxHp = 70 + 30 * GameController.instance.level;
+            hp = 70 + 30 * GameController.instance.level;
             setWeapon<Deagle>();
 //            moveSpeed = .75f;
         }
