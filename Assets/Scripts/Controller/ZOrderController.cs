@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Controller {
@@ -5,7 +6,7 @@ namespace Controller {
         private void Update() {
             var transform1 = transform;
             var transformPosition = transform1.position;
-            transformPosition.z = transformPosition.y;
+            transformPosition.z = transformPosition.y / 100f;
             transform1.position = transformPosition;
         }
     }

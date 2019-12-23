@@ -37,6 +37,10 @@ namespace Guns {
             get { return 2; }
         }
 
+        public override string weaponName {
+            get { return "Double barrel"; }
+        }
+
         protected override void playAttackAnimation() {
             // todo anim
         }

@@ -15,7 +15,7 @@ namespace Controller {
         }
 
         private void Update() {
-            if (Input.GetKeyDown(KeyCode.LeftControl)) {
+            if (Input.GetKeyDown(KeyCode.LeftShift)) {
                 handleSlow();
             } else if (Input.GetKeyDown(KeyCode.P) || Input.GetMouseButtonDown(1)) {
                 handleLock();

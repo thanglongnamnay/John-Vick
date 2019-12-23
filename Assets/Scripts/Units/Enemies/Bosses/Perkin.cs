@@ -8,7 +8,7 @@ namespace Units.Enemies.Bosses {
             base.Awake();
             maxHp = 200;
             hp = 200;
-            moveSpeed = 1.25f;
+            moveSpeed = 2;
             StartCoroutine(setKnife());
         }
 

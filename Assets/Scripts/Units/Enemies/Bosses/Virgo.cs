@@ -14,7 +14,7 @@ namespace Units.Enemies.Bosses {
             base.Awake();
             maxHp = 350;
             hp = 350;
-            moveSpeed = .75f;
+            moveSpeed = 1f;
             _box = transform.Find("box");
         }
 

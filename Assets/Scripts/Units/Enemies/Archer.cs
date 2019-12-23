@@ -26,8 +26,7 @@ namespace Units.Enemies {
                 var weaponControllerTransform = weaponController.transform;
                 var angle = Vector2.SignedAngle(player.transform.position - weaponControllerTransform.position,
                                 weaponControllerTransform.right) +
-                            ((Gun)weapon).currentRecoil / 10 +
-                            Random.value * (24f / GameController.instance.hardLevel);
+                            Random.value * (72f / (GameController.instance.level + 2) / GameController.instance.hardLevel);
                 weaponControllerTransform.Rotate(0, 0, -angle);
                 yield return new WaitForSeconds(.5f);
             }
@@ -39,7 +38,6 @@ namespace Units.Enemies {
         }
 
         private void Update() {
-            _minDistance = 15;
             if (!player) return;
             
             if (weapon.canAttack() && Vector2.Distance(player.transform.position, transform.position) < _minDistance) {

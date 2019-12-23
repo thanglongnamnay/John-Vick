@@ -24,7 +24,7 @@ namespace Guns {
         }
 
         public override float inaccuracy {
-            get { return 2; }
+            get { return 1; }
         }
 
         public override float bulletSpeed {
@@ -33,6 +33,10 @@ namespace Guns {
 
         public override int config {
             get { return 1; }
+        }
+
+        public override string weaponName {
+            get { return "M4A1"; }
         }
 
         protected override void playAttackAnimation() {

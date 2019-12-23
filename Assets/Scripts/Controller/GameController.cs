@@ -21,20 +21,17 @@ namespace Controller {
         public static GameController instance { get; private set; }
 
         public Vector2 moveConstrain;
-        public GameObject bulletPrefab;
         public GameObject powerUpPrefab;
 
         public WeaponConfig[] gunConfig;
         public Sprite[] meleeSprites;
         public GameObject gunDrop;
         public GameObject creepPrefab;
-        public GameObject virgoCreepPrefab;
-        public Vector2 screenSize = new Vector2(10, 10);
         [SerializeField]
         private Player _player;
+        public int hardLevel;
 
         public int level { get; private set; }
-        public int hardLevel { get; private set; }
         
         public Player player {
             get { return _player; }

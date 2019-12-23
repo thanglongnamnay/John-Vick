@@ -9,6 +9,7 @@ namespace Units.Enemies {
             base.Awake();
             maxHp = 35;
             hp = 35;
+            moveSpeed = 1.25f;
             _minDistance = GetComponentInChildren<MeleeCollider>().colliderSize;
             StartCoroutine(setMeleeWeapon());
             StartCoroutine(lookAtPlayer());
@@ -35,10 +36,14 @@ namespace Units.Enemies {
             if (player == null) return;
 
             var distanceToPlayer = player.transform.position - transform.position;
-            if (((Vector2)distanceToPlayer).magnitude >= _minDistance) movable.direction = distanceToPlayer;
+            var magnitude = ((Vector2) distanceToPlayer).magnitude;
+            
+            if (magnitude >= _minDistance && magnitude <= 15) {
+                movable.direction = distanceToPlayer;
+            }
             else {
                 movable.direction = Vector2.zero;
-                if (weapon.canAttack()) {
+                if (magnitude <= _minDistance && weapon.canAttack()) {
                     weapon.attack();
                 }
             }

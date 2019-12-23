@@ -23,7 +23,7 @@ namespace Guns {
         }
 
         public override float inaccuracy {
-            get { return 4; }
+            get { return 2; }
         }
 
         public override float bulletSpeed {
@@ -40,6 +40,10 @@ namespace Guns {
 
         protected override void playReloadAnimation() {
             //todo anim
+        }
+
+        public override string weaponName {
+            get { return "Desert Eagle"; }
         }
 
         protected override void makeBullet() {
