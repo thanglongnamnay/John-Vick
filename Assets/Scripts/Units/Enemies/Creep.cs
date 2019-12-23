@@ -35,10 +35,14 @@ namespace Units.Enemies {
             if (player == null) return;
 
             var distanceToPlayer = player.transform.position - transform.position;
-            if (((Vector2)distanceToPlayer).magnitude >= _minDistance) movable.direction = distanceToPlayer;
+            var magnitude = ((Vector2) distanceToPlayer).magnitude;
+            
+            if (magnitude >= _minDistance && magnitude <= 15) {
+                movable.direction = distanceToPlayer;
+            }
             else {
                 movable.direction = Vector2.zero;
-                if (weapon.canAttack()) {
+                if (magnitude <= _minDistance && weapon.canAttack()) {
                     weapon.attack();
                 }
             }

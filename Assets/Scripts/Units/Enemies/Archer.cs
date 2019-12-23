@@ -39,7 +39,6 @@ namespace Units.Enemies {
         }
 
         private void Update() {
-            _minDistance = 15;
             if (!player) return;
             
             if (weapon.canAttack() && Vector2.Distance(player.transform.position, transform.position) < _minDistance) {
