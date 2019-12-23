@@ -1,21 +1,61 @@
+using System.Collections;
 using Controller;
 using Guns;
 using UnityEngine;
 
 namespace Units.Enemies {
     public class Archer : Enemy {
-        protected override void Start() {
-            base.Start();
+        private Transform _box;
+        private float _minDistance = 15;
+
+        protected override void Awake() {
+            base.Awake();
+            maxHp = 20;
             hp = 20;
-            if (weaponController.weapon.type == WeaponType.Melee) {
-                weaponController.setWeapon<Deagle>();
+            _box = transform.Find("box");
+        }
+
+        private void Start() {
+            randomWeapon(WeaponType.Gun);
+            StartCoroutine(lookAtPlayer());
+        }
+
+        private IEnumerator lookAtPlayer() {
+            while (GameController.instance.player != null) {
+                Debug.Log(weapon);
+                var weaponControllerTransform = weaponController.transform;
+                var angle = Vector2.SignedAngle(player.transform.position - weaponControllerTransform.position,
+                                weaponControllerTransform.right) +
+                            Random.value * (72f / (GameController.instance.level + 2) / GameController.instance.hardLevel);
+                weaponControllerTransform.Rotate(0, 0, -angle);
+                yield return new WaitForSeconds(.5f);
             }
         }
-        
-        private virtual void Update() {
-            if (GameController.instance.player == null) return;
-            var distanceToPlayer = GameController.instance.player.transform.position - transform.position;
+
+        protected override void onDead(float after = 0) {
+            base.onDead(after);
+            _box.parent = null;
+        }
+
+        private void Update() {
+            if (!player) return;
             
+            if (weapon.canAttack() && Vector2.Distance(player.transform.position, transform.position) < _minDistance) {
+                weapon.attack();
+            }
+
+            var gun = weapon as Gun;
+            if (gun != null) {
+                if (gun.mag == 0) {
+                    gun.reload();
+                }
+
+                if (gun.magNum <= 0) {
+                    var instantiate = Instantiate(GameController.instance.creepPrefab, transform.position, transform.rotation);
+                    instantiate.GetComponent<Unit>().hp = hp;
+                    onDead(-1);
+                }
+            }
         }
     }
 }

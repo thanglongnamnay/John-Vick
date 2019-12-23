@@ -1,18 +1,14 @@
-
 using Controller;
 using UnityEngine;
 
 namespace Guns {
     public class AssaultRifle : Gun {
-        public override Sprite renderedSprite {
-            get { return GameController.instance.gunSprites[1]; }
-        }
         public override float damage {
             get { return 8; }
         }
 
         public override float fireRate {
-            get { return .1f; }
+            get { return .085f; }
         }
 
         public override int magSize {
@@ -28,7 +24,19 @@ namespace Guns {
         }
 
         public override float inaccuracy {
-            get { return 3; }
+            get { return 1; }
+        }
+
+        public override float bulletSpeed {
+            get { return 25; }
+        }
+
+        public override int config {
+            get { return 1; }
+        }
+
+        public override string weaponName {
+            get { return "M4A1"; }
         }
 
         protected override void playAttackAnimation() {
@@ -40,15 +48,23 @@ namespace Guns {
         }
 
         protected override void makeBullet() {
-            var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, shootAngle));
-            bullet.GetComponent<Bullet>().damage = damage;
-            bullet.GetComponent<Bullet>().owner = owner;
+            base.makeBullet();
+            var bullet = pool.getGameObject("bullet", barrelPosition, Quaternion.Euler(0, 0, shootAngle));
+            var component = bullet.GetComponent<Bullet>();
+            component.speed = bulletSpeed;
+            component.damage = damage;
+            component.owner = owner;
         }
 
         public override void onUpdate() {
             base.onUpdate();
             if (Input.GetMouseButton(0)) {
-                attack();
+                if (canAttack()) {
+                    attack();
+                } else if (mag == 0) {
+                    Debug.Log("Play empty sound");
+                    AudioController.instance.play(AudioController.instance.empty, 1, 0);
+                }
             }
         }
     }

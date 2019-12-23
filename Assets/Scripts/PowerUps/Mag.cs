@@ -1,10 +1,10 @@
-using System.Linq;
 using Guns;
 using Units;
+using UnityEngine;
 
 namespace PowerUps {
     public class Mag : PowerUp {
-        private static float amount {
+        private static int amount {
             get {
                 var r = Random.Range(0, 100);
                 if (r < 5) return 3;
@@ -12,8 +12,8 @@ namespace PowerUps {
                 return 1;
             }
         }
-        protected override void affect(Player player) {
-            var gun = player.weapon as Gun;
+        protected override void affect(Unit unit) {
+            var gun = unit.weapon as Gun;
             if (gun != null) gun.increaseMag(amount);
         }
     }

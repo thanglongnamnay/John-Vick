@@ -1,25 +1,51 @@
-using System;
-using Controller;
+using System.Collections;
 using Melees;
 using UnityEngine;
 
 namespace Units.Enemies {
     public class Creep : Enemy {
         private float _minDistance;
-        protected override void Start() {
-            base.Start();
-            hp = 30;
+        protected override void Awake() {
+            base.Awake();
+            maxHp = 35;
+            hp = 35;
+            moveSpeed = 1.25f;
             _minDistance = GetComponentInChildren<MeleeCollider>().colliderSize;
+            StartCoroutine(setMeleeWeapon());
+            StartCoroutine(lookAtPlayer());
         }
 
-        private virtual void Update() {
-            if (GameController.instance.player == null) return;
+        private IEnumerator setMeleeWeapon() {
+            yield return new WaitForSeconds(0);
+            if (weapon.type == WeaponType.Gun) {
+                randomWeapon(WeaponType.Melee);
+            }
+        }
 
-            var distanceToPlayer = GameController.instance.player.transform.position - transform.position;
-            if (distanceToPlayer.magnitude >= _minDistance) _movable.direction = distanceToPlayer;
+        private IEnumerator lookAtPlayer() {
+            while (player != null) {
+                var weaponControllerTransform = weaponController.transform;
+                var angle = Vector2.SignedAngle(player.transform.position - weaponControllerTransform.position,
+                                weaponControllerTransform.right);
+                weaponControllerTransform.Rotate(0, 0, -angle);
+                yield return new WaitForSeconds(.5f);
+            }
+        }
+
+        protected virtual void Update() {
+            if (player == null) return;
+
+            var distanceToPlayer = player.transform.position - transform.position;
+            var magnitude = ((Vector2) distanceToPlayer).magnitude;
+            
+            if (magnitude >= _minDistance && magnitude <= 15) {
+                movable.direction = distanceToPlayer;
+            }
             else {
-                _movable.direction = Vector2.zero;
-                weapon.attack();
+                movable.direction = Vector2.zero;
+                if (magnitude <= _minDistance && weapon.canAttack()) {
+                    weapon.attack();
+                }
             }
         }
     }

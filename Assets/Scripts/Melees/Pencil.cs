@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Melees {
     public class Pencil : Melee {
         public override Sprite renderedSprite {
-            get { return GameController.instance.meleeSprites[2]; }
+            get { return GameController.instance.meleeSprites[1]; }
         }
         private float _damage = 50;
         public override float damage {
@@ -18,8 +18,14 @@ namespace Melees {
             get { return 2; }
         }
 
+        public override string weaponName {
+            get { return "Pencil"; }
+        }
+
+        private int _durable = 3;
         public override int durable {
-            get { return 3; }
+            get { return _durable; }
+            set { _durable = value; }
         }
     }
 }

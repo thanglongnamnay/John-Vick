@@ -1,23 +1,13 @@
-using System;
-using Controller;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Guns {
     public class Deagle : Gun {
-        public override Sprite renderedSprite {
-            get {
-                bool s = GameController.instance == null;
-                Debug.Log("hello " + s); return GameController.instance.gunSprites[0];
-            }
-        }
-
         public override float damage {
             get { return 13; }
         }
 
         public override float fireRate {
-            get { return .5f; }
+            get { return .3f; }
         }
 
         public override int magSize {
@@ -33,7 +23,15 @@ namespace Guns {
         }
 
         public override float inaccuracy {
-            get { return 5; }
+            get { return 2; }
+        }
+
+        public override float bulletSpeed {
+            get { return 40; }
+        }
+
+        public override int config {
+            get { return 0; }
         }
 
         protected override void playAttackAnimation() {
@@ -44,10 +42,17 @@ namespace Guns {
             //todo anim
         }
 
+        public override string weaponName {
+            get { return "Desert Eagle"; }
+        }
+
         protected override void makeBullet() {
-            var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, shootAngle));
-            bullet.GetComponent<Bullet>().damage = damage;
-            bullet.GetComponent<Bullet>().owner = owner;
+            base.makeBullet();
+            var bullet = pool.getGameObject("bullet", barrelPosition, Quaternion.Euler(0, 0, shootAngle));
+            var component = bullet.GetComponent<Bullet>();
+            component.speed = bulletSpeed;
+            component.damage = damage;
+            component.owner = owner;
         }
     }
 }

@@ -1,20 +1,16 @@
-using Controller;
 using UnityEngine;
 
 namespace Guns {
     public class Shoty : Gun {
-        private const int Spread = 7;
-
-        public override Sprite renderedSprite {
-            get { return GameController.instance.gunSprites[0]; }
-        }
+        private const int Spread = 3;
+        private const int Duck = 5;
 
         public override float damage {
             get { return 25; }
         }
 
         public override float fireRate {
-            get { return .8f; }
+            get { return .3f; }
         }
 
         public override int magSize {
@@ -30,7 +26,19 @@ namespace Guns {
         }
 
         public override float inaccuracy {
-            get { return 5; }
+            get { return 3; }
+        }
+
+        public override float bulletSpeed {
+            get { return 18; }
+        }
+
+        public override int config {
+            get { return 2; }
+        }
+
+        public override string weaponName {
+            get { return "Double barrel"; }
         }
 
         protected override void playAttackAnimation() {
@@ -42,11 +50,15 @@ namespace Guns {
         }
 
         protected override void makeBullet() {
+            base.makeBullet();
             var angles = shootAngle;
-            for (var i = 0; i < 3; ++i) {
-                var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, angles - Spread + Spread*i));
-                bullet.GetComponent<Bullet>().damage = damage;
-                bullet.GetComponent<Bullet>().owner = owner;
+            var min = Duck / 2 * Spread;
+            for (var i = 0; i < Duck; ++i) {
+                var bullet = pool.getGameObject("bullet", barrelPosition, Quaternion.Euler(0, 0, angles - min + Spread*i));
+                var component = bullet.GetComponent<Bullet>();
+                component.speed = bulletSpeed;
+                component.damage = damage;
+                component.owner = owner;
             }
         }
     }

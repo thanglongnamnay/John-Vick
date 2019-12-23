@@ -1,20 +1,10 @@
-using System;
-using Controller;
-using Melees;
-using UnityEngine;
-
-namespace Units.Enemies {
+namespace Units.Enemies.Bosses {
     public class Iosef : Creep {
-        private float _minDistance;
-        protected override void Start() {
-            base.Start();
+        protected override void Awake() {
+            base.Awake();
+            maxHp = 150;
             hp = 150;
-            moveSpeed = 1;
-        }
-
-        private override void Update() {
-        	base.Update();
-
+            moveSpeed = 1.5f;
         }
     }
 }

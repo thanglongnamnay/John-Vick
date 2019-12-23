@@ -1,8 +1,15 @@
-using System;
+using Units;
 using UnityEngine;
 
-public class Skill {
-	public abstract SkillType type { get; }
-	public abstract void use();
-	protected abstract void affect();
+namespace Skills {
+	public abstract class Skill : MonoBehaviour {
+		public Unit unit;
+		public abstract SkillType type { get; }
+		public abstract void use();
+		protected abstract void affect();
+
+		protected virtual void OnEnable() {
+			if (!unit) unit = GetComponent<Unit>();
+		}
+	}
 }	

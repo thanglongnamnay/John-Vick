@@ -1,8 +1,12 @@
-using System;
-using UnityEngine;
+using Melees;
+using UnityEngine.Assertions;
 
-public class KnifeArtist : PassiveSkill {
-	protected override void affect() {
-		(unit.weapon as Knife).damage *= 1.5f;
+namespace Skills {
+	public class KnifeArtist : PassiveSkill {
+		protected override void affect() {
+			Assert.IsNotNull(unit);
+			var knife = unit.weapon as Knife;
+			if (knife != null) knife.damageMul = 1.5f;
+		}
 	}
 }	

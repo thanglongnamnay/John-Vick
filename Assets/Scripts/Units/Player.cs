@@ -1,4 +1,5 @@
-using System.Collections;
+using Guns;
+using Melees;
 using UnityEngine;
 
 namespace Units {
@@ -10,26 +11,41 @@ namespace Units {
         }
 
         private float _tempEvasion;
-        public override float evasion { get; protected set; }
+        public int deagleMag = 14;
+        public override float evasion { get; set; }
 
-        protected override void Start() {
-            base.Start();
+        protected override void Awake() {
+            base.Awake();
+            maxHp = 100;
             hp = 100;
+            setWeapon<Deagle>();
 //            moveSpeed = .75f;
         }
 
-        public void dodge() {
-            if (Time.time - _lastDodgeTime >= DodgeCooldown) {
-                _tempEvasion = evasion;
-                evasion = 1;
+//        private void OnEnable() {
+//            var dodge = gameObject.AddComponent<Dodge>();
+//            skills.Add(dodge);
+//        }
 
-                StartCoroutine(resetEvasion());
+        protected override void onDead(float after = 0) {
+            GetComponentInChildren<Animator>().Play("Hurt");
+            base.onDead(after + 1);
+        }
+
+        public void swichWeapon() {
+            if (weapon is Gun) {
+                var deagle = weapon as Deagle;
+                if (deagle != null) {
+                    deagleMag = deagle.magNum * 7 + deagle.mag;
+                }
+                setWeapon<Hand>();
+            } else {
+                setWeapon<Deagle>();
+                var deagle = weapon as Deagle;
+                deagle.magNum = deagleMag / 7;
+                deagle.mag = deagleMag % 7;
             }
         }
-
-        IEnumerator resetEvasion() {
-            yield return new WaitForSeconds(.5f);
-            evasion = _tempEvasion;
-        }
+        
     }
 }

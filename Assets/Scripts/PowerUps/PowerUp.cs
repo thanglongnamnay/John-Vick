@@ -1,20 +1,17 @@
-using System;
 using Controller;
 using Units;
 using UnityEngine;
 
 namespace PowerUps {
     public abstract class PowerUp : MonoBehaviour {
-        private static Player _player;
-        protected abstract void affect(Player player);
+        protected abstract void affect(Unit unit);
 
-        private void OnEnable() {
-            _player = GameController.instance.player;
-        }
-
-        private void OnTriggerEnter(Collider other) {
-            if (other.GetComponent<Player>() != _player) return;
-            affect(_player);
+        private void OnTriggerEnter2D(Collider2D other) {
+            var component = other.GetComponent<UnitCollider>();
+            if (component == null || component.unit.type != UnitType.Player) return;
+            affect(component.unit);
+            Debug.Log("+ammo");
+            Destroy(gameObject);
         }
     }
 }

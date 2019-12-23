@@ -1,24 +1,28 @@
-using System;
-using System.Collections;
+using Controller;
+using Helper;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Guns {
 	public abstract class Gun : Weapon {
-		private const int StabGain = 60;
-		public Transform bulletPrefab;
+		private const int StabGain = 45;
+		public float barrelOffset;
 
-		private int _mag = 0;
-		private float _lastShootTime = 0;
-		private int _magNum = 1;
-		private float _currentRecoil = 0;
+		protected ObjectPool pool;
+		
+		private float _lastShootTime = -10;
+		private float _lastReloadTime = -10;
+		private int _magNum = 2;
 
-		public float currentRecoil {
-			get { return _currentRecoil; }
-			set { _currentRecoil = value; }
+		public Vector3 barrelPosition {
+			get {
+				var transform1 = transform;
+				return transform1.position + transform1.right * barrelOffset;
+			}
 		}
+		public float currentRecoil { get; set; }
 
-		protected int magNum {
+		public int magNum {
 			get { return _magNum; }
 			set { _magNum = value; }
 		}
@@ -31,24 +35,36 @@ namespace Guns {
 		public abstract float reloadTime { get; }
 		public abstract float recoil { get; }
 		public abstract float inaccuracy { get; }
+		public abstract float bulletSpeed { get; }
+		public abstract int config { get; }
+
+		public int mag { get; set; }
 
 		public float lastShootTime {
-			private get { return _lastShootTime; }
 			set { _lastShootTime = value; }
 		}
-
 		public float lastReloadTime {
-			private get { return _lastReloadTime; }
 			set { _lastReloadTime = value; }
 		}
+		public bool isReloading {
+			get { return Time.time - _lastReloadTime >= reloadTime; }
+		}
+		public override Sprite renderedSprite {
+			get { return GameController.instance.gunConfig[config].texture; }
+		}
 
-		private float _lastReloadTime = 0;
+		protected Gun() {
+			mag = 0;
+			magNum = 0;
+			currentRecoil = 0;
+		}
+
 		public override void attack() {
 			base.attack();
 			if (canAttack()) {
 				makeBullet();
-				_currentRecoil += recoil;
-				_mag -= 1;
+				currentRecoil += recoil;
+				mag -= 1;
 				_lastShootTime = Time.time;
 			}
 		}
@@ -61,42 +77,68 @@ namespace Guns {
 			get { return transform.rotation.eulerAngles.z + Random.Range(-inaccuracy, inaccuracy); }
 		}
 
-		protected abstract void makeBullet();
+		protected virtual void makeBullet() {
+			if (audioSource != null) {
+				audioSource.Play();
+			}
+		}
 		protected abstract void playReloadAnimation();
 
-		protected void reload() {
+		public void reload() {
 			// todo: play anim
+			var audioController = AudioController.instance;
 			if (_magNum <= 0) {
-				//todo play some sound
+				audioController.play(audioController.empty, .5f);
 				return;
 			}
 
-			_magNum -= 1;
-			_lastReloadTime = Time.time;
-			_mag = magSize;
-			playReloadAnimation();
+			if (Time.time - _lastReloadTime >= reloadTime && mag <= magSize) {
+				_magNum -= 1;
+				_lastReloadTime = Time.time;
+				audioController.play(audioController.reload, reloadTime);
+				if (mag == 0) {
+					//todo play cocking
+					_lastReloadTime += .5f;
+					mag = magSize;
+				}
+				else {
+					mag = magSize + 1;
+				}
+
+				playReloadAnimation();
+			}
 		}
 
-		protected override bool canAttack() {
-			return _mag > 0
+		public override bool canAttack() {
+			return owner.hp > 0 
+			       && mag > 0
 			       && Time.time - _lastShootTime >= fireRate
 			       && Time.time - _lastReloadTime >= reloadTime;
 		}
 
 		private void Start() {
-			_mag = magSize;
+			audioSource.clip = GameController.instance.gunConfig[config].shootSound;
+			pool = ObjectPool.instance;
 		}
 
 		public override void onUpdate () {
 			base.onUpdate();
+			if (Input.GetMouseButtonDown(0)) {
+				if (canAttack()) {
+					attack();
+				} else if (mag == 0) {
+					Debug.Log("Play empty sound");
+					AudioController.instance.play(AudioController.instance.empty, 1, 0);
+				}
+			}
 			if (Input.GetKeyDown(KeyCode.R)) {
 				reload();
 			}
 
 			if (Time.time - _lastShootTime >= fireRate) {
 				var stabGain = StabGain * Time.deltaTime;
-				if (_currentRecoil > stabGain) _currentRecoil -= stabGain;
-				else _currentRecoil = 0;
+				if (currentRecoil > stabGain) currentRecoil -= stabGain;
+				else currentRecoil = 0;
 			}
 		}
 	}
