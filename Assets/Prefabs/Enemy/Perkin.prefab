@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 114521350004703850}
   - component: {fileID: 114119395627920728}
   - component: {fileID: 114782556020094828}
+  - component: {fileID: 114469392207869170}
   m_Layer: 0
   m_Name: Perkin
   m_TagString: Unit
@@ -1938,6 +1939,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8a5044ff7048949bb91e9fbc5e4169a7, type: 3}
   - {fileID: 21300000, guid: a02cf5a5ed9234ae58f6927d7e27ef30, type: 3}
   - {fileID: 21300000, guid: f3f77a714be8d4161b91bd15eb8be3d7, type: 3}
+--- !u!114 &114469392207869170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1030793925119574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2250c2ccf4284490bfc0d0f44c066106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114521350004703850
 MonoBehaviour:
   m_ObjectHideFlags: 1

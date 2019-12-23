@@ -1412,8 +1412,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveConstrain: {x: -0.8, y: 0.15}
-  bulletPrefab: {fileID: 4471625725200316, guid: edeb51c3dc4ad4127b4c4c380c47d077,
-    type: 2}
   powerUpPrefab: {fileID: 1915983077458710, guid: 4b9f3b66b93f24a4cb6e4c1e2d311360,
     type: 2}
   gunConfig:
@@ -1431,9 +1429,8 @@ MonoBehaviour:
   gunDrop: {fileID: 1109060075549666, guid: 8eddb560ee56147479140aa2f6b38ded, type: 2}
   creepPrefab: {fileID: 1304279009647406, guid: 1a9f8bbd3661d4f528361779e907dae2,
     type: 2}
-  virgoCreepPrefab: {fileID: 0}
-  screenSize: {x: 10, y: 10}
   _player: {fileID: 1913862610}
+  hardLevel: 3
 --- !u!114 &445787402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1740,6 +1737,7 @@ GameObject:
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
+  - component: {fileID: 519420036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1857,6 +1855,23 @@ MonoBehaviour:
   - {fileID: 991991948}
   - {fileID: 940609195}
   _sizeX: 0
+--- !u!114 &519420036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489ea338f8d14d869742a0955cffb4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 1164069770437746, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
+  - {fileID: 1304279009647406, guid: 1a9f8bbd3661d4f528361779e907dae2, type: 2}
+  boss: {fileID: 1287378230986970, guid: 29f3ec3e14fbd49dfb58c82f848bac66, type: 2}
+  spawnInterval: 5
+  maxSpawn: 10
 --- !u!1 &519941314
 GameObject:
   m_ObjectHideFlags: 0

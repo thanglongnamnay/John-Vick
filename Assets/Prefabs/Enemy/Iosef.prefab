@@ -326,6 +326,7 @@ GameObject:
   - component: {fileID: 114012718335605958}
   - component: {fileID: 114992378279027252}
   - component: {fileID: 114970167483372644}
+  - component: {fileID: 114583863537082484}
   m_Layer: 0
   m_Name: Iosef
   m_TagString: Unit
@@ -1998,6 +1999,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 0}
+--- !u!114 &114583863537082484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1287378230986970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2250c2ccf4284490bfc0d0f44c066106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114594366754946054
 MonoBehaviour:
   m_ObjectHideFlags: 1

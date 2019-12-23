@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 50982622025826512}
   - component: {fileID: 114480639254061252}
   - component: {fileID: 114143733743637034}
+  - component: {fileID: 114436203040816200}
   m_Layer: 0
   m_Name: Creep
   m_TagString: Unit
@@ -1956,6 +1957,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 0}
+--- !u!114 &114436203040816200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1304279009647406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2250c2ccf4284490bfc0d0f44c066106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114480639254061252
 MonoBehaviour:
   m_ObjectHideFlags: 1

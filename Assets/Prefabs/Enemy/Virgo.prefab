@@ -342,6 +342,7 @@ GameObject:
   - component: {fileID: 114897892577490784}
   - component: {fileID: 114124603019677742}
   - component: {fileID: 114081512964435128}
+  - component: {fileID: 114608929264006106}
   m_Layer: 0
   m_Name: Virgo
   m_TagString: Unit
@@ -2131,6 +2132,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1709060177885804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2250c2ccf4284490bfc0d0f44c066106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114608929264006106
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1447037706173918}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2250c2ccf4284490bfc0d0f44c066106, type: 3}
