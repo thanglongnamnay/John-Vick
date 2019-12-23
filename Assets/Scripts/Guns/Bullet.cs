@@ -73,8 +73,7 @@ namespace Guns {
 			var timeTravel = hit.distance / speed;
 			yield return new WaitForSeconds(timeTravel);
 			if (unitCollider) {
-				Debug.Log("hurt: " + hit.collider.name + " with " + (damage * unitCollider.dmgMul / timeTravel / 5) + " dmg");
-				unitCollider.unit.damage(damage * unitCollider.dmgMul / ((timeTravel + 1) * 5));
+				unitCollider.unit.damage(damage * unitCollider.dmgMul / (timeTravel * 2 + 1));
 			}
 		}
 		
