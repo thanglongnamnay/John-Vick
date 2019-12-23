@@ -18,6 +18,10 @@ namespace Melees {
             get { return "Hand"; }
         }
 
+        public override WeaponName wName {
+            get { return WeaponName.Hand; }
+        }
+
         public override int durable {
             get { return int.MaxValue; }
             set {}

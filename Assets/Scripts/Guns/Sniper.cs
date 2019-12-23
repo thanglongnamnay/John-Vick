@@ -34,6 +34,10 @@ namespace Guns {
             get { return 3; }
         }
 
+        public override WeaponName wName {
+            get { return WeaponName.Sniper; }
+        }
+
         public override string weaponName {
             get { return "Mosin Nagan"; }
         }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -8,7 +7,7 @@ namespace Controller {
     public class ToggleLight : MonoBehaviour {
         public float interval = 1;
 
-        private float _lastTime = 0;
+        private float _lastTime;
         private Light[] _lights;
         private float[] _lightIntensities;
 

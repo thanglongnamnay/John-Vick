@@ -51,7 +51,8 @@ namespace Units.Enemies {
                 }
 
                 if (gun.magNum <= 0) {
-                    var instantiate = Instantiate(GameController.instance.creepPrefab, transform.position, transform.rotation);
+                    var transform1 = transform;
+                    var instantiate = Instantiate(GameController.instance.creepPrefab, transform1.position, transform1.rotation);
                     instantiate.GetComponent<Unit>().hp = hp;
                     onDead(-1);
                 }

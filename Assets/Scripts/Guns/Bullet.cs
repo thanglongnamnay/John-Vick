@@ -28,6 +28,7 @@ namespace Guns {
 			yield return new WaitForSeconds(0);
 			var transform1 = transform;
 			if (isPenetrable) {
+				// ReSharper disable once Unity.PreferNonAllocApi
 				_hits = Physics2D.RaycastAll(transform1.position,
 					transform1.right);
 				Debug.Log("len = " + _hits.Length);

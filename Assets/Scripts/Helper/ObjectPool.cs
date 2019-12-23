@@ -51,7 +51,7 @@ namespace Helper {
     }
     public class ObjectPool : MonoBehaviour {
         public static ObjectPool instance;
-        private static int _code = 0;
+        private static int _code;
         
         public List<ObjectPoolItem> poolObjects;
         private Dictionary<int, Func<ObjectPoolItem, bool>> hashFuncs = new Dictionary<int, Func<ObjectPoolItem, bool>>();

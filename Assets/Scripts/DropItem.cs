@@ -34,7 +34,7 @@ public class DropItem : MonoBehaviour {
                 unit.setWeapon<Pencil>();
                 break;
             default:
-                throw new ArgumentOutOfRangeException("weapon", weapon.GetType().Name, null);
+                throw new ArgumentOutOfRangeException("unit", weapon.GetType().Name, null);
         }
     }
 
