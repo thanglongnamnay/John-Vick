@@ -12,6 +12,18 @@ namespace Units.Enemies {
 
         protected Player player;
 
+        public override float hp {
+            get {
+                return base.hp;
+            }
+            set {
+                base.hp = value;
+                if (value < 0) {
+                    GameController.instance.point += maxHp;
+                }
+            }
+        }
+
         public override float evasion { get; set; }
 
         protected override void Awake() {

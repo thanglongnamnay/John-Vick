@@ -17,7 +17,7 @@ namespace Units {
         public List<Skill> skills = new List<Skill>();
         [SerializeField] private float _hp = 100;
 
-        public float hp {
+        public virtual float hp {
 	        get { return _hp; }
 	        set { _hp = value; }
         }

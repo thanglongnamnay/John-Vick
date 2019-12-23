@@ -9,6 +9,16 @@ namespace Units {
             get { return UnitType.Player; }
         }
 
+        public override float hp {
+            get { return base.hp; }
+            set {
+                base.hp = value;
+                if (value < 0) {
+                    GameController.instance.gameOver();
+                }
+            }
+        }
+
         private float _tempEvasion;
         private float _lastDodgeTime = 0;
         private const float DodgeCooldown = 3;

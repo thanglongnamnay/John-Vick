@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Controller {
@@ -12,6 +13,10 @@ namespace Controller {
         public MouseLock() {
             _locking = false;
             instance = this;
+        }
+
+        private void Start() {
+            handleLock();
         }
 
         private void Update() {

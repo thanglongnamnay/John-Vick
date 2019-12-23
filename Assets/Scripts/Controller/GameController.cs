@@ -33,6 +33,7 @@ namespace Controller {
         [SerializeField]
         private Player _player;
         public int hardLevel;
+        public float point;
 
         public int level { get; private set; }
         
@@ -52,7 +53,7 @@ namespace Controller {
             SceneManager.LoadScene("Intro");
         }
 
-        private void Update() {
+        public void gameOver() {
             if (player.hp <= 0) {
                 lostObject.flyIn();
                 enemySpawner.stop();
