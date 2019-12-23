@@ -35,7 +35,7 @@ namespace Controller {
                 Time.timeScale = slowFactor;
             }
         }
-        private void handleLock() {
+        public void handleLock() {
             if (_locking) {
                 _locking = false;
                 Cursor.lockState = CursorLockMode.None;

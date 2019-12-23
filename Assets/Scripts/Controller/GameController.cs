@@ -65,7 +65,12 @@ namespace Controller {
                 PlayerPrefs.SetFloat(HighscoreKey, Math.Max(score, highScore));
                 lostObject.flyIn();
                 enemySpawner.stop();
+                MouseLock.instance.handleLock();
             }
+        }
+
+        public void victory() {
+            // nextlv
         }
 
         private void Start() {
