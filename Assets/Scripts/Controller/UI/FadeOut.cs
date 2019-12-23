@@ -14,14 +14,14 @@ namespace Controller.UI {
 
         public IEnumerator fade() {
             _fading = true;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSecondsRealtime(1);
         }
 
         private void Update() {
             if (!_fading) return;
             _image.gameObject.SetActive(true);
             var color = _image.color;
-            color.a += Time.deltaTime;
+            color.a += Time.unscaledDeltaTime;
             _image.color = color;
         }
     }

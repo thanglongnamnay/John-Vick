@@ -85,12 +85,12 @@ namespace Controller {
         }
 
         private IEnumerator _loadScene(int index) {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSecondsRealtime(1);
             SceneManager.LoadScene(index);
         }
 
         private IEnumerator _loadScene(string s) {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSecondsRealtime(1);
             SceneManager.LoadScene(s);
         }
 
