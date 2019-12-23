@@ -70,10 +70,11 @@ namespace Guns {
 		}
 
 		private IEnumerator hurt(UnitCollider unitCollider, RaycastHit2D hit) {
-			Debug.Log("hurt: " + hit.collider.name + " with " + (damage) + " dmg");
-			yield return new WaitForSeconds(hit.distance / speed);
+			var timeTravel = hit.distance / speed;
+			yield return new WaitForSeconds(timeTravel);
 			if (unitCollider) {
-				unitCollider.unit.damage(damage * unitCollider.dmgMul);
+				Debug.Log("hurt: " + hit.collider.name + " with " + (damage * unitCollider.dmgMul / timeTravel / 5) + " dmg");
+				unitCollider.unit.damage(damage * unitCollider.dmgMul / ((timeTravel + 1) * 5));
 			}
 		}
 		

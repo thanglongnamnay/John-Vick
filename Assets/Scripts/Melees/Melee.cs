@@ -30,11 +30,11 @@ namespace Melees {
         }
 
         private IEnumerator enableMeleeCollider() {
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.2f);
             _audio.Play();
             _slash.SetActive(true);
             Debug.Log("swing sound played");
-            yield return new WaitForSeconds(.45f);
+            yield return new WaitForSeconds(.3f);
             _slash.SetActive(false);
             meleeCollider.enable = true;
         }

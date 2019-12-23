@@ -34,6 +34,10 @@ namespace Guns {
             get { return 3; }
         }
 
+        public override string weaponName {
+            get { return "Mosin Nagan"; }
+        }
+
         protected override void playAttackAnimation() {
             //todo anim
         }

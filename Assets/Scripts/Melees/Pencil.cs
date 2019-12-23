@@ -18,6 +18,10 @@ namespace Melees {
             get { return 2; }
         }
 
+        public override string weaponName {
+            get { return "Pencil"; }
+        }
+
         private int _durable = 3;
         public override int durable {
             get { return _durable; }

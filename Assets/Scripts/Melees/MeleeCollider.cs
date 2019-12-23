@@ -32,7 +32,7 @@ namespace Melees {
 
         private void Update() {
             if (!enable) return;
-            var size = Physics2D.OverlapCircleNonAlloc(transform.position, colliderSize, _hits);
+            var size = Physics2D.OverlapCircleNonAlloc(transform.position, colliderSize * 1.5f, _hits);
             Debug.Log("hit " + size + " objs");
             for (var i = 0; i < size; ++i) {
                 var hit = _hits[i];

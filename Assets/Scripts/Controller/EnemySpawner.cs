@@ -13,15 +13,16 @@ namespace Controller {
         private float _lastSpawnTime = -10;
 
         private void Update() {
-            if (Time.time - _lastSpawnTime < spawnInterval) return;
+            if (Time.time - _lastSpawnTime < spawnInterval - GameController.instance.level) return;
             _lastSpawnTime = Time.time;
+            var instanceHardLevel = GameController.instance.hardLevel / 20f;
             if (_bossSpawned && maxSpawn <= 0) {
                 _bossSpawned = true;
                 randomSpawn();
-                if (Random.value > .7 - GameController.instance.hardLevel / 10f) {
+                if (Random.value > .7 - instanceHardLevel) {
                     randomSpawn();
                 }
-                if (Random.value > 1 - GameController.instance.hardLevel / 10f) {
+                if (Random.value > 1 - instanceHardLevel) {
                     randomSpawn();
                 }
                 Instantiate(boss,
@@ -31,10 +32,10 @@ namespace Controller {
                 return;
             }
             randomSpawn();
-            if (Random.value > .7 - GameController.instance.hardLevel / 10f) {
+            if (Random.value > .7 - instanceHardLevel) {
                 randomSpawn();
             }
-            if (Random.value > 1 - GameController.instance.hardLevel / 10f) {
+            if (Random.value > 1 - instanceHardLevel) {
                 randomSpawn();
             }
         }

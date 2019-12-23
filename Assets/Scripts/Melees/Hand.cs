@@ -14,6 +14,10 @@ namespace Melees {
             get { return .5f; }
         }
 
+        public override string weaponName {
+            get { return "Hand"; }
+        }
+
         public override int durable {
             get { return int.MaxValue; }
             set {}

@@ -42,6 +42,10 @@ namespace Guns {
             //todo anim
         }
 
+        public override string weaponName {
+            get { return "Desert Eagle"; }
+        }
+
         protected override void makeBullet() {
             base.makeBullet();
             var bullet = pool.getGameObject("bullet", barrelPosition, Quaternion.Euler(0, 0, shootAngle));
