@@ -1,7 +1,6 @@
 using Controller;
 using Helper;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Guns {
 	public abstract class Gun : Weapon {
@@ -128,7 +127,7 @@ namespace Guns {
 					attack();
 				} else if (mag == 0) {
 					Debug.Log("Play empty sound");
-					AudioController.instance.play(AudioController.instance.empty, 1, 0);
+					AudioController.instance.play(AudioController.instance.empty, 1);
 				}
 			}
 			if (Input.GetKeyDown(KeyCode.R)) {

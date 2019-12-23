@@ -4,7 +4,6 @@ using TMPro;
 using Units;
 using Units.Enemies;
 using UnityEngine;
-using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 namespace Controller {
@@ -33,6 +32,7 @@ namespace Controller {
         public EnemySpawner enemySpawner;
         public TextMeshProUGUI highScoreText;
         [SerializeField]
+        // ReSharper disable once InconsistentNaming
         private Player _player;
         public static int hardLevel = 1;
         public float score;

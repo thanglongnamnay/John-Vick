@@ -15,7 +15,7 @@ namespace Units {
 	public abstract class Unit : MonoBehaviour {
 		protected WeaponController weaponController { get; private set; }
         public List<Skill> skills = new List<Skill>();
-        [SerializeField] private float _hp = 100;
+        private float _hp = 100;
 
         public virtual float hp {
 	        get { return _hp; }
@@ -42,15 +42,15 @@ namespace Units {
 			get { return weaponController.weapon; }
 		}
 
-		public Weapon setWeapon<T>() where T : Weapon {
-			var weapon = weaponController.setWeapon<T>();
-			var gun = weapon as Gun;
+		public T setWeapon<T>() where T : Weapon {
+			var weapon1 = weaponController.setWeapon<T>();
+			var gun = weapon1 as Gun;
 			if (gun != null) {
 				gun.magNum = 2;
 				gun.mag = gun.magSize;
 			}
-			Debug.Log("unit.setWeapon: " + weapon.type);
-			return weapon;
+			Debug.Log("unit.setWeapon: " + weapon1.type);
+			return weapon1;
 		}
 
 		public void setWeapon(WeaponName weaponName) {

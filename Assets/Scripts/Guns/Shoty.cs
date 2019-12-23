@@ -37,6 +37,10 @@ namespace Guns {
             get { return 2; }
         }
 
+        public override WeaponName wName {
+            get { return WeaponName.Shoty; }
+        }
+
         public override string weaponName {
             get { return "Double barrel"; }
         }

@@ -35,6 +35,10 @@ namespace Guns {
             get { return 1; }
         }
 
+        public override WeaponName wName {
+            get { return WeaponName.AssaultRifle; }
+        }
+
         public override string weaponName {
             get { return "M4A1"; }
         }
@@ -63,7 +67,7 @@ namespace Guns {
                     attack();
                 } else if (mag == 0) {
                     Debug.Log("Play empty sound");
-                    AudioController.instance.play(AudioController.instance.empty, 1, 0);
+                    AudioController.instance.play(AudioController.instance.empty, 1);
                 }
             }
         }
