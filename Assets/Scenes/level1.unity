@@ -891,53 +891,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1001 &232624491
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4259085395624000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 7.0561314
-      objectReference: {fileID: 0}
-    - target: {fileID: 4259085395624000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.7869888
-      objectReference: {fileID: 0}
-    - target: {fileID: 4259085395624000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4259085395624000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4259085395624000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4259085395624000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4259085395624000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4259085395624000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114448841736395818, guid: c64def1dbe8334e3ba5afc3158926508,
-        type: 2}
-      propertyPath: _dmgMul
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &237548771
 GameObject:
   m_ObjectHideFlags: 0
@@ -2185,7 +2138,7 @@ MonoBehaviour:
   - {fileID: 1304279009647406, guid: 1a9f8bbd3661d4f528361779e907dae2, type: 2}
   boss: {fileID: 1287378230986970, guid: 29f3ec3e14fbd49dfb58c82f848bac66, type: 2}
   spawnInterval: 7
-  maxSpawn: 5
+  maxSpawn: 15
 --- !u!114 &519420037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6562,7 +6515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 0}
-  _dmgMul: 1
+  _dmgMul: 2
 --- !u!58 &1419142543
 CircleCollider2D:
   m_ObjectHideFlags: 0

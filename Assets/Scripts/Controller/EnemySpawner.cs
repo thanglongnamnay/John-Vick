@@ -16,15 +16,14 @@ namespace Controller {
             if (_stop || Time.time - _lastSpawnTime < spawnInterval - GameController.instance.level) return;
             _lastSpawnTime = Time.time;
             var instanceHardLevel = GameController.hardLevel / 20f;
-            if (_bossSpawned && maxSpawn <= 0) {
+            Debug.Log("maxSpawn: " + maxSpawn);
+            if (!_bossSpawned && maxSpawn <= 0) {
+                Debug.Log("Spawn boss");
                 _bossSpawned = true;
                 randomSpawn();
-                if (Random.value > .7 - instanceHardLevel) {
-                    randomSpawn();
-                }
-                if (Random.value > 1 - instanceHardLevel) {
-                    randomSpawn();
-                }
+                randomSpawn();
+                randomSpawn();
+                randomSpawn();
                 Instantiate(boss,
                     transform.position + new Vector3(Random.Range(7f, 12f), Random.Range(-5f, .5f)),
                     Quaternion.identity);
