@@ -9,11 +9,11 @@ namespace Controller {
         public int maxSpawn = 50;
 
         private bool _bossSpawned;
-        private float _lastSpawnTime = -10;
+        private float _lastSpawnTime;
         private bool _stop;
 
         private void Update() {
-            if (_stop || Time.time - _lastSpawnTime < spawnInterval - GameController.instance.level) return;
+            if (_stop || Time.time - _lastSpawnTime < spawnInterval - GameController.level) return;
             _lastSpawnTime = Time.time;
             var instanceHardLevel = GameController.hardLevel / 20f;
             Debug.Log("maxSpawn: " + maxSpawn);
@@ -31,10 +31,10 @@ namespace Controller {
                 return;
             }
             randomSpawn();
-            if (Random.value > .7 - instanceHardLevel) {
+            if (Random.value > .6f - instanceHardLevel) {
                 randomSpawn();
             }
-            if (Random.value > 1 - instanceHardLevel) {
+            if (Random.value > .9f - instanceHardLevel) {
                 randomSpawn();
             }
         }

@@ -1,3 +1,6 @@
+using System.Collections;
+using UnityEngine;
+
 namespace Skills {
 	public abstract class PassiveSkill : Skill {
 		public bool used { get; private set; }
@@ -12,6 +15,11 @@ namespace Skills {
 
 		protected override void OnEnable() {
 			base.OnEnable();
+			StartCoroutine(useAsync());
+		}
+
+		IEnumerator useAsync() {
+			yield return new WaitForSeconds(0.01f);
 			use();
 		}
 	}

@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Controller.UI {
     public enum MenuItem {
@@ -9,28 +10,45 @@ namespace Controller.UI {
         Instruction,
         Exit,
         PlayAgain,
-        BackToMain
+        BackToMain,
+        Easy,
+        Medium,
+        Hard
     }
     internal class MainMenuEventTrigger : EventTrigger {
-        public FlyIn instructionFlyIn;
+        [FormerlySerializedAs("instructionFlyIn")] public FlyIn flyIn;
         public MenuItem item;
+        public GameObject menuParent;
         
         public override void OnPointerClick(PointerEventData eventData) {
             switch (item) {
                 case MenuItem.Play:
-                    SceneManager.LoadScene("level1");
+//                    if (menuParent != null) menuParent.SetActive(false);
+                    flyIn.flyIn();
                     break;
                 case MenuItem.Instruction:
-                    instructionFlyIn.flyIn();
+                    flyIn.flyIn();
                     break;
                 case MenuItem.Exit:
                     Application.Quit();
                     break;
                 case MenuItem.PlayAgain:
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    GameController.instance.loadScene(SceneManager.GetActiveScene().buildIndex);
                     break;
                 case MenuItem.BackToMain:
-                    SceneManager.LoadScene("Intro");
+                    GameController.instance.loadScene(0);
+                    break;
+                case MenuItem.Easy:
+                    GameController.hardLevel = 1;
+                    GameController.instance.loadScene(1);
+                    break;
+                case MenuItem.Medium:
+                    GameController.hardLevel = 2;
+                    GameController.instance.loadScene(1);
+                    break;
+                case MenuItem.Hard:
+                    GameController.hardLevel = 3;
+                    GameController.instance.loadScene(1);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -38,12 +56,14 @@ namespace Controller.UI {
         }
     }
     public class MenuController : MonoBehaviour {
-        public FlyIn instructionFlyIn;
+        [FormerlySerializedAs("instructionFlyIn")] public FlyIn flyIn;
         public MenuItem item;
+//        public GameObject menuParent;
         private void Start() {
             var trigger = gameObject.AddComponent<MainMenuEventTrigger>();
             trigger.item = item;
-            trigger.instructionFlyIn = instructionFlyIn;
+            trigger.flyIn = flyIn;
+//            trigger.menuParent = menuParent;
         }
     }
 }

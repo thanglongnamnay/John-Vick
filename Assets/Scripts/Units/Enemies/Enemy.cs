@@ -19,7 +19,7 @@ namespace Units.Enemies {
             set {
                 base.hp = value;
                 if (value < 0) {
-                    GameController.instance.score += maxHp;
+                    GameController.score += maxHp;
                 }
             }
         }

@@ -36,8 +36,18 @@ namespace Units.Enemies.Bosses {
             }
         }
         
+        protected override void onDead(float after = 0) {
+            base.onDead(after);
+            GameController.victory();
+        }
+        
         private void Update() {
             if (!player) return;
+
+            foreach (var skill in skills) {
+                skill.use();
+            }
+            
             if (weapon is Gun) {
                 var gun = weapon as Gun;
                 if (gun != null) {
@@ -54,8 +64,7 @@ namespace Units.Enemies.Bosses {
                     weapon.attack();
                 }
 
-            }
-            else {
+            } else {
                 var distanceToPlayer = player.transform.position - transform.position;
                 if (((Vector2) distanceToPlayer).magnitude >= _minDistance) movable.direction = distanceToPlayer;
                 else {

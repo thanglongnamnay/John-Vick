@@ -26,9 +26,18 @@ namespace Units {
 
         protected override void Awake() {
             base.Awake();
-            maxHp = 70 + 30 * GameController.instance.level;
-            hp = 70 + 30 * GameController.instance.level;
-            setWeapon<Deagle>();
+            var level = GameController.level;
+            Debug.Log("start player, level: " + level);
+            maxHp = 70 + 30 * level;
+            hp = 70 + 30 * level;
+            if (level == 1) {
+                setWeapon<Deagle>();
+            } else if (level == 2) {
+                setWeapon<Shoty>();
+            } else if (level == 3) {
+                setWeapon<AssaultRifle>();
+            }
+
 //            moveSpeed = .75f;
         }
 

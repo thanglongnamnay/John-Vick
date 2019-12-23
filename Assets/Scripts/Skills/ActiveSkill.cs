@@ -15,6 +15,7 @@ namespace Skills {
 
 		public override void use() {
 			if (canUse) {
+				_lastUseTime = Time.time;
 				affect();
 			}
 		}

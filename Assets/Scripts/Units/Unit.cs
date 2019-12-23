@@ -88,7 +88,7 @@ namespace Units {
 					setWeapon<Sniper>();
 				else if (index <= 20)
 					setWeapon<Shoty>();
-				else if (index == 35)
+				else if (index <= 30)
 					setWeapon<AssaultRifle>();
 				else
 					setWeapon<Deagle>();

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Controller.UI;
 using TMPro;
 using Units;
@@ -15,8 +16,6 @@ namespace Controller {
     public class GameController : MonoBehaviour {
         public GameController() {
             instance = this;
-            level = 1;
-            hardLevel = 1;
         }
 
         public static GameController instance { get; private set; }
@@ -31,14 +30,14 @@ namespace Controller {
         public FlyIn lostObject;
         public EnemySpawner enemySpawner;
         public TextMeshProUGUI highScoreText;
+        public FadeOut fadeOut;
         [SerializeField]
         // ReSharper disable once InconsistentNaming
         private Player _player;
         public static int hardLevel = 1;
-        public float score;
+        public static float score = 0;
+        public static int level = 1;
         private const string HighscoreKey = "highScore";
-
-        public int level { get; private set; }
         
         public Player player {
             get { return _player; }
@@ -69,12 +68,34 @@ namespace Controller {
             }
         }
 
-        public void victory() {
-            // nextlv
+        public static void victory() {
+            if (level >= 3) return;
+            level += 1;
+            instance.loadScene(level);
+        }
+
+        public void loadScene(string s) {
+            StartCoroutine(fadeOut.fade());
+            StartCoroutine(_loadScene(s));
+        }
+
+        public void loadScene(int index) {
+            StartCoroutine(fadeOut.fade());
+            StartCoroutine(_loadScene(index));
+        }
+
+        private IEnumerator _loadScene(int index) {
+            yield return new WaitForSeconds(1);
+            SceneManager.LoadScene(index);
+        }
+
+        private IEnumerator _loadScene(string s) {
+            yield return new WaitForSeconds(1);
+            SceneManager.LoadScene(s);
         }
 
         private void Start() {
-            if (PlayerPrefs.HasKey(HighscoreKey)) {
+            if (highScoreText != null && PlayerPrefs.HasKey(HighscoreKey)) {
                 highScoreText.text = "High score: " + Math.Round(PlayerPrefs.GetFloat(HighscoreKey));
             }
         }

@@ -1,4 +1,5 @@
 using System.Collections;
+using Controller;
 using Melees;
 using UnityEngine;
 
@@ -15,6 +16,11 @@ namespace Units.Enemies.Bosses {
         private IEnumerator setKnife() {
             yield return new WaitForSeconds(0);
             setWeapon<Knife>();
+        }
+        
+        protected override void onDead(float after = 0) {
+            base.onDead(after);
+            GameController.victory();
         }
     }
 }

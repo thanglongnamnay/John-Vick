@@ -1908,8 +1908,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d0f46bf6dfe438b9f729ab95b9f38f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skills: []
-  _hp: 150
+  skills:
+  - {fileID: 114970167483372644}
   maxHp: 150
 --- !u!114 &114104903732802378
 MonoBehaviour:
@@ -2064,7 +2064,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4471625725200316, guid: edeb51c3dc4ad4127b4c4c380c47d077,
     type: 2}
   weaponGameObject: {fileID: 1890216487371706}
-  _weapon: {fileID: 0}
 --- !u!114 &114754400843099402
 MonoBehaviour:
   m_ObjectHideFlags: 1
