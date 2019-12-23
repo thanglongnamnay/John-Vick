@@ -1,6 +1,6 @@
+using System;
 using Controller;
 using Guns;
-using Melees;
 using UnityEngine;
 
 namespace Units {
@@ -20,9 +20,8 @@ namespace Units {
         }
 
         private float _tempEvasion;
-        private float _lastDodgeTime = 0;
-        private const float DodgeCooldown = 3;
-        public int deagleMag = 14;
+        private int _deagleMag = 14;
+        private WeaponName _lastWeapon = WeaponName.Knife;
         public override float evasion { get; set; }
 
         protected override void Awake() {
@@ -38,24 +37,36 @@ namespace Units {
 //            skills.Add(dodge);
 //        }
 
+        private void Start() {
+            var gun = weapon as Gun;
+            if (gun != null) {
+                gun.mag = (_deagleMag - 1) % gun.magSize + 1;
+                gun.magNum = _deagleMag / gun.magSize;
+            }
+        }
+
         protected override void onDead(float after = 0) {
             GetComponentInChildren<Animator>().Play("Hurt");
             base.onDead(after + 1);
         }
 
         public void swichWeapon() {
+            var currentWp = weapon.wName;
             if (weapon is Gun) {
-                var deagle = weapon as Deagle;
-                if (deagle != null) {
-                    deagleMag = deagle.magNum * 7 + deagle.mag;
+                var gun = weapon as Gun;
+                if (gun != null) {
+                    _deagleMag = gun.magNum * gun.magSize + gun.mag;
                 }
-                setWeapon<Hand>();
-            } else {
-                setWeapon<Deagle>();
-                var deagle = weapon as Deagle;
-                deagle.magNum = deagleMag / 7;
-                deagle.mag = deagleMag % 7;
             }
+            
+            setWeapon(_lastWeapon);
+            var gun2 = weapon as Gun;
+            if (gun2 != null) {
+                gun2.magNum = _deagleMag / gun2.magSize;
+                gun2.mag = _deagleMag % gun2.magSize;
+            }
+
+            _lastWeapon = currentWp;
         }
         
     }

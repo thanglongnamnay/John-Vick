@@ -891,6 +891,53 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &232624491
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4259085395624000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 7.0561314
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259085395624000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.7869888
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259085395624000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259085395624000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259085395624000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259085395624000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259085395624000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259085395624000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114448841736395818, guid: c64def1dbe8334e3ba5afc3158926508,
+        type: 2}
+      propertyPath: _dmgMul
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c64def1dbe8334e3ba5afc3158926508, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &237548771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,7 +1943,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4471625725200316, guid: edeb51c3dc4ad4127b4c4c380c47d077,
     type: 2}
   weaponGameObject: {fileID: 1750686126}
-  _weapon: {fileID: 0}
 --- !u!120 &512756777
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -2123,7 +2169,6 @@ MonoBehaviour:
   - {fileID: 245915069}
   - {fileID: 991991948}
   - {fileID: 940609195}
-  _sizeX: 0
 --- !u!114 &519420036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5529,7 +5574,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skills: []
-  _hp: 100
   maxHp: 0
 --- !u!114 &1221288060
 MonoBehaviour:
@@ -6518,7 +6562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 0}
-  _dmgMul: 4
+  _dmgMul: 1
 --- !u!58 &1419142543
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7247,7 +7291,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4471625725200316, guid: edeb51c3dc4ad4127b4c4c380c47d077,
     type: 2}
   weaponGameObject: {fileID: 1949579026}
-  _weapon: {fileID: 0}
 --- !u!4 &1679594382
 Transform:
   m_ObjectHideFlags: 0
@@ -7969,7 +8012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 0}
-  _dmgMul: 4
+  _dmgMul: 1
 --- !u!58 &1757605774
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -9017,9 +9060,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skills:
   - {fileID: 1913862614}
-  _hp: 100
   maxHp: 100
-  deagleMag: 14
 --- !u!4 &1913862611
 Transform:
   m_ObjectHideFlags: 0

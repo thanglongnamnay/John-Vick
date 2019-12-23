@@ -6,7 +6,7 @@ namespace Controller {
     [RequireComponent(typeof(Collider2D))]
     public class UnitCollider : MonoBehaviour {
         public Unit unit;
-        private float _dmgMul = 1;
+        [SerializeField] private float _dmgMul = 1;
 
         public float dmgMul {
             get { return _dmgMul; }

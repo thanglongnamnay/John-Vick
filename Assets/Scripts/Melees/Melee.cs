@@ -33,14 +33,12 @@ namespace Melees {
             yield return new WaitForSeconds(.2f);
             _audio.Play();
             _slash.SetActive(true);
-            Debug.Log("swing sound played");
             yield return new WaitForSeconds(.3f);
             _slash.SetActive(false);
             meleeCollider.enable = true;
         }
 
         protected override void playAttackAnimation() {
-            Debug.Log("Play melee animation here");
             //todo: play anim
         }
 

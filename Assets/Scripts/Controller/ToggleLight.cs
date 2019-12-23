@@ -31,7 +31,6 @@ namespace Controller {
             var index0 = Random.Range(0, _lights.Length);
             var light1 = _lights[index0];
             light1.intensity = .1f;
-            Debug.Log("turn off 1 light");
             yield return restoreLight(light1, index0);
 
             if (value > .5f) {

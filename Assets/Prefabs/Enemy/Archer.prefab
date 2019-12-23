@@ -2137,7 +2137,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4471625725200316, guid: edeb51c3dc4ad4127b4c4c380c47d077,
     type: 2}
   weaponGameObject: {fileID: 1811105561870986}
-  _weapon: {fileID: 114270029349707682}
 --- !u!114 &114672436053069526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2194,7 +2193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skills: []
-  _hp: 20
   maxHp: 20
 --- !u!212 &212060963552468836
 SpriteRenderer:
