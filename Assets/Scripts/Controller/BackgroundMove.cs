@@ -18,7 +18,7 @@ namespace Controller {
         private void Update() {
             foreach (var background in backgrounds) {
                 Vector2 distance = transform.position - background.position;
-                if (distance.magnitude >= _sizeX * 2) {
+                if (distance.magnitude >= _sizeX * 1.5) {
                     background.position += distance.x > 0 ? 3 * _sizeX * Vector3.right : 3 * _sizeX * Vector3.left;
                 }
             }

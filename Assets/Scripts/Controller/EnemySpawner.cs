@@ -16,7 +16,7 @@ namespace Controller {
         private void Update() {
             if (_stop || Time.time - _lastSpawnTime < spawnInterval - GameController.instance.level) return;
             _lastSpawnTime = Time.time;
-            var instanceHardLevel = GameController.instance.hardLevel / 20f;
+            var instanceHardLevel = GameController.hardLevel / 20f;
             if (_bossSpawned && maxSpawn <= 0) {
                 _bossSpawned = true;
                 randomSpawn();

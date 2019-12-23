@@ -26,7 +26,7 @@ namespace Units.Enemies {
                 var weaponControllerTransform = weaponController.transform;
                 var angle = Vector2.SignedAngle(player.transform.position - weaponControllerTransform.position,
                                 weaponControllerTransform.right) +
-                            Random.value * (72f / (GameController.instance.level + 2) / GameController.instance.hardLevel);
+                            Random.value * (72f / (GameController.instance.level + 2) / GameController.hardLevel);
                 weaponControllerTransform.Rotate(0, 0, -angle);
                 yield return new WaitForSeconds(.5f);
             }

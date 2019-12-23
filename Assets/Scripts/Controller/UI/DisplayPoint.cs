@@ -12,7 +12,7 @@ namespace Controller.UI {
         }
 
         private void Update() {
-            _text.text = "Score: " + Math.Round(GameController.instance.point);
+            _text.text = "Score: " + Math.Round(GameController.instance.score);
         }
     }
 }

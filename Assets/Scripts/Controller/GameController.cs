@@ -1,5 +1,6 @@
 using System;
 using Controller.UI;
+using TMPro;
 using Units;
 using Units.Enemies;
 using UnityEngine;
@@ -30,10 +31,12 @@ namespace Controller {
         public GameObject creepPrefab;
         public FlyIn lostObject;
         public EnemySpawner enemySpawner;
+        public TextMeshProUGUI highScoreText;
         [SerializeField]
         private Player _player;
-        public int hardLevel;
-        public float point;
+        public static int hardLevel = 1;
+        public float score;
+        private const string HighscoreKey = "highScore";
 
         public int level { get; private set; }
         
@@ -55,8 +58,19 @@ namespace Controller {
 
         public void gameOver() {
             if (player.hp <= 0) {
+                var highScore = 0f;
+                if (PlayerPrefs.HasKey(HighscoreKey)) {
+                    highScore = PlayerPrefs.GetFloat(HighscoreKey);
+                }
+                PlayerPrefs.SetFloat(HighscoreKey, Math.Max(score, highScore));
                 lostObject.flyIn();
                 enemySpawner.stop();
+            }
+        }
+
+        private void Start() {
+            if (PlayerPrefs.HasKey(HighscoreKey)) {
+                highScoreText.text = "High score: " + Math.Round(PlayerPrefs.GetFloat(HighscoreKey));
             }
         }
 

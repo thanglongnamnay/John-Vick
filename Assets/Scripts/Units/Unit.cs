@@ -36,6 +36,7 @@ namespace Units {
 		private float _tempMoveSpeed;
 		protected Movable movable;
 		public float maxHp;
+		private bool _speedIncreased;
 
 		public Weapon weapon {
 			get { return weaponController.weapon; }
@@ -136,6 +137,9 @@ namespace Units {
 		}
 
 		public void increaseMoveSpeed(float v, float duration) {
+			if (_speedIncreased) return;
+			
+			_speedIncreased = true;
 			_tempMoveSpeed = moveSpeed;
 			moveSpeed = v;
 			StartCoroutine(resetMoveSpeed(duration));
@@ -143,6 +147,7 @@ namespace Units {
 
 		private IEnumerator resetMoveSpeed(float after) {
 			yield return new WaitForSeconds(after);
+			_speedIncreased = false;
 			moveSpeed = _tempMoveSpeed;
 		}
 
