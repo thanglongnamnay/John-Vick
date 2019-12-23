@@ -45,6 +45,7 @@ namespace Controller {
             }
 
             Assert.IsNotNull(weapon1);
+            weapon = weapon1;
             return weapon1;
         }
 
