@@ -33,6 +33,7 @@ namespace Controller.UI {
                     Application.Quit();
                     break;
                 case MenuItem.PlayAgain:
+                    GameController.score = 0;
                     GameController.instance.loadScene(SceneManager.GetActiveScene().buildIndex);
                     break;
                 case MenuItem.BackToMain:
@@ -40,14 +41,20 @@ namespace Controller.UI {
                     break;
                 case MenuItem.Easy:
                     GameController.hardLevel = 1;
+                    GameController.level = 1;
+                    GameController.score = 0;
                     GameController.instance.loadScene(1);
                     break;
                 case MenuItem.Medium:
                     GameController.hardLevel = 2;
+                    GameController.level = 1;
+                    GameController.score = 0;
                     GameController.instance.loadScene(1);
                     break;
                 case MenuItem.Hard:
                     GameController.hardLevel = 3;
+                    GameController.level = 1;
+                    GameController.score = 0;
                     GameController.instance.loadScene(1);
                     break;
                 default:
