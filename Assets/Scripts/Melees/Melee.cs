@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Controller;
 using UnityEngine;
@@ -47,7 +48,11 @@ namespace Melees {
             _slash = transform.Find("slash").gameObject;
             _slash.SetActive(false);
         }
-        
+
+        private void OnDestroy() {
+            _slash.SetActive(false);
+        }
+
         public override void onUpdate() {
             base.onUpdate();
             if (Input.GetMouseButton(0)) {

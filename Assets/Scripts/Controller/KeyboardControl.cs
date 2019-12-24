@@ -1,3 +1,4 @@
+using Guns;
 using Units;
 using UnityEngine;
 
@@ -37,6 +38,10 @@ namespace Controller {
 
             if (Input.GetKeyDown(KeyCode.Q)) {
                 _player.swichWeapon();
+            }
+
+            if (Input.GetKeyDown(KeyCode.L)) {
+                _player.setWeapon<Sniper>();
             }
         }
     }

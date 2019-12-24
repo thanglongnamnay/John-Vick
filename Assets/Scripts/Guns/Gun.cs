@@ -39,6 +39,11 @@ namespace Guns {
 
 		public int mag { get; set; }
 
+		public float lastReloadTime {
+			get { return _lastReloadTime; }
+			set { _lastReloadTime = value; }
+		}
+
 		public override Sprite renderedSprite {
 			get { return GameController.instance.gunConfig[config].texture; }
 		}

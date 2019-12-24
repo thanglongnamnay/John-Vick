@@ -74,8 +74,9 @@ namespace Units {
                 gun2.magNum = _deagleMag / gun2.magSize;
                 gun2.mag = _deagleMag % gun2.magSize;
 
-                if (gun2.magNum > 0 && gun2.mag == 0) {
-                    gun2.reload();
+                if (gun2.magNum > 0 && gun2.mag == 0 && Time.time - gun2.lastReloadTime > gun2.reloadTime) {
+                    gun2.magNum -= 1;
+                    gun2.mag = gun2.magSize;
                 }
             }
 

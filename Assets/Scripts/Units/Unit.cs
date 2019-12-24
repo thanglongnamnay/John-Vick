@@ -48,6 +48,7 @@ namespace Units {
 			if (gun != null) {
 				gun.magNum = 2;
 				gun.mag = gun.magSize;
+				weaponController.meleeCollider.enable = false;
 			}
 			Debug.Log("unit.setWeapon: " + weapon1.type);
 			return weapon1;
