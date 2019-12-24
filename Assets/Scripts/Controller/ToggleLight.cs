@@ -17,7 +17,7 @@ namespace Controller {
         }
 
         private void Update() {
-            if (Time.time - _lastTime < interval) return;
+            if (Time.time - _lastTime < interval * (Random.value + 1)) return;
             _lastTime = Time.time;
             Debug.Log("start toggle: " + Time.time);
             StartCoroutine(toggle(Random.value));

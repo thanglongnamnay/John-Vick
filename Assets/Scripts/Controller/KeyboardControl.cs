@@ -31,6 +31,7 @@ namespace Controller {
                     var dropItem = hit.GetComponent<DropItem>();
                     if (dropItem != null) {
                         dropItem.changeWeapon(_player);
+                        AudioController.instance.play(AudioController.instance.empty, .5f);
                         Destroy(dropItem.gameObject);
                     }
                 }

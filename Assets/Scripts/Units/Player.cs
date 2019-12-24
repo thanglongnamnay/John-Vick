@@ -73,6 +73,10 @@ namespace Units {
             if (gun2 != null) {
                 gun2.magNum = _deagleMag / gun2.magSize;
                 gun2.mag = _deagleMag % gun2.magSize;
+
+                if (gun2.magNum > 0 && gun2.mag == 0) {
+                    gun2.reload();
+                }
             }
 
             _lastWeapon = currentWp;

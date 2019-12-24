@@ -77,7 +77,11 @@ namespace Guns {
 			var unitCollider = hit.collider.GetComponent<UnitCollider>();
 			yield return new WaitForSeconds(hit.distance / speed);
 			var hitChance = Random.value;
-			if (unitCollider == null) {
+			if (isPenetrable) {
+				if (unitCollider != null && unitCollider.unit.evasion <= hitChance) {
+					hurt(unitCollider, hit);
+				}
+			} else if (unitCollider == null) {
 				transform.position = hit.point;
 				destroy();
 			} else if (unitCollider.unit.evasion <= hitChance) {
