@@ -70,7 +70,7 @@ namespace Guns {
 		private void hurt(UnitCollider unitCollider, RaycastHit2D hit) {
 			var timeTravel = hit.distance / speed;
 			if (unitCollider) {
-				unitCollider.unit.damage(damage * unitCollider.dmgMul / (timeTravel * 2 + 1));
+				unitCollider.unit.damage(damage * (1 - unitCollider.unit.armor) * unitCollider.dmgMul / (timeTravel * 2 + 1));
 			}
 		}
 

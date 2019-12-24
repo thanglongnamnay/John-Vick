@@ -25,9 +25,7 @@ namespace Controller {
             if (Input.GetKeyDown(KeyCode.E)) {
                 // ReSharper disable once Unity.PreferNonAllocApi
                 var hits = Physics2D.OverlapCircleAll(transform.position, 1, 1 << 2);
-                Debug.Log("overlap:" + hits.Length);
                 foreach (var hit in hits) {
-                    Debug.Log("hit: " + hit.transform.name);
                     var dropItem = hit.GetComponent<DropItem>();
                     if (dropItem != null) {
                         dropItem.changeWeapon(_player);

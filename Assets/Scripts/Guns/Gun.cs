@@ -1,3 +1,4 @@
+using System.Collections;
 using Controller;
 using Helper;
 using UnityEngine;
@@ -34,20 +35,10 @@ namespace Guns {
 		public abstract float reloadTime { get; }
 		public abstract float recoil { get; }
 		public abstract float inaccuracy { get; }
-		public abstract float bulletSpeed { get; }
 		public abstract int config { get; }
 
 		public int mag { get; set; }
 
-		public float lastShootTime {
-			set { _lastShootTime = value; }
-		}
-		public float lastReloadTime {
-			set { _lastReloadTime = value; }
-		}
-		public bool isReloading {
-			get { return Time.time - _lastReloadTime >= reloadTime; }
-		}
 		public override Sprite renderedSprite {
 			get { return GameController.instance.gunConfig[config].texture; }
 		}
@@ -83,7 +74,7 @@ namespace Guns {
 		}
 		protected abstract void playReloadAnimation();
 
-		public virtual void reload() {
+		public void reload() {
 			// todo: play anim
 			var audioController = AudioController.instance;
 			if (_magNum <= 0) {
@@ -138,6 +129,17 @@ namespace Guns {
 				var stabGain = StabGain * Time.deltaTime;
 				if (currentRecoil > stabGain) currentRecoil -= stabGain;
 				else currentRecoil = 0;
+			}
+		}
+
+		public override void burst(int times) {
+			StartCoroutine(_burst(times));
+		}
+
+		private IEnumerator _burst(int times) {
+			for (var i = 0; i < times; ++i) {
+				yield return new WaitForSeconds(fireRate / 2);
+				makeBullet();
 			}
 		}
 	}

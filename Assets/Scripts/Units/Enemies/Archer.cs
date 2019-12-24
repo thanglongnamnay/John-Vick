@@ -10,8 +10,8 @@ namespace Units.Enemies {
 
         protected override void Awake() {
             base.Awake();
-            maxHp = 20;
-            hp = 20;
+            maxHp = 10 + 5 * GameController.level + 5 * GameController.hardLevel;
+            hp = 10 + 5 * GameController.level + 5 * GameController.hardLevel;
             _box = transform.Find("box");
         }
 

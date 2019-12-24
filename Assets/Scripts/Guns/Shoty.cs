@@ -2,10 +2,6 @@ using UnityEngine;
 
 namespace Guns {
     public class Shoty : Gun {
-        public override void reload() {
-            base.reload();
-        }
-
         private const int Spread = 3;
         private const int Duck = 5;
 
@@ -33,7 +29,7 @@ namespace Guns {
             get { return 3; }
         }
 
-        public override float bulletSpeed {
+        private static float bulletSpeed {
             get { return 18; }
         }
 

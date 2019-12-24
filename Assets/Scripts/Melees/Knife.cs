@@ -23,11 +23,5 @@ namespace Melees {
         public override WeaponName wName {
             get { return WeaponName.Knife; }
         }
-
-        private int _durable = 40;
-        public override int durable {
-            get { return _durable; }
-            set { _durable = value; }
-        }
     }
 }

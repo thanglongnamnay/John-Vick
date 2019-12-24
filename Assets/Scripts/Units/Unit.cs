@@ -94,9 +94,13 @@ namespace Units {
 					setWeapon<Deagle>();
 			}
 			else {
-				var index = Random.Range(0, 4);
+				var index = Random.Range(0, 10);
 				switch (index) {
+					case 0:
+						setWeapon<Pencil>();
+						break;
 					case 1:
+					case 2:
 						setWeapon<Knife>();
 						break;
 					default:

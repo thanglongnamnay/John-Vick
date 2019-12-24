@@ -1,4 +1,5 @@
 using System.Collections;
+using Controller;
 using Melees;
 using UnityEngine;
 
@@ -7,8 +8,8 @@ namespace Units.Enemies {
         private float _minDistance;
         protected override void Awake() {
             base.Awake();
-            maxHp = 35;
-            hp = 35;
+            maxHp = 25 + 5 * GameController.level + 5 * GameController.hardLevel;
+            hp = 25 + 5 * GameController.level + 5 * GameController.hardLevel;
             moveSpeed = 1.25f;
             _minDistance = GetComponentInChildren<MeleeCollider>().colliderSize;
             StartCoroutine(setMeleeWeapon());

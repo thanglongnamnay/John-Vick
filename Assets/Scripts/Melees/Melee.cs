@@ -11,21 +11,14 @@ namespace Melees {
         private AudioSource _audio;
         private GameObject _slash;
 
-        public float lastAttackTime {
-            set { _lastAttackTime = value; }
-        }
-
         public override WeaponType type {
             get { return WeaponType.Melee; }
         }
-
-        public abstract int durable { get; set; }
         public override void attack() {
             base.attack();
             if (canAttack()) {
                 _lastAttackTime = Time.time;
                 StartCoroutine(enableMeleeCollider());
-                durable -= 1;
             }
         }
 

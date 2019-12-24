@@ -26,7 +26,7 @@ namespace Guns {
             get { return 0; }
         }
 
-        public override float bulletSpeed {
+        private static float bulletSpeed {
             get { return 80; }
         }
 

@@ -9,7 +9,10 @@ namespace Melees {
         private float _damage = 50;
         public override float damage {
             get {
-                _damage -= 15;
+                if (_damage > 15) {
+                    _damage -= 15;
+                }
+
                 return _damage;
             }
         }
@@ -24,12 +27,6 @@ namespace Melees {
 
         public override WeaponName wName {
             get { return WeaponName.Pencil; }
-        }
-
-        private int _durable = 3;
-        public override int durable {
-            get { return _durable; }
-            set { _durable = value; }
         }
     }
 }

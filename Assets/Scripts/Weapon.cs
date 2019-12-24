@@ -20,8 +20,8 @@ public abstract class Weapon : MonoBehaviour {
 		if (canAttack()) playAttackAnimation();
 	}
 
-	public virtual void burst() {
-		if (canAttack()) playAttackAnimation();
+	public virtual void burst(int times) {
+		if (canAttack()) {playAttackAnimation();}
 	}
 	protected abstract void playAttackAnimation();
 	public abstract bool canAttack();
