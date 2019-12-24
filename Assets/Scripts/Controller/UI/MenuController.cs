@@ -11,6 +11,7 @@ namespace Controller.UI {
         Exit,
         PlayAgain,
         BackToMain,
+        NextLevel,
         Easy,
         Medium,
         Hard
@@ -56,6 +57,9 @@ namespace Controller.UI {
                     GameController.level = 1;
                     GameController.score = 0;
                     GameController.instance.loadScene(1);
+                    break;
+                case MenuItem.NextLevel:
+                    GameController.nextLevel();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

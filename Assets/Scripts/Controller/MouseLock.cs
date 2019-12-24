@@ -15,14 +15,16 @@ namespace Controller {
         }
 
         private void Start() {
-            handleLock();
+            toggleLock();
         }
 
         private void Update() {
+            if (GameController.gameEnd) return;
+            
             if (Input.GetKeyDown(KeyCode.LeftShift)) {
                 handleSlow();
             } else if (Input.GetKeyDown(KeyCode.P) || Input.GetMouseButtonDown(1)) {
-                handleLock();
+                toggleLock();
             }
         }
 
@@ -35,7 +37,7 @@ namespace Controller {
                 Time.timeScale = slowFactor;
             }
         }
-        public void handleLock() {
+        public void toggleLock() {
             if (_locking) {
                 _locking = false;
                 Cursor.lockState = CursorLockMode.None;
@@ -45,6 +47,21 @@ namespace Controller {
                 _locking = true;
                 Cursor.lockState = CursorLockMode.Locked;
                 Time.timeScale = _oldTimescale;
+            }
+        }
+
+        public void setLock(bool locking) {
+            if (locking) {
+                _locking = true;
+                Cursor.lockState = CursorLockMode.Locked;
+                Time.timeScale = _oldTimescale;
+            }
+            else {
+                Debug.Log("set lock false");
+                _locking = false;
+                Cursor.lockState = CursorLockMode.None;
+                _oldTimescale = Time.timeScale;
+                Time.timeScale = 0;
             }
         }
     }

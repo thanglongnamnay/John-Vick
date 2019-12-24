@@ -20,8 +20,11 @@ namespace Units.Enemies.Bosses {
         private void Start() {
 //            setWeapon<Deagle>();
             var gun = weapon as Gun;
-            gun.mag = int.MaxValue;
-            gun.magNum = 10;
+            if (gun != null) {
+                gun.mag = int.MaxValue;
+                gun.magNum = 10;
+            }
+
             StartCoroutine(lookAtPlayer());
         }
 
@@ -30,7 +33,7 @@ namespace Units.Enemies.Bosses {
                 var weaponControllerTransform = weaponController.transform;
                 var angle = Vector2.SignedAngle(player.transform.position - weaponControllerTransform.position,
                                 weaponControllerTransform.right) +
-                            Random.value * (24f / GameController.hardLevel);
+                            Random.value * (12f / GameController.hardLevel);
                 weaponControllerTransform.Rotate(0, 0, -angle);
                 yield return new WaitForSeconds(.5f);
             }
@@ -38,10 +41,11 @@ namespace Units.Enemies.Bosses {
         
         protected override void onDead(float after = 0) {
             base.onDead(after);
-            GameController.victory();
+            GameController.instance.victory();
         }
-        
-        private void Update() {
+
+        protected override void Update() {
+            base.Update();
             if (!player) return;
 
             foreach (var skill in skills) {

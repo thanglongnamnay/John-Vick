@@ -1,4 +1,3 @@
-using System;
 using Controller;
 using Guns;
 using UnityEngine;
@@ -27,9 +26,8 @@ namespace Units {
         protected override void Awake() {
             base.Awake();
             var level = GameController.level;
-            Debug.Log("start player, level: " + level);
-            maxHp = 70 + 30 * level;
-            hp = 70 + 30 * level;
+            maxHp = 105 + 45 * level;
+            hp = 105 + 45 * level;
             if (level == 1) {
                 setWeapon<Deagle>();
             } else if (level == 2) {
@@ -37,6 +35,8 @@ namespace Units {
             } else if (level == 3) {
                 setWeapon<AssaultRifle>();
             }
+
+            _deagleMag = (weapon as Gun).magSize * 2;
 
 //            moveSpeed = .75f;
         }

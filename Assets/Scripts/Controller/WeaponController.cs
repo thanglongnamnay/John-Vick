@@ -11,7 +11,7 @@ namespace Controller {
         public MeleeCollider meleeCollider { get; private set; }
         public GameObject weaponGameObject;
 
-        [SerializeField] private Weapon _weapon;
+        private Weapon _weapon;
 
         public Weapon weapon {
             get { return _weapon; }

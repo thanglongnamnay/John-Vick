@@ -18,7 +18,7 @@ namespace Units.Enemies.Bosses {
         
         protected override void onDead(float after = 0) {
             base.onDead(after);
-            GameController.victory();
+            GameController.instance.victory();
         }
     }
 }

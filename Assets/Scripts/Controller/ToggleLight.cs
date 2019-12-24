@@ -11,6 +11,10 @@ namespace Controller {
         private Light[] _lights;
         private float[] _lightIntensities;
 
+        private void Awake() {
+            Time.timeScale = 1;
+        }
+
         private void Start() {
             _lights = GetComponentsInChildren<Light>();
             _lightIntensities = _lights.Select(l => l.intensity).ToArray();

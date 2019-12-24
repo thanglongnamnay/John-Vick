@@ -1566,6 +1566,7 @@ MonoBehaviour:
   gunDrop: {fileID: 0}
   creepPrefab: {fileID: 0}
   lostObject: {fileID: 0}
+  winObject: {fileID: 0}
   enemySpawner: {fileID: 0}
   highScoreText: {fileID: 0}
   fadeOut: {fileID: 392036796}
@@ -2302,7 +2303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flyIn: {fileID: 0}
-  item: 5
+  item: 6
 --- !u!61 &1894653164
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2842,6 +2843,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2099396428}
   - component: {fileID: 2099396429}
+  - component: {fileID: 2099396430}
   m_Layer: 8
   m_Name: Spot Light
   m_TagString: Untagged
@@ -2899,3 +2901,14 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &2099396430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2099396427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4aa9d55f104d8cb83b6c5529f2c89a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

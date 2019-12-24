@@ -31,6 +31,10 @@ namespace Units.Enemies {
             player = GameController.instance.player;
         }
 
+        protected virtual void Update() {
+            if (GameController.gameEnd) onDead();
+        }
+
         protected override void onDead(float after = 0) {
             GetComponentInChildren<Animator>().Play("Hurt");
             base.onDead(after + 1);

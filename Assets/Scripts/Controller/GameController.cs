@@ -28,6 +28,7 @@ namespace Controller {
         public GameObject gunDrop;
         public GameObject creepPrefab;
         public FlyIn lostObject;
+        public FlyIn winObject;
         public EnemySpawner enemySpawner;
         public TextMeshProUGUI highScoreText;
         public FadeOut fadeOut;
@@ -37,6 +38,7 @@ namespace Controller {
         public static int hardLevel = 1;
         public static float score = 0;
         public static int level = 1;
+        public static bool gameEnd;
         private const string HighscoreKey = "highScore";
         
         public Player player {
@@ -57,6 +59,8 @@ namespace Controller {
 
         public void gameOver() {
             if (player.hp <= 0) {
+                if (gameEnd) return;
+                gameEnd = true;
                 var highScore = 0f;
                 if (PlayerPrefs.HasKey(HighscoreKey)) {
                     highScore = PlayerPrefs.GetFloat(HighscoreKey);
@@ -64,11 +68,19 @@ namespace Controller {
                 PlayerPrefs.SetFloat(HighscoreKey, Math.Max(score, highScore));
                 lostObject.flyIn();
                 enemySpawner.stop();
-                MouseLock.instance.handleLock();
+                Cursor.lockState = CursorLockMode.None;
             }
         }
 
-        public static void victory() {
+        public void victory() {
+            if (gameEnd) return;
+            gameEnd = true;
+            winObject.flyIn();
+            enemySpawner.stop();
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        public static void nextLevel() {
             if (level >= 3) return;
             level += 1;
             instance.loadScene(level);
@@ -95,6 +107,7 @@ namespace Controller {
         }
 
         private void Start() {
+            gameEnd = false;
             if (highScoreText != null && PlayerPrefs.HasKey(HighscoreKey)) {
                 highScoreText.text = "High score: " + Math.Round(PlayerPrefs.GetFloat(HighscoreKey));
             }

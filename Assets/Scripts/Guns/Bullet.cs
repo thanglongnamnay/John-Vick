@@ -34,7 +34,7 @@ namespace Guns {
 			Debug.Log("len = " + _hits.Length);
 			if (_hits.Length == 0) yield break;
 			foreach (var hit in _hits) {
-				var unitCollider = hit.collider.GetComponent<UnitCollider>();
+				hit.collider.GetComponent<UnitCollider>();
 				Debug.Log("hit: " + hit.collider.name);
 				StartCoroutine(handleHit(hit));
 			}
@@ -56,14 +56,15 @@ namespace Guns {
 
 		// Update is called once per frame
 		private void Update () {
-			var delta = speed * Time.deltaTime * transform.right;
+			var transform1 = transform;
+			var delta = speed * Time.deltaTime * transform1.right;
 //			if (_hits != null && !isPenetrable && _hits.Length > 0) {
 //				var distanceToHit = (Vector3) _hits[0].point - transform.position;
 //				if (delta.magnitude > distanceToHit.magnitude) {
 //					delta = distanceToHit;
 //				}
 //			}
-			transform.position += delta;
+			transform1.position += delta;
 		}
 
 		private void hurt(UnitCollider unitCollider, RaycastHit2D hit) {

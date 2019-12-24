@@ -2,6 +2,10 @@ using UnityEngine;
 
 namespace Guns {
     public class Shoty : Gun {
+        public override void reload() {
+            base.reload();
+        }
+
         private const int Spread = 3;
         private const int Duck = 5;
 

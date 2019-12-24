@@ -37,7 +37,8 @@ namespace Units.Enemies {
             _box.parent = null;
         }
 
-        private void Update() {
+        protected override void Update() {
+            base.Update();
             if (!player) return;
             
             if (weapon.canAttack() && Vector2.Distance(player.transform.position, transform.position) < _minDistance) {

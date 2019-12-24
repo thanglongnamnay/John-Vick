@@ -20,10 +20,10 @@ namespace Controller {
             if (!_bossSpawned && maxSpawn <= 0) {
                 Debug.Log("Spawn boss");
                 _bossSpawned = true;
-                randomSpawn();
-                randomSpawn();
-                randomSpawn();
-                randomSpawn();
+                for (var i = 0; i < GameController.level + GameController.hardLevel; ++i) {
+                    randomSpawn();
+                }
+
                 Instantiate(boss,
                     transform.position + new Vector3(Random.Range(7f, 12f), Random.Range(-5f, .5f)),
                     Quaternion.identity);

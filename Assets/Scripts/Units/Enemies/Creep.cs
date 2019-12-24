@@ -32,7 +32,8 @@ namespace Units.Enemies {
             }
         }
 
-        protected virtual void Update() {
+        protected override void Update() {
+            base.Update();
             if (player == null) return;
 
             var distanceToPlayer = player.transform.position - transform.position;

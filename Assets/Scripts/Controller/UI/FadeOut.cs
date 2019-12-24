@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +5,7 @@ using UnityEngine.UI;
 namespace Controller.UI {
     public class FadeOut : MonoBehaviour {
         private Image _image;
-        [SerializeField] private bool _fading;
+        private bool _fading;
         private void Start() {
             _image = GetComponentInChildren<Image>();
             _image.gameObject.SetActive(false);

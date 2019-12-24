@@ -83,7 +83,7 @@ namespace Guns {
 		}
 		protected abstract void playReloadAnimation();
 
-		public void reload() {
+		public virtual void reload() {
 			// todo: play anim
 			var audioController = AudioController.instance;
 			if (_magNum <= 0) {
