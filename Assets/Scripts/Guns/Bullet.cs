@@ -27,63 +27,64 @@ namespace Guns {
 		IEnumerator handleEnable() {
 			yield return new WaitForSeconds(0);
 			var transform1 = transform;
-			if (isPenetrable) {
+//			if (isPenetrable) {
 				// ReSharper disable once Unity.PreferNonAllocApi
-				_hits = Physics2D.RaycastAll(transform1.position,
-					transform1.right);
-				Debug.Log("len = " + _hits.Length);
-				if (_hits.Length == 0) yield break;
-				foreach (var hit in _hits) {
-					var unitCollider = hit.collider.GetComponent<UnitCollider>();
-					Debug.Log("hit: " + hit.collider.name);
-
-					var hitChance = Random.value;
-					if (unitCollider && unitCollider.unit.evasion <= hitChance) {
-						StartCoroutine(hurt(unitCollider, hit));
-					}
-				}
-			}
-			else {
-				var hit = Physics2D.Raycast(transform1.position, transform1.right);
-				if (!hit) yield break;
-				_hits = new[] {hit};
-				StartCoroutine(handleHit(hit));
+			_hits = Physics2D.RaycastAll(transform1.position,
+				transform1.right);
+			Debug.Log("len = " + _hits.Length);
+			if (_hits.Length == 0) yield break;
+			foreach (var hit in _hits) {
 				var unitCollider = hit.collider.GetComponent<UnitCollider>();
-
-				var hitChance = Random.value;
-				//Debug.Log("hit: " + hit.collider.name);
-				if (unitCollider && unitCollider.unit.evasion <= hitChance) {
-					StartCoroutine(hurt(unitCollider, hit));
-				}
+				Debug.Log("hit: " + hit.collider.name);
+				StartCoroutine(handleHit(hit));
 			}
+//			}
+//			else {
+//				var hit = Physics2D.Raycast(transform1.position, transform1.right);
+//				if (!hit) yield break;
+//				_hits = new[] {hit};
+//				StartCoroutine(handleHit(hit));
+//				var unitCollider = hit.collider.GetComponent<UnitCollider>();
+//
+//				var hitChance = Random.value;
+//				//Debug.Log("hit: " + hit.collider.name);
+//				if (unitCollider && unitCollider.unit.evasion <= hitChance) {
+//					StartCoroutine(hurt(unitCollider, hit));
+//				}
+//			}
 		}
 
 		// Update is called once per frame
 		private void Update () {
 			var delta = speed * Time.deltaTime * transform.right;
-			if (_hits != null && !isPenetrable && _hits.Length > 0) {
-				var distanceToHit = (Vector3) _hits[0].point - transform.position;
-				if (delta.magnitude > distanceToHit.magnitude) {
-					delta = distanceToHit;
-				}
-			}
+//			if (_hits != null && !isPenetrable && _hits.Length > 0) {
+//				var distanceToHit = (Vector3) _hits[0].point - transform.position;
+//				if (delta.magnitude > distanceToHit.magnitude) {
+//					delta = distanceToHit;
+//				}
+//			}
 			transform.position += delta;
 		}
 
-		private IEnumerator hurt(UnitCollider unitCollider, RaycastHit2D hit) {
+		private void hurt(UnitCollider unitCollider, RaycastHit2D hit) {
 			var timeTravel = hit.distance / speed;
-			yield return new WaitForSeconds(timeTravel);
 			if (unitCollider) {
 				unitCollider.unit.damage(damage * unitCollider.dmgMul / (timeTravel * 2 + 1));
 			}
 		}
-		
+
 		private IEnumerator handleHit(RaycastHit2D hit) {
 			var unitCollider = hit.collider.GetComponent<UnitCollider>();
-			if (unitCollider != null && unitCollider.unit.evasion >= Random.value) yield break;
-			destroy(hit.distance / speed + .1f);
 			yield return new WaitForSeconds(hit.distance / speed);
-			transform.position = hit.point;
+			var hitChance = Random.value;
+			if (unitCollider == null) {
+				transform.position = hit.point;
+				destroy();
+			} else if (unitCollider.unit.evasion <= hitChance) {
+				hurt(unitCollider, hit);
+				transform.position = hit.point;
+				destroy();
+			}
 		}
 
 		public void destroy(float after = 0) {
